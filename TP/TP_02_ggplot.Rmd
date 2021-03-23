@@ -152,6 +152,84 @@ Tracer la température moyenne en fonction du jour de l'année à Montpellier.
 Faire varier le type de graphique et leur taille (lignes ou points plus ou poins gros),
 ainsi que leur couleur.
 
+## Plusieurs villes
+
+On revient au jeu de données complet, avec les températures moyennes pour trois
+villes : Embrun, Montpellier et Lille.
+
+```{r temperatures-head}
+head(temps_average)
+```
+
+On cherche à représenter les trois courbes sur un même graphique.
+
+Pour cela, il faut distinguer les villes en utilisant un signe graphique distinct.
+
+Par exemple, on peut distinguer les villes par leur couleur.
+Pour cela, il suffit d'ajouter le paramètre `color` dans les `aes`.
+
+```{r temperatures-plot-y-color, eval = FALSE}
+ggplot(temps_average,
+       aes(x = ---,              
+           y = ---,
+           color = ---)) +              
+  geom_---()                     
+```
+
+Il est aussi possible de distinguer les villes par le type de trait tracé.
+Pour cela, il suffit d'ajouter le paramètre `linetype` dans les `aes`.
+
+```{r temperatures-plot-y-line, eval = FALSE}
+ggplot(temps_average,
+       aes(x = ---,              
+           y = ---,
+           linetype = ---)) +              
+  geom_line()                     
+```
+
+> **À faire**:
+Tracer la température moyenne en fonction du jour de l'année dans les trois villes,
+en utilisant soit la couleur, soit le type de lignes pour les distinguer.
+
+## Températures représentées en `color`
+
+Il est possible de changer les attributions dans les `aes` à loisir, en fonction
+de l'effet recherché.
+Par exemple, on peut vouloir représenter les températures par des *couleurs*
+différentes, au lieu des les réprésenter sur l'axed des y.
+
+Pour cela, il suffit d'échanger `y` et `color` dans le graphe précédent.
+
+```{r temperatures-plot-color, eval = FALSE}
+ggplot(temps_average,
+       aes(x = ---,              
+           y = ---,
+           color = temperature)) +              
+  geom_point(size = 5)                     
+```
+
+> **À faire**:
+Tracer la température moyenne en fonction du jour de l'année dans les trois villes,
+en utilisant la couleur pour représenter la température.
+Faire varier l'attribution des différentes colones de données aux différentes `aes`,
+et observer le résultat.
+
+## Mélanges
+
+On peut mélanger les différents ingrédients déjà présentés pour obtenir de
+nouveaux graphiques.
+
+> **À faire**:
+Par exemple, essayez d'obtenir les représentations suivantes:
+> 
+> * Températures en `y`, avec une couleur **et** un type de ligne différent pour chaque ville.
+>
+> * Températures en `y`, un type de ligne différent pour chaque ville, et une couleur pour chaque mois.
+>
+> * Températures en `color`, représentées verticalement.
+>
+> * Graphe donnant le mois en fonction du jour de l'année.
+
 ## Mise en forme
 
 Par défaut, le fond est grisé.
@@ -165,16 +243,14 @@ La fonction `ggtitle` permet elle d'ajouter un titre au graphique.
 On ajoute ces options simplement par l'opérateur `+`:
 
 ```{r temperatures-plot-y-theme, eval = FALSE}
-ggplot(---,
-       aes(x = ---,              
-           y = ---)) +              
+ggplot(---, aes(---)) +              
   geom_---() +
   xlab(---) + ylab(---) + ggtitle(---) + 
   theme_---()
 ```
 
 > **À faire**:
-Reprendre le graphique précédent de telle sorte à le rendre "publiable":
+Reprendre votre graphique préféré, et modifiez le de telle sorte à le rendre "publiable":
 ajoutez un thème de votre choix,
 nomez les axes de manière informative (avec les unités),
 et ajoutez un titre.
