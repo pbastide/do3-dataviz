@@ -1,0 +1,149 @@
+---
+title: "TP 1 - Introduction à `R markdown`"
+author: "Paul Bastide"
+date: "30/03/2021"
+output: html_document
+---
+
+## `R Markdown`
+
+`R Markdown` permet de créer des documents dynamiques, qui incluent du texte mis
+en forme, des équations, et du code `R`.
+
+Cet outil est très utile pour écrire des rapports techniques.
+Il permet, dans un seul document, d'exposer le contexte du problème,
+la méthode de résolution, et les résultats de l'analyse.
+
+De nombreuses ressources sont disponibles en ligne.
+Voir par exemple 
+[l'introduction officielle](https://rmarkdown.rstudio.com/lesson-1.html)
+à `R markdown`, ainsi que la [fiche synthétique](https://raw.githubusercontent.com/rstudio/cheatsheets/master/rmarkdown-2.0.pdf).
+
+## Installation
+
+Pour utiliser `R markdown`, il suffit d'installer la librairie associée, 
+en tapant la commande suivante dans la console:
+
+```{r install-rmd, eval = FALSE}
+install.packages("rmarkdown")
+```
+
+
+## Création d'un document
+
+Une fois l'installation effectuée, le plus simple est de créer un nouveau 
+document en utilisant l'interface de `RStudio`.
+
+Sélectionner le menu:
+```
+File > New File > R markdown...
+```
+
+Dans l'onglet `Document` (sélectionné par défaut), vous pouvez saisir le titre
+et la, le ou les auteur·e·s du document.
+
+Trois formats sont proposée:
+
+* `HTML`: permet une mise en forme dynamique, utile pour les sites internet.
+
+* `PDF`: permet une mise en forme fixe, utile pour un rendu "officiel" ou papier.
+
+* `Word`: permet de générer des documents éditables, qui peuvent ensuite être
+partagés avec des collaborateurs ou collaboratrices.
+
+Pour cette séance, on choisi le format `HTML`, le plus simple en terme de 
+mise en page.
+
+## Premier document
+
+Une fois le document créé, `RStudio` propose un contenu "didactique" par défaut.
+
+Vous pouvez compiler ce document en cliquant sur la commande 
+`Knit` en haut à gauche, à côté d'une pelotte de laine
+(en anglais, "to knit" signifie "tricotter").
+
+Si tous fonctionne bien, `RStudio` va générer un document `HTML`, qu'il ouvre
+dans une nouvelle fenêtre.
+
+Vous pouvez étudier ce premier document, et voir comment la source (le `.Rmd`)
+influe sur la sortie (le `.html`).
+
+## Code `R` et graphiques
+
+Supposons que l'on mène l'expérience suivante.  
+Une urne contient trois boules, une rouge, une bleu et une verte.  
+On tire une boule au hasard, on note sa couleur, puis on la remet dans l'urne.  
+On reproduit cette expérience 300 fois.  
+
+Avec `R`, on peut simuler cette expérience aléatoire de la façon suivante.
+
+```{r boules-experience}
+set.seed(12890926)                     ## Reproductibilité
+
+boules <- c("rouge", "bleue", "verte") ## Boules dans l'urne
+
+n_exp <- 300                           ## Nombre de fois où je fais l'expérience
+
+echantillon <- sample(boules,          ## échantillonne les boules
+                      n_exp,           ## n_exp fois
+                      replace = TRUE)  ## avec remise
+```
+
+On peut ensuite afficher un résumé de l'experience
+(nombre de fois où chaque boule a été tirée).
+
+```{r boules-resultats}
+res <- table(echantillon)             ## Résumé de l'échantillon
+res
+```
+
+Et tracer ce résultat.
+
+```{r boules-resultats-tracé}
+barplot(res)                          ## Diagramme en bar
+```
+
+Il est aussi possible d'utiliser les résultats dans le texte.
+
+Par exemple, sur les `r n_exp` expériences, on a tiré ici `r res[1]` fois la boule `r boules[1]`.
+
+## Exercice
+
+> **À rendre**: votre rapport *compilé* sous format `html`.
+
+Rédigez un document `R markdown` qui réponde au problème exposé ci-dessous.
+Le document doit être auto-suffisant, et exposer clairement le problème,
+les analyses, et les conclusions.
+
+Il contiendra des sections, des mots mis en valeurs en **gras** et en 
+*italique*, et du `code` dans le texte.
+
+Il contiendra également des blocs de code `R`, qui serviront à répondre 
+au problème.
+
+Il pourra contenir des équations $\LaTeX$, et des listes, numérotés ou non.
+
+---
+
+> On lance une pièce équilibrée 100 fois, de manière indépendante.
+>
+> Décrivez l'expérience statistique.
+> Pour chaque lancé, quelle est la probabilité d'obtenir pile ou face ?
+>
+> Simulez les données correspondant à cette expérience simple,
+> en utilisant la fonction `sample`.
+>
+> Calculer la fréquence empirique de "piles" et de "faces"
+> en utilisant la fonction `table`.
+> Ce résultat vous surprend-il ?
+>
+> Tracer ces fréquences empiriques en utilisant la fonction `barplot`.
+> 
+> Que ce passe-t-il lorsque vous compilez votre document plusieurs fois de suite ?
+> Les résultats numériques changent-ils ? 
+> Est-ce normal ?
+> Utilisez la fonction `set.seed` pour produire un document reproductible.
+>
+> Reproduisez ces analyses avec 1000 lancés (ou plus).
+
+---

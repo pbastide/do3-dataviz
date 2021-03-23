@@ -1,0 +1,180 @@
+---
+title: "TP 2 - Introduction à `R markdown` et `ggplot2`"
+author: "Paul Bastide"
+date: "30/03/2021"
+output: html_document
+---
+
+## Mise en place
+
+Clonez ou téléchargez le répertoire du cours sur `GitHub`.
+
+Ce dossier contient un fichier `.Rproj`, qui définit un "projet" sur RStudio.
+Le projet permet de définir un certain nombre de comportements par défaut,
+ainsi qu'une arborescence.
+
+Ouvrez ce projet dans RStudio.
+
+Créez un nouveau document `.Rmd`, avec une sortie au format `pdf`.
+
+Vous compléterez ce document au fur et à mesure en suivant les indications du texte.
+Les points à rédiger sont signalés par la balise
+
+> **À faire**: Créer un nouveau document `.Rmd` pour compiler un `pdf`.
+
+---
+
+## `ggplot2`
+
+`ggplot2` est une implémentation de la
+["grammaire des graphiques"](https://en.wikipedia.org/wiki/Ggplot2),
+et permet de tracer des figures scientifiques précises et informatives
+de manière aisée dans `R`.
+
+De nombreuses ressources sont disponibles en ligne.
+Voir par exemple
+[la documentation officielle](https://ggplot2.tidyverse.org/index.html),
+ainsi que la [fiche synthétique](https://github.com/rstudio/cheatsheets/blob/master/data-visualization-2.1.pdf).
+
+## Instalation
+
+Pour utiliser `ggplot2`, il suffit d'installer la librairie associée,
+en tapant la commande suivante dans la console:
+
+```{r install-ggplot2, eval = FALSE}
+install.packages("ggplot2")
+```
+
+Il faut ensuite charger la librairie avec la commande:
+
+```{r load-ggplot2}
+library(ggplot2)
+```
+
+## Données: Températures moyennes à Montpellier
+
+On utilise ici les mêmes données de température.
+
+Grâce à la structure en projet, on peut y faire référence facilement en utilisant
+la librairie `here`.
+
+```{r install-here, eval = FALSE}
+install.packages("here")
+```
+
+```{r load-here}
+library(here)
+```
+
+On charge les données à l'aide de la fonction `read.csv`.
+
+```{r temperatures}
+temps_average <- read.csv(file = here("data", "temp_average.csv"))
+```
+
+On ne garde ici que les températures mesurées à Montpellier.
+Pour cela, on utilise la fonction `subset`.
+
+```{r temperatures-montpellier}
+temps_montpellier <- subset(temps_average, city == "Montpellier")
+```
+
+On peut afficher les premières lignes du tableau de données avec la fonction `head`.
+
+```{r temp-head}
+head(temps_montpellier)
+```
+
+> **À faire**: Chargez et présentez les données dans votre document.
+Décrivez brièvement la structure du tableau de données 
+(dimensions, signification des variables, valeurs possibles, unités, ...).
+Rappelez la source ainsi que la période de temps considérée (voir diapos).
+
+## Données: Statistiques de base
+
+### `which.min`
+
+La fonction `which.min` permet de trouver le minimum d'un vecteur:
+
+```{r which-min}
+x <- c(2, 3, 5, 1, 8)
+min(x)
+which.min(x)
+x[which.min(x)]
+```
+
+### `as.Date`
+
+La fonction `as.Date` permet de convertir un jour en date:
+
+```{r as-Date}
+as.Date(1, origin = "2019-12-31")           ## 1er janvier 2020
+as.Date(31, origin = "2019-12-31")          ## 31 janvier 2020
+as.Date(31 + 29, origin = "2019-12-31")     ## 29 février (2020 est bissextile)
+as.Date(366, origin = "2019-12-31")         ## 31 décembre (2020 est bissextile)
+```
+
+> **À faire**: Quelle est la température moyenne sur l'année à Montpellier ?
+Quel jour fait-il, en moyenne, le plus chaud à Montpellier ?
+Le plus froid ? 
+
+On pourra utiliser les fonctions `mean`, `which.min`, `which.max` et `as.Date`.
+
+**Attention**: l'année "moyenne" a 366 jours, pour prendre en compte les années bissextiles.
+
+## Températures représentées en `y`
+
+On cherche maintenant à représenter les températures moyennes de chaque jour
+de l'année graphiquement.
+
+Dans un premier temps, on veut donc tracer:
+
+* la colonne `temperature` en `y` (ordonnées)
+
+* la colonne `day_of_year` en `x` (abscisse).
+
+On utilise pour cela la fonction `ggplot`, suivant le squelette suivant:
+
+```{r temperatures-plot-y, eval = FALSE}
+ggplot(---,
+       aes(x = ---,              
+           y = ---)) +              
+  geom_---()                     
+```
+
+La fonction `ggplot` prend en entrée les données, puis l'"esthétique", donnée par `aes`.
+
+Les fonctions `geom_---` indiquent ce qu'il faut tracer.
+Vous pouvez par exemple tester ici `geom_line` ou `geom_point`.
+
+> **À faire**:
+Tracer la température moyenne en fonction du jour de l'année à Montpellier.
+Faire varier le type de graphique et leur taille (lignes ou points plus ou poins gros),
+ainsi que leur couleur.
+
+## Mise en forme
+
+Par défaut, le fond est grisé.
+Il est possible de changer l'apparence en utilisant un "thème" différent.
+Voir par exemple `theme_light` ou `theme_dark`.
+
+Il est aussi possible de changer le nom des axes, grâce aux fonctions `xlab` et `ylab`.
+
+La fonction `ggtitle` permet elle d'ajouter un titre au graphique.
+
+On ajoute ces options simplement par l'opérateur `+`:
+
+```{r temperatures-plot-y-theme, eval = FALSE}
+ggplot(---,
+       aes(x = ---,              
+           y = ---)) +              
+  geom_---() +
+  xlab(---) + ylab(---) + ggtitle(---) + 
+  theme_---()
+```
+
+> **À faire**:
+Reprendre le graphique précédent de telle sorte à le rendre "publiable":
+ajoutez un thème de votre choix,
+nomez les axes de manière informative (avec les unités),
+et ajoutez un titre.

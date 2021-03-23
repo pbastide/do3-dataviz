@@ -1,0 +1,121 @@
+---
+title: "DO3 - Data Visualisation"
+subtitle: "Introduction - `ggplot2`"
+author: "Paul Bastide"
+date: "30/03/2021"
+output:
+  ioslides_presentation:
+    fig_width: 7
+    fig_height: 4
+  self_contained: true
+---
+
+<!-- ************************************************************************ -->
+# Grammar of Graphics
+<!-- ************************************************************************ -->
+
+## `ggplot2`
+
+* Created by Hadley Wickham in 2005.
+
+* It has a [wikipedia](https://en.wikipedia.org/wiki/Ggplot2) page.
+
+* [Full reference](https://ggplot2.tidyverse.org/index.html)
+
+* [Cheat sheet](https://github.com/rstudio/cheatsheets/blob/master/data-visualization-2.1.pdf)
+
+* Just a regular `R` package:
+
+```{r ggplot2, eval = FALSE}
+install.packages("ggplot2")
+```
+```{r ggplot2-2, eval = TRUE}
+library("ggplot2")
+```
+
+## Grammar of Graphics
+
+* A coherent system for plotting data [ref](http://vita.had.co.nz/papers/layered-grammar.pdf)
+
+* Layered aesthetic mappings
+
+* Explicitly assign each type of data to an aesthetic
+
+<!-- ************************************************************************ -->
+# Aesthetic mappings
+<!-- ************************************************************************ -->
+
+## Climatic data
+
+* Daily average temperatures [ECAD](https://www.ecad.eu/dailydata/index.php) (1950 - 2019)
+
+```{r temp, message = FALSE}
+library(here)
+temps_average <- read.csv(file = here("data",
+                                      "temp_average.csv"))
+head(temps_average)
+```
+
+## Climatic data - y
+
+```{r format, echo = FALSE}
+month_names <- c(
+  "01" = "Jan", "02" = "Feb", "03" = "Mar", "04" = "Apr", "05" = "May", "06" = "Jun",
+  "07" = "Jul", "08" = "Aug", "09" = "Sep", "10" = "Oct", "11" = "Nov", "12" = "Dec"
+)
+month_days <- c(31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31)
+month_days_cum <- c(0, cumsum(month_days))
+```
+
+```{r temp-plot, echo = FALSE, fig.align='center'}
+ggplot(temps_average, aes(x = day_of_year, y = temperature, color = city)) +
+  geom_line(size = 1) +
+  scale_x_continuous(name = "month",
+                     breaks = month_days_cum[-13] + 1,
+                     labels = month_names) +
+  theme_light()
+```
+
+* `y` contains the `temperature` information
+* `color` contains the `city` information
+
+## Climatic data - color
+```{r temp-plot-2, echo = FALSE, fig.align='center'}
+ggplot(temps_average, aes(x = day_of_year, y = city, color = temperature)) + 
+  geom_point(size = 5) +
+  scale_x_discrete(name = "month", labels = month_names) + 
+  scale_color_viridis_c(
+    option = "B", begin = 0.15, end = 0.98,
+    name = "temperature"
+  ) + 
+  theme_light()
+```
+
+* `y` contains the `city` information
+* `color` contains the `temperature` information
+
+## Commonly used aesthetics {.smaller}
+
+<center><img src="common-aesthetics-1.png" width = 90%/></center>
+
+Figure from [Claus O. Wilke. *Fundamentals of Data Visualization.* O'Reilly, 2019.](https://clauswilke.com/dataviz)
+
+## Climatic data - `aes`
+
+```{r temp-plot-aes, echo = TRUE, fig.height=3, fig.width=6, fig.align='center'}
+ggplot(temps_average,                     ## data
+       aes(x = day_of_year,               ## x axis
+           y = temperature,               ## y axis
+           color = city)) +               ## color
+  geom_line(size = 1)                     ## line plot
+```
+
+## Climatic data - `aes`
+
+```{r temp-plot-aes-2, echo = TRUE, fig.height=3, fig.width=6, fig.align='center'}
+ggplot(temps_average,                     ## data
+       aes(x = day_of_year,               ## x axis
+           y = city,                      ## y axis
+           color = temperature)) +        ## color
+  geom_point(size = 5)                   ## points
+```

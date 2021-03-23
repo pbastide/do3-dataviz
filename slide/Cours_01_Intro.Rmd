@@ -1,0 +1,139 @@
+---
+title: "DO3 - Data Visualisation"
+subtitle: "Introduction"
+author: "Paul Bastide"
+date: "30/03/2021"
+output:
+  ioslides_presentation:
+    fig_width: 7
+    fig_height: 4
+  self_contained: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<!-- ************************************************************************ -->
+# Informations Pratiques
+<!-- ************************************************************************ -->
+
+## Enseignant
+
+- Paul Bastide
+    - paul.bastide@umontpellier.fr
+    - Statistiques appliquées, Evolution
+
+## Module
+
+* Statistiques descriptives
+  * Comment résumer un tableau de données ?
+
+* Visualisation
+  * Comment visualier des données ?
+
+* Outils
+  * `Rmarkdown`
+  * `ggplot2`
+  * `shiny`
+
+
+## Evaluation
+
+* 1/2 contrôle continu
+  * Comptes rendus de TP
+  * 2 ou 3 à rendre aléatoirement
+
+* 1/2 projet final
+  * Choisir un jeu de données d'intérêt
+  * En proposer une ou plusieurs représentations graphiques (dynamiques)
+  * Rapport associé discutant les choix effectués
+
+
+## Ressources
+
+* *Fundamentals of Data Visualization*, Claus O. Wilke:
+  * [Livre](https://clauswilke.com/dataviz/)
+  * [Cours](https://wilkelab.org/SDS375/)
+
+* *Data Visualization, A practical introduction*, Kieran Healy:
+  * [Livre](https://socviz.co/)
+
+* Page [GitHub](https://github.com/pbastide/do3-dataviz) du cours
+
+## GitHub `do3-dataviz`
+
+* https://github.com/pbastide/do3-dataviz
+
+* Les diapos sont dans `slide`
+
+* Les TPs sont dans `TP`
+
+* **Points Bonus**:
+  * Typos et erreurs dans les diapos et TPs
+  * Correction par "Pull Requests"
+  * k-ème PR accepté = $\frac{1}{2^{k-1}}$ points en plus sur la note du CC.
+
+<!-- ************************************************************************ -->
+# R Markdown
+<!-- ************************************************************************ -->
+
+## `Markdown`: an easy mark up language
+
+**Input**:
+
+```
+I can write in *italics*, in **bold**, and I can even write `code`.
+
+$\LaTeX$ formulas are as easy as Euler's identity : $e^{i\pi} + 1 = 0$.
+```
+
+**Output**:
+
+I can write in *italics*, in **bold**, and I can even write `code`.
+
+$\LaTeX$ formulas are as easy as Euler's identity : $e^{i\pi} + 1 = 0$.
+
+
+$~$
+**Format**:
+Pdf, html, documents, slides, ...
+
+## `R Markdown`: Reproducible code
+
+**Input**:
+
+````
+Function `rnorm()` creates normal random variables.
+`r ''````{r}
+set.seed(12890926) # set the seed (Quia Sapientia)
+rnorm(5) # create 5 normal variates
+`r ''````
+````
+
+**Output**:
+
+Function `rnorm()` creates normal random variables.
+```{r}
+set.seed(12890926) # set the seed (Quia Sapientia)
+rnorm(5) # create 5 normal variates
+```
+
+
+## `R Markdown` : Reproducible Plots
+
+The Maunga Whau (Mt Eden) volcano, Auckland, New Zealand
+
+```{r demo}
+filled.contour(volcano, color.palette = terrain.colors, asp = 1)
+```
+
+## `R Markdown`
+
+* [Full Introduction](https://rmarkdown.rstudio.com/lesson-1.html)
+
+* [Cheat Sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/master/rmarkdown-2.0.pdf)
+
+* [RStudio](https://rstudio.com/)
+
+* These slides on [GitHub](https://github.com/pbastide/do3-dataviz)
