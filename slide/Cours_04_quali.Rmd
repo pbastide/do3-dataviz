@@ -1,0 +1,280 @@
+---
+title: "DO3 - Visualisation"
+subtitle: "Variables Qualitatives"
+author: "Paul Bastide"
+date: "04/05/2021"
+output:
+  ioslides_presentation:
+    fig_width: 7
+    fig_height: 4
+  self_contained: true
+---
+
+```{r setup, echo = FALSE}
+library("ggplot2")
+set.seed(1289)
+```
+
+<!-- ************************************************************************ -->
+# Visualiser des quantités
+<!-- ************************************************************************ -->
+
+## Variables qualitatives dans `R` {.build}
+
+**Variable Qualitative**: les **modalités** sont des **noms**.
+
+`R` représente les variables qualitatives sous la forme de `factor`: 
+
+```{r ex-factor}
+x <- sample(letters[1:4], 15, replace = TRUE)
+x
+
+x_factor <- factor(x)
+x_factor
+```
+
+$\to$ `levels` $=$ **modalités**.
+
+## Succès au box-office {.build}
+
+**Question**: *De quel pays viennent les films que les français regardent ?*
+
+**Individu**: 
+
+*un film*
+
+**Population**: 
+
+*tous les films sortis en salle depuis 1930*
+
+**Échantillon**: 
+
+*les 100 films ayant fait le plus grand nombre d'entrées*
+
+**Variable**: 
+
+*pays de production majoritaire*
+
+
+## Succès au box-office
+
+Pays de production des cent films ayant fait le plus d'entrées
+au cinéma en France depuis 1930.
+
+```{r film-data}
+boxoffice <- data.frame(
+  country = c("USA", "FRA", "UK", "IT"), # pays de production
+  number = c(51, 45, 03, 01)             # nombre de films
+)
+
+boxoffice
+```
+
+Source: [wikipedia](https://fr.wikipedia.org/wiki/Liste_des_plus_gros_succ%C3%A8s_du_box-office_en_France#Les_100_premiers_films_au_box-office_fran%C3%A7ais)
+
+## Diagramme en bar {.build}
+
+```{r film-plot, fig.height=3, fig.width=6, fig.align='center'}
+ggplot(boxoffice,           ## Données
+       aes(x = country,     ## Pays en x
+           y = number)) +   ## nombre en y
+  geom_col()                ## "col" = "column"
+```
+
+Peut-on améliorer cette représentation ?
+
+## Ordonner des facteurs {.build}
+
+La colonne `country` de `boxoffice` est un vecteur de caractères:
+```{r film-char}
+boxoffice$country
+```
+
+En interne, `R` la transforme en `factor`:
+```{r film-factor}
+factor(boxoffice$country)
+```
+
+$\to$ classé par ordre alphabétique
+
+## Ordonner des facteurs {.build}
+
+La fonction `fct_reorder` de la librairie `forcats`
+permet de réordonner les facteurs:
+
+```{r film-factor-ord}
+library(forcats)
+
+## Ordonés par nombre de films croissants
+fct_reorder(boxoffice$country, boxoffice$number)
+
+## Ordonés par nombre de films décroissants
+fct_reorder(boxoffice$country, -boxoffice$number)
+```
+
+## Diagramme en bar ordonné
+
+```{r film-plot-2, fig.height=3, fig.width=6, fig.align='center'}
+ggplot(boxoffice,
+       aes(x = fct_reorder(country, number), # pays ordre croissant 
+           y = number)) +   
+  geom_col()              
+```
+
+## Diagramme en bar ordonné
+
+```{r film-plot-3, fig.height=3, fig.width=6, fig.align='center'}
+ggplot(boxoffice,
+       aes(x = fct_reorder(country, -number), # pays ordre décroissant 
+           y = number)) +   
+  geom_col() + 
+  xlab("Country")                             # noms de l'axe des x
+```
+
+## Ordonancement vertical
+
+```{r film-plot-4, fig.height=3, fig.width=6, fig.align='center'}
+ggplot(boxoffice,
+       aes(x = number,
+           y = fct_reorder(country, number))) +
+  geom_col() + 
+  ylab("Country") +
+  xlab("Number of films")
+```
+
+<!-- ************************************************************************ -->
+# Aggréger des données
+<!-- ************************************************************************ -->
+
+## Pingouins d'Antartique {.smaller}
+
+Base de donnée sur les pingouins de l'archipel Palmer,
+la librairie [palmerpenguins](https://allisonhorst.github.io/palmerpenguins/):
+
+```{r penguin}
+library(palmerpenguins)
+head(penguins)
+```
+
+## Pingouins d'Antartique {.build}
+
+**Question**: *Quelles espèces de pingouins sont présentes dans l'archipel ?*
+
+**Individu**: 
+
+*un pingouin*
+
+**Population**: 
+
+*tous les pingouins de l'archipel*
+
+**Échantillon**: 
+
+*344 pingouins observés depuis la base scientifique*
+
+**Variable**: 
+
+*espèce*
+
+## Pingouins d'Antartique {.build}
+
+```{r penguin-2}
+dim(penguins)
+```
+
+Le jeu de donnée comporte `r nrow(penguins)` lignes,
+chacune correspondant à une espèce.
+
+```{r penguin-3}
+head(penguins$species)
+```
+
+Pour chaque pingouin, on a l'espèce.
+
+**À faire**: compter le nombre d'individus pas espèce.
+
+$\to$ `R` le fait pour nous.
+
+## Compter puis tracer {.build}
+
+```{r}
+ggplot(penguins,
+       aes(x = species)) + # note: y est défini automatiquement
+  geom_bar()
+```
+
+## Verticalement
+
+```{r}
+ggplot(penguins,
+       aes(y = species)) + # note: x est défini automatiquement
+  geom_bar()
+```
+
+## Ordonner
+
+On ordonne manuellement avec `fct_relevel`:
+
+```{r, fig.height=3, fig.width=6, fig.align='center'}
+ggplot(penguins,
+       aes(y = fct_relevel(species, "Chinstrap", "Gentoo", "Adelie"))) +
+  geom_bar() +
+  ylab(NULL)
+```
+
+## Sexe des individus ? {.build}
+
+La colonne `sex` contient l'information pour chaque individu:
+
+```{r}
+head(penguins$sex)
+```
+
+Comment l'inclure dans le graphique ?
+
+## Sexe en couleur
+
+`fill` $=$ `color` pour des surfaces.
+
+```{r, fig.height=3, fig.width=6, fig.align='center'}
+ggplot(penguins,
+       aes(y = fct_relevel(species, "Chinstrap", "Gentoo", "Adelie"),
+           fill = sex)) +
+  geom_bar() +
+  ylab(NULL)
+```
+
+## Ignorer les valeurs manquantes
+
+```{r, fig.height=3, fig.width=6, fig.align='center'}
+penguins_nona <- na.omit(penguins)
+
+ggplot(penguins_nona,
+       aes(y = fct_relevel(species, "Chinstrap", "Gentoo", "Adelie"),
+           fill = sex)) +
+  geom_bar() +
+  ylab(NULL)
+```
+
+## Côte à côte
+
+Paramètre `position = "dodge"`
+
+```{r, fig.height=3, fig.width=6, fig.align='center'}
+ggplot(penguins_nona,
+       aes(y = fct_relevel(species, "Chinstrap", "Gentoo", "Adelie"),
+           fill = sex)) +
+  geom_bar(position = "dodge") +
+  ylab(NULL)
+```
+
+## Références
+
+- *Fundamentals of Data Visualization* :  
+[Chapter 6: Visualizing amounts](https://clauswilke.com/dataviz/visualizing-amounts.html)
+- *Data Visualization—A Practical Introduction* :  
+[Chapter 4.4: Geoms can transform data](https://socviz.co/groupfacettx.html#statfunctions)
+- **ggplot2** reference documentation:  
+[`geom_bar()`, `geom_col()`](https://ggplot2.tidyverse.org/reference/geom_bar.html)
+- **ggplot2** reference documentation:  
+[`position_stack()`, `position_fill()`](https://ggplot2.tidyverse.org/reference/position_stack.html)
