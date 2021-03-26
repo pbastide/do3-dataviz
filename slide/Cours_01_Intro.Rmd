@@ -1,5 +1,5 @@
 ---
-title: "DO3 - Data Visualisation"
+title: "DO3 - Visualisation"
 subtitle: "Introduction"
 author: "Paul Bastide"
 date: "30/03/2021"
@@ -78,51 +78,51 @@ knitr::opts_chunk$set(echo = TRUE)
 # R Markdown
 <!-- ************************************************************************ -->
 
-## `Markdown`: an easy mark up language
+## `Markdown`: langage à balises
 
-**Input**:
+**Entrée**:
 
 ```
-I can write in *italics*, in **bold**, and I can even write `code`.
+Je peux écrire en *italiques*, en **gras**, et même du `code`.
 
-$\LaTeX$ formulas are as easy as Euler's identity : $e^{i\pi} + 1 = 0$.
+Grâce au $\LaTeX$ je connais l'identité d'Euler : $e^{i\pi} + 1 = 0$.
 ```
 
-**Output**:
+**Sortie**:
 
-I can write in *italics*, in **bold**, and I can even write `code`.
+Je peux écrire en *italiques*, en **gras**, et même du `code`.
 
-$\LaTeX$ formulas are as easy as Euler's identity : $e^{i\pi} + 1 = 0$.
+Grâce au $\LaTeX$ je connais l'identité d'Euler : $e^{i\pi} + 1 = 0$.
 
 
 $~$
 **Format**:
-Pdf, html, documents, slides, ...
+Pdf, html, documents, diapos, ...
 
-## `R Markdown`: Reproducible code
+## `R Markdown`: Code reproductible
 
-**Input**:
+**Entrée**:
 
 ````
-Function `rnorm()` creates normal random variables.
+La fonction `rnorm()` simules des gaussiennes.
 `r ''````{r}
-set.seed(12890926) # set the seed (Quia Sapientia)
-rnorm(5) # create 5 normal variates
+set.seed(12890926) # graine (Quia Sapientia)
+rnorm(5)           # 5 gaussiennes centrées réduites
 `r ''````
 ````
 
-**Output**:
+**Sortie**:
 
-Function `rnorm()` creates normal random variables.
+La fonction `rnorm()` simules des gaussiennes.
 ```{r}
-set.seed(12890926) # set the seed (Quia Sapientia)
-rnorm(5) # create 5 normal variates
+set.seed(12890926) # graine (Quia Sapientia)
+rnorm(5)           # 5 gaussiennes centrées réduites
 ```
 
 
-## `R Markdown` : Reproducible Plots
+## `R Markdown` : Graphiques reproductible
 
-The Maunga Whau (Mt Eden) volcano, Auckland, New Zealand
+Le volcan Maunga Whau (Mt Eden), Auckland, Nouvelle Zealand
 
 ```{r demo}
 filled.contour(volcano, color.palette = terrain.colors, asp = 1)
@@ -130,10 +130,10 @@ filled.contour(volcano, color.palette = terrain.colors, asp = 1)
 
 ## `R Markdown`
 
-* [Full Introduction](https://rmarkdown.rstudio.com/lesson-1.html)
+* [Introduction complète](https://rmarkdown.rstudio.com/lesson-1.html)
 
-* [Cheat Sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/master/rmarkdown-2.0.pdf)
+* [Fiche résumée](https://raw.githubusercontent.com/rstudio/cheatsheets/master/rmarkdown-2.0.pdf)
 
 * [RStudio](https://rstudio.com/)
 
-* These slides on [GitHub](https://github.com/pbastide/do3-dataviz)
+* Ces diapos sur [GitHub](https://github.com/pbastide/do3-dataviz)
