@@ -1,0 +1,190 @@
+---
+title: "DO3 - Visualisation"
+subtitle: "Statistiques descriptives"
+author: "Paul Bastide"
+date: "30/03/2021"
+output:
+  ioslides_presentation:
+    fig_width: 7
+    fig_height: 4
+  self_contained: true
+---
+
+<!-- ************************************************************************ -->
+# Statistiques
+<!-- ************************************************************************ -->
+
+## But du jeu {.build}
+
+<center>
+*Étudier les propriétés d'une* **population**  
+$~$
+</center>
+
+1. L'ensemble des français
+2. L'ensemble des foyers fiscaux
+3. L'ensemble des arbres d'une forêt
+4. L'ensemble des surfaces cultivables
+
+<center>
+*à partir d'un* **échantillon**.  
+$~$
+</center>
+
+1. Sondage auprès des français
+2. Contrôles fiscaux
+3. Quelques arbres pris au hasard
+4. Sondage auprès des agriculteurs
+
+## Définitions {.build}
+
+**Individu**: *unités statistiques soumises à l'étude*
+
+$\hookrightarrow$ un arbre
+
+**Population**: *ensemble de tous les individus concernés par l'étude*
+
+$\hookrightarrow$ la forêt de Fontainebleau
+
+**Échantillon**: *sous-ensemble de la population*
+
+$\hookrightarrow$ arbres abattus par les gardes champêtres
+
+**Taille** de l'échantillon: *nombre d'individus dans l'échantillon*
+
+$\hookrightarrow$ nombre d'arbres abattus par les gardes champêtres
+
+## Exemples {.build}
+
+**Individu**: un français  
+**Population**: tous les français  
+**Échantillon**: sondage IPSOS  
+**Taille**: 10000  
+
+**Individu**: un foyer fiscal  
+**Population**: tous les foyers fiscaux  
+**Échantillon**: les foyers fiscaux contrôlés  
+**Taille**: 1000  
+
+**Individu**: une parcelle agricole  
+**Population**: toutes surfaces cultivables d'Occitanie  
+**Échantillon**: mon potager  
+**Taille**: 1  
+
+## Questions {.build}
+
+Quel âge ont les français ?
+
+Combien payent les français en impôts sur le revenu ?
+
+Les arbres de la forêt de fontainebleau sont-ils en bonne santé?
+
+Quelle est l'orientation des parcelles agricoles ?
+
+$\hookrightarrow$ on pose une **question** sur la population.
+
+$\hookrightarrow$ on répond en mesurant une **variable** sur les individus de l'échantillon.
+
+## Exemples {.build}
+
+**Individu**: un français  
+**Population**: tous les français  
+**Échantillon**: sondage IPSOS  
+**Taille**: 10000  
+**Variable**: age
+
+**Individu**: un foyer fiscal  
+**Population**: tous les foyers fiscaux  
+**Échantillon**: les foyers fiscaux contrôlés  
+**Taille**: 1000  
+**Variable**: somme versée à l'administration
+
+**Individu**: une parcelle agricole  
+**Population**: toutes surfaces cultivables d'Occitanie  
+**Échantillon**: mon potager  
+**Taille**: 1  
+**Variable**: orientation
+
+## Variable et modalités {.build}
+
+**Variable**: caractéristique mesurée
+
+**Modalités**: valeurs possibles de la variable
+
+## Exemples {.build}
+
+**Variable**: âge  
+**Modalités**: un chiffre  
+
+**Variable**: somme versée à l'administration  
+**Valeurs**: un nombre plus grand ou égal à zéro
+
+**Variable**: santé de l'arbre   
+**Modalités**: mauvaise, moyenne, bonne, excellente
+
+**Variable**: orientation  
+**Modalités**: Nord, Sud, Est, Ouest
+
+## Variable et modalités 
+
+**Variable**: caractéristique mesurée
+
+**Modalités**: valeurs possibles de la variable
+
+**Attention**: les modalités doivent être:
+
+* *incompatibles* la réponse d'un individu ne peut appartenir à plus d'une modalité;
+* *exhaustives* : toutes les situations possibles doivent être prévues ;
+* *sans ambiguité* : éviter des erreurs de classement.
+
+## Variables qualitatives et quantitatives
+
+* **Qualitative** les modalités sont des **noms**.
+
+  - **ordinale**: échelle entre les modalités
+  - **nominales**: pas de relation d'ordre entre les modalités.
+
+* **Quantitative** les modalités sont des **nombres**.
+
+  - **discrète**: nombres "isolés" (chiffres entiers)
+  - **continus**: valeurs réelles (nombres à virgules)
+  
+## Exemples
+
+**Variable**: âge; $\qquad$ **Modalités**: un chiffre  
+
+>* $\to$ quantitative, discrète
+
+**Variable**: somme versée à l'administration  
+**Valeurs**: un nombre plus grand ou égal à zéro
+
+>* $\to$ quantitative, continue
+
+**Variable**: santé de l'arbre   
+**Modalités**: mauvaise, moyenne, bonne, excellente
+
+>* $\to$ qualitative, ordinale
+
+**Variable**: orientation; $\qquad$ **Modalités**: Nord, Sud, Est, Ouest
+
+>* $\to$ qualitative, nominale
+  
+## Démarche statistique {.build}
+
+1 - On se pose une question sur une population.
+
+*Les français sont-ils plus vieux que les allemands ?*
+
+2 - On définit une variable à mesurer.
+
+*âge (variable quantitative discrète)*
+
+3 - On choisi un échantillon.
+
+*sondage auprès de 1000 français et allemands tirés au hasard*
+
+4 - On mesure la variable sur les individus de l'échantillon.
+
+*"Bonjour Monsieur, c'est pour un sondage, quel âge avez-vous ?*
+
+5 - Et après ?
