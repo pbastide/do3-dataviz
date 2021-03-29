@@ -24,7 +24,11 @@ Dépôt `git` en support du cours *DO3 - Data Vizualiszation*.
 * [data.gouv.fr](https://www.data.gouv.fr/fr/),
 avec son [compte twitter](https://twitter.com/datagouvfr)
 
-* [Tidy Tuesday](https://github.com/rfordatascience/tidytuesday#datasets), [#tidytuesday](https://twitter.com/search?q=%23tidytuesday)
+* [data.europa.eu](https://data.europa.eu/euodp/en/home) et le [European Data Portal](https://www.europeandataportal.eu/en)
+
+* [data.sncf.com](https://data.sncf.com)
+
+* [Tidy Tuesday](https://github.com/rfordatascience/tidytuesday#datasets), sur twitter [#tidytuesday](https://twitter.com/search?q=%23tidytuesday)
 
 * [Five Thirty Eight](https://data.fivethirtyeight.com/) 
 et sa [librairie](https://CRAN.R-project.org/package=fivethirtyeight) associée
