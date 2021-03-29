@@ -17,6 +17,20 @@ Dépôt `git` en support du cours *DO3 - Data Vizualiszation*.
 * *Data Visualization, A practical introduction*, Kieran Healy:
   * [Livre](https://socviz.co/)
 
+## Sources de données
+
+* [Open Data Montpellier Méditerranée Métropole](https://data.montpellier3m.fr/datasets)
+
+* [data.gouv.fr](https://www.data.gouv.fr/fr/),
+avec son [compte twitter](https://twitter.com/datagouvfr)
+
+* [Tidy Tuesday](https://github.com/rfordatascience/tidytuesday#datasets), [#tidytuesday](https://twitter.com/search?q=%23tidytuesday)
+
+* [Five Thirty Eight](https://data.fivethirtyeight.com/) 
+et sa [librairie](https://CRAN.R-project.org/package=fivethirtyeight) associée
+
+* ...
+
 ## Contributions
 
 * Créer une "pull request" (PR) à partir d'une branche séparée.
