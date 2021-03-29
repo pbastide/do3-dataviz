@@ -1,0 +1,190 @@
+---
+title: "TP 3 - Variables qualitatives"
+author: "Paul Bastide"
+date: "04/05/2021"
+output: html_document
+---
+
+## Mise en place
+
+Ouvrez le projet du cours dans RStudio.
+
+Créez un nouveau document `.Rmd`, avec une sortie au format `pdf`.
+
+Vous compléterez ce document au fur et à mesure en suivant les indications du texte.
+Les points à rédiger sont signalés par la balise
+
+> **À faire**: Créer un nouveau document `.Rmd` pour compiler un `pdf`.
+
+---
+
+# Box Office
+
+## Diagramme en bar avec `geom_col()`
+
+On reprend le jeu de données donnant le pays de production des cent films ayant
+fait le plus d'entrées au cinéma en France 
+[source : wikipedia](https://fr.wikipedia.org/wiki/Liste_des_plus_gros_succ%C3%A8s_du_box-office_en_France#Les_100_premiers_films_au_box-office_fran%C3%A7ais).
+
+```{r film-data}
+boxoffice <- data.frame(
+  country = c("USA", "FRA", "UK", "IT"), # pays de production
+  number = c(51, 45, 03, 01)             # nombre de films
+)
+```
+
+> **À faire**: En utilisant `ggplot2` et la fonction `geom_col()`,
+faire un diagramme en bar représentant le nombre de films par pays 
+de production. Que ce passe-t-il lorsque vous échangez le rôle de `x` et `y `?
+
+## Ordonnancement des facteurs
+
+On cherche maintenant à rendre la représentation plus facile à lire.
+
+Par défaut, `R` classe les facteurs (pays) par ordre alphabétique.
+C'est rarement le bon choix, et il faut souvent ré-ordonner les facteurs
+pour obtenir une représentation plus aggréable.
+
+Ici, on cherche à ordonner les pays par nombre de films, de telle sorte à
+représenter une "hierarchie" entre eux.
+
+Pour cela, on utilise la fonction `fct_reorder`, de la librairie `forcats`.
+
+> **À faire**: Lire l'aide de la fonction en tapant `?forcats::fct_reorder` dans la console.
+Reprendre la représentation précédente, en classant les pays du plus gros au plus petit producteur.
+
+## Nétoyage
+
+Comme vu la fois précédente, il est possible de changer le thème du graphique
+(e.g., fond blanc au lieu de gris), d'ajouter des noms aux axes et un titre.
+Il est aussi possible de changer la couleur des barres.
+
+> **À faire**: Reprenez et améliorez le graphique précédent, de telle sorte à le
+rendre "publiable". Décrivez en une phrase le jeu de données, afin que votre 
+document soit auto-sufisant.
+
+---
+
+# Pingouins
+
+## Jeu de données et objectif
+
+On reprend le jeu de données des pingouins de l'antarctique,
+contenu dans la librairie [palmerpenguins](https://allisonhorst.github.io/palmerpenguins/).
+
+```{r penguin}
+library(palmerpenguins)
+penguins_nomissing <- na.omit(penguins)
+head(penguins_nomissing)
+```
+
+On cherche à faire une représentation similaire à la précédente, c'est-à-dire 
+un diagramme en bar, avec le nombre d'individus de chaque espèce présente dans l'archipel.
+
+> **À faire**: Décrivez l'expérience statistique associée à ce graphique:
+>
+> * à quelle question tente-t-on de répondre ? 
+>
+> * quels sont les *individus* ?
+>
+> * quelle est la *population* ? l'*échantillon* ?
+>
+> * quelle est la *variable* ? quelles sont ses *modalités* ?
+
+## Comptages
+
+Dans le jeu de données précédent, on avait accès directement à la quantité
+à tracer (nombre de films par pays de production).
+
+Ici, le jeu de données est plus riche : chaque ligne contient des informations
+sur un individu, dont celle qui nous intéresse ici, l'espèce.
+
+Il faut donc faire un *résumé* du jeu de données, pour en extraire l'information
+qui nous intéresse, à savoir le nombre d'individus par espèce.
+
+Dans `R`, il est facile de faire un tel décompte.
+
+> **À faire**: Exécutez et interprétez les commandes suivantes.
+Combien y-a-t-il de pingouins *Adelie* dans ce jeu de données ?
+Et de pingouins *Gentoo* et *Chinstrap* ?
+
+```{r, eval = FALSE}
+penguins_nomissing$species
+penguins_nomissing$species == "Adelie"
+sum(penguins_nomissing$species == "Adelie")
+```
+
+## Graphique "artisanal"
+
+Grâce aux fonctions précédentes, il est donc possible d'extraire le nombre d'individus
+par espèces.
+
+> **À faire**: En utilisant les mêmes fonctions que pour le jeu de données précédent,
+faire un diagramme en bar représentant le nombre d'individus par espèce dans l'archipel.
+
+## Diagramme en bar avec `geom_bar()`
+
+Il est assez courant d'avoir à faire ce genre de décomptes avant une représentation
+graphique.
+
+`ggplot2` a donc une fonction dédiée, `geom_bar()`, qui le fait automatiquement pour nous.
+
+> **À faire**: A l'aide du squelette ci-dessous, reproduire le graphique précédent,
+en repartant directement du jeu de données initial.
+
+```{r, eval = FALSE}
+ggplot(penguins_nomissing,
+       aes(x = ---)) + # note: y est défini automatiquement
+  geom_bar()
+```
+
+## Nétoyage
+
+De la même manière que précédemment, le graphique "de base" peut -être améliorer,
+en ré-ordonnant les facteurs, et en nommant les axes.
+
+> **À faire**: Rendre le graphique précédent plus "présentable". Pour réordonner les
+facteurs, vous pouvez utiliser la fonction `fct_relevel`.
+
+## Ajout d'information
+
+On peut modifier la questions d'origine, en se demandant:
+*quel est le nombre d'individus mâles et d'individus femelles de chaque espèce ?*
+
+Pour y répondre, il faut exploiter l'information `sex` contenue dans le tableau.
+Il s'agit donc de compter tous les individus de l'espèce *Adelie* mâles,
+puis tous les individus de l'espèce *Adelie* femelles, etc.
+
+Heureusement, `ggplot2` peut le faire pour nous de manière automatique, à condition
+de lui donner une "esthétique" de plus à tracer.
+
+Par exemple, l'esthétique `fill` permet de **colorer** des surfaces
+(ici, l'aire de barres) en fonction d'un facteur.
+
+> **À faire**: A l'aide du squelette ci-dessous, représentez le nombre d'individus 
+par espèce et par sexe dans un même graphique.
+
+```{r, eval = FALSE}
+ggplot(penguins_nomissing,
+       aes(x = ---,
+           fill = ---)) +
+  geom_bar()
+```
+
+Par défaut, `R` "empile" les couleurs les unes sur les autres.
+Il est parfois préférable de les représenter côte à côte.
+Cela est possible en précisant l'option `position = dodge` dans `geom_bar()`.
+
+> **À faire**: Faire varier la position des barres à l'aide du squelette ci-dessous.
+
+```{r, eval = FALSE}
+ggplot(penguins_nomissing,
+       aes(x = ---,
+           fill = ---)) +
+  geom_bar(position = ---)
+```
+
+## Nétoyage
+
+> **À faire**: Rendre le graphique précédent "publiable". Présentez le contexte
+et la question en une phrase, de telle sorte à rendre la représentation auto-suffisante.
