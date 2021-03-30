@@ -118,7 +118,7 @@ as.Date(366, origin = "2019-12-31")         ## 31 décembre (2020 est bissextile
 Quel jour fait-il, en moyenne, le plus chaud à Montpellier ?
 Le plus froid ? 
 
-On pourra utiliser les fonctions `mean`, `which.min`, `which.max` et `as.Date`.
+On pourra utiliser les fonctions `min`, `which.min`, `which.max` et `as.Date`.
 
 **Attention**: l'année "moyenne" a 366 jours, pour prendre en compte les années bissextiles.
 
