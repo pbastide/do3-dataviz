@@ -60,7 +60,7 @@ Une fois le document créé, `RStudio` propose un contenu "didactique" par défa
 
 Vous pouvez compiler ce document en cliquant sur la commande 
 `Knit` en haut à gauche, à côté d'une pelotte de laine
-(en anglais, "to knit" signifie "tricotter").
+(en anglais, "to knit" signifie "tricoter").
 
 Si tous fonctionne bien, `RStudio` va générer un document `HTML`, qu'il ouvre
 dans une nouvelle fenêtre.
