@@ -211,7 +211,7 @@ ggplot(temps_average,
 > **À faire**:
 Tracer la température moyenne en fonction du jour de l'année dans les trois villes,
 en utilisant la couleur pour représenter la température.
-Faire varier l'attribution des différentes colones de données aux différentes `aes`,
+Faire varier l'attribution des différentes colonnes de données aux différentes `aes`,
 et observer le résultat.
 
 ## Mélanges
