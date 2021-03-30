@@ -36,7 +36,7 @@ Voir par exemple
 [la documentation officielle](https://ggplot2.tidyverse.org/index.html),
 ainsi que la [fiche synthétique](https://github.com/rstudio/cheatsheets/blob/master/data-visualization-2.1.pdf).
 
-## Instalation
+## Installation
 
 Pour utiliser `ggplot2`, il suffit d'installer la librairie associée,
 en tapant la commande suivante dans la console:
