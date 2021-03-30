@@ -121,7 +121,7 @@ Il contiendra des sections, des mots mis en valeurs en **gras** et en
 Il contiendra également des blocs de code `R`, qui serviront à répondre 
 au problème.
 
-Il pourra contenir des équations $\LaTeX$, et des listes, numérotés ou non.
+Il pourra contenir des équations $\LaTeX$, et des listes, numérotées ou non.
 
 ---
 
