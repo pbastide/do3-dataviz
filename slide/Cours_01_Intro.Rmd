@@ -122,7 +122,7 @@ Pdf, html, documents, diapos, ...
 **Entrée**:
 
 ````
-La fonction `rnorm()` simules des gaussiennes.
+La fonction `rnorm()` simule des gaussiennes.
 `r ''````{r}
 set.seed(12890926) # graine (Quia Sapientia)
 rnorm(5)           # 5 gaussiennes centrées réduites
@@ -131,14 +131,14 @@ rnorm(5)           # 5 gaussiennes centrées réduites
 
 **Sortie**:
 
-La fonction `rnorm()` simules des gaussiennes.
+La fonction `rnorm()` simule des gaussiennes.
 ```{r}
 set.seed(12890926) # graine (Quia Sapientia)
 rnorm(5)           # 5 gaussiennes centrées réduites
 ```
 
 
-## `R Markdown` : Graphiques reproductible
+## `R Markdown` : Graphiques reproductibles
 
 Le volcan Maunga Whau (Mt Eden), Auckland, Nouvelle-Zélande
 
