@@ -196,7 +196,7 @@ en utilisant soit la couleur, soit le type de lignes pour les distinguer.
 Il est possible de changer les attributions dans les `aes` à loisir, en fonction
 de l'effet recherché.
 Par exemple, on peut vouloir représenter les températures par des *couleurs*
-différentes, au lieu des les réprésenter sur l'axed des y.
+différentes, au lieu des les réprésenter sur l'axe des y.
 
 Pour cela, il suffit d'échanger `y` et `color` dans le graphe précédent.
 
