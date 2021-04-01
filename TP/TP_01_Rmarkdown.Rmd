@@ -71,7 +71,7 @@ influe sur la sortie (le `.html`).
 ## Code `R` et graphiques
 
 Supposons que l'on mène l'expérience suivante.  
-Une urne contient trois boules, une rouge, une bleu et une verte.  
+Une urne contient trois boules, une rouge, une bleue et une verte.  
 On tire une boule au hasard, on note sa couleur, puis on la remet dans l'urne.  
 On reproduit cette expérience 300 fois.  
 
