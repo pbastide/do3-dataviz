@@ -140,7 +140,7 @@ rnorm(5)           # 5 gaussiennes centrées réduites
 
 ## `R Markdown` : Graphiques reproductible
 
-Le volcan Maunga Whau (Mt Eden), Auckland, Nouvelle Zealand
+Le volcan Maunga Whau (Mt Eden), Auckland, Nouvelle-Zélande
 
 ```{r demo}
 filled.contour(volcano, color.palette = terrain.colors, asp = 1)
