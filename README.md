@@ -33,6 +33,8 @@ avec son [compte twitter](https://twitter.com/datagouvfr)
 * [Five Thirty Eight](https://data.fivethirtyeight.com/) 
 et sa [librairie](https://CRAN.R-project.org/package=fivethirtyeight) associée
 
+* [KD Nuggets](https://www.kdnuggets.com/datasets/index.html)
+
 * ...
 
 ## Contributions

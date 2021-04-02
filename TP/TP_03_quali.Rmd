@@ -173,7 +173,7 @@ ggplot(penguins_nomissing,
 
 Par défaut, `R` "empile" les couleurs les unes sur les autres.
 Il est parfois préférable de les représenter côte à côte.
-Cela est possible en précisant l'option `position = dodge` dans `geom_bar()`.
+Cela est possible en précisant l'option `position = "dodge"` dans `geom_bar()`.
 
 > **À faire**: Faire varier la position des barres à l'aide du squelette ci-dessous.
 
