@@ -49,7 +49,7 @@ et sa [librairie](https://CRAN.R-project.org/package=fivethirtyeight) associée
 	* nature de l'erreur
 	* ...
 
-## Evaluations
+## Évaluations
 
 * 1/2 contrôle continu
   * Comptes rendus de TP
@@ -69,7 +69,7 @@ et sa [librairie](https://CRAN.R-project.org/package=fivethirtyeight) associée
 La structure du cours est fortement inspirée du cours 
 [SDS 375](https://wilkelab.org/SDS375/) de Claus O. Wilke.
 L'adaptation et la traduction qui en a été faite ici est assez lâche, 
-et ce dernier se saurait être tenu responsable de toutes les erreurs qui
+et ce dernier ne saurait être tenu responsable de toutes les erreurs qui
 pourraient s'être glissées dans ces pages.
 
 ## License
