@@ -47,7 +47,7 @@ et sa [librairie](https://CRAN.R-project.org/package=fivethirtyeight) associée
 	* nature de l'erreur
 	* ...
 
-## Evaluations
+## Évaluations
 
 * 1/2 contrôle continu
   * Comptes rendus de TP
