@@ -139,7 +139,7 @@ Il pourra contenir des équations $\LaTeX$, et des listes, numérotées ou non.
 >
 > Tracer ces fréquences empiriques en utilisant la fonction `barplot`.
 > 
-> Que ce passe-t-il lorsque vous compilez votre document plusieurs fois de suite ?
+> Que se passe-t-il lorsque vous compilez votre document plusieurs fois de suite ?
 > Les résultats numériques changent-ils ? 
 > Est-ce normal ?
 > Utilisez la fonction `set.seed` pour produire un document reproductible.
