@@ -252,5 +252,5 @@ ggplot(---, aes(---)) +
 > **À faire**:
 Reprendre votre graphique préféré, et modifiez le de telle sorte à le rendre "publiable":
 ajoutez un thème de votre choix,
-nomez les axes de manière informative (avec les unités),
+nommez les axes de manière informative (avec les unités),
 et ajoutez un titre.
