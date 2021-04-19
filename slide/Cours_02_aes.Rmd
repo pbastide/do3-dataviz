@@ -39,7 +39,7 @@ library("ggplot2")
 
 * "Layered aesthetic mappings" : "couches" de choix esthétiques.
 
-* On choisi un mode de représentation pour chaque composante du jeu de données.
+* On choisit un mode de représentation pour chaque composante du jeu de données.
 
 <!-- ************************************************************************ -->
 # Aesthetic mappings
