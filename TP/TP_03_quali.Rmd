@@ -114,6 +114,9 @@ penguins_nomissing$species == "Adelie"
 sum(penguins_nomissing$species == "Adelie")
 ```
 
+> **À faire**: Retrouvez les comptages précédents à l'aide de la fonction
+`table`.
+
 ## Graphique "artisanal"
 
 Grâce aux fonctions précédentes, il est donc possible d'extraire le nombre d'individus
@@ -140,7 +143,7 @@ ggplot(penguins_nomissing,
 
 ## Nétoyage
 
-De la même manière que précédemment, le graphique "de base" peut -être améliorer,
+De la même manière que précédemment, le graphique "de base" peut être amélioré,
 en ré-ordonnant les facteurs, et en nommant les axes.
 
 > **À faire**: Rendre le graphique précédent plus "présentable". Pour réordonner les
@@ -188,3 +191,109 @@ ggplot(penguins_nomissing,
 
 > **À faire**: Rendre le graphique précédent "publiable". Présentez le contexte
 et la question en une phrase, de telle sorte à rendre la représentation auto-suffisante.
+
+---
+
+# Parlements
+
+## Données
+
+L'union interparlementaire ([UIP](https://www.ipu.org/fr)) est une organisation 
+mondiale des parlements nationaux.
+L'UIP maintient une base de données complète ([Parline](https://data.ipu.org/fr)) 
+sur la plupart des parlements dans le monde, ce qui permet de comparer
+leurs structures, leurs compositions, ou leurs méthodes de travail.
+
+On s'intéresse ici en particulier à leur jeu de données historique 
+sur les femmes dans les parlements nationaux, disponible [ici](https://data.ipu.org/fr/femmes-historiques).
+
+> **À faire**: Téléchargez les données, puis importez les dans `R` à l'aide de
+la fonction `read_xlsx` de la librairie `readxl`. Prenez garde au type de chaque colonne.   
+Décrivez brièvement les données (taille, variables, ...).
+
+
+## Assemblée constituante française
+
+Dans un premier temps, on s'intéresse uniquement à la proportion de femmes 
+dans l'assemblée constituante de la quatrième république française.
+
+> **À faire**: Renseignez-vous sur la quatrième république.
+En quelle année a-t-elle été proclamée ?
+Extrayez les données correspondantes à cette assemblée 
+à l'aide de la fonction `subset`.
+Quel est le pourcentage de femmes dans cette assemblée ?
+Le pourcentage d'hommes ?
+
+On cherche à représenter la proportion de femmes dans cette assemblée par
+un diagramme en barres.
+
+Pour ce faire, il faut re-formater les données de telle sorte à avoir une colonne
+`genre` (homme/femme) et une colonne `pourcent` donnant le pourcentage de
+chaque genre. 
+
+> **À faire**: Tracez un diagramme en barres représentant la proportions de femmes
+dans l'assemblée constituante de la quatrième république française.  
+Utilisez-vous des barres côtes à côtes ou empilées ? Justifiez.
+
+Pour représenter une assemblée, un diagramme en secteurs (camembert) peut
+être plus parlant.
+Dans `R`, on peut utiliser la fonction `geom_arc_bar` de la librairie
+`ggforce`, qui complète la librairie `ggplot2` utilisée jusqu'à présent.
+
+> **À faire**: Tracez un diagramme en secteurs représentant le nombre de femmes
+dans l'assemblée constituante de la quatrième république française.  
+Question bonus: quelle est la proportion de femmes dans l'assemblée constituante 
+de la cinquième république ?
+
+
+## Evolution de la proportion de femmes dans l'assemblée d'un pays
+
+On cherche maintenant à décrire l'évolution de la proportion de femmes au cours
+du temps dans le parlement d'un pays en particulier.
+
+> **À faire**: Choisissez un pays et extrayez des données correspondantes.  
+Formulez clairement la question, en précisant le pays, la chambre (haute ou basse)
+et la période choisie.
+
+> **À faire**: Pour tracer ce jeu de données à l'aide de `ggplot`,
+il faut le reformater, de la même manière que pour la constituante,
+en créant une colone `genre` et une colone `pourcent`.
+Pour ce faire, vous pourrez procéder en deux étapes:
+>
+>1- Formatez les colonnes pour ne garder que les informations pertinentes (en particulier: `year`, `homme`, et `femme` contenant les pourcentages respectifs).
+>
+>2- Transformez cette table du format "large" au format "long" en utilisant la fonction `pivot_longer` de la librarie `tidyr`.
+
+Une fois formatée, la table sera deux fois plus longue que la table initiale.
+
+> **À faire**: Tracez le jeu de données en utilisant des diagrammes barres empilées.
+
+Dans le graphique précédent, les années sont représentées simplement par 
+l'`aes` `x`, et les proportions sont en `y`.
+
+Pour un diagramme camembert, on ne peut pas utiliser ces esthétiques.
+Pour tracer toutes les années côtes à côte, on peut utiliser la fonction
+`facet_wrap`.
+
+> **À faire**: Tracez le jeu de données en utilisant des diagrammes en secteurs.
+
+## Autres questions
+
+Dans la première section, on s'est intéressé à un pays donné à une année donnée,
+et dans la seconde, à un pays donné au cours du temps.
+Il serait possible de s'intéresser à d'autres sous-ensembles des données, par
+exemple plusieurs pays pour une année donnée,
+ou plusieurs chambres dans un même pays, etc.
+Cela répondrait à des questions différentes, par exemple :
+"En 2002, quelle était la proportion de femmes dans les différentes assemblées 
+d'Europe ?"
+ou
+"En Italie, y-a-t-il une différence dans la proportion des femmes dans les 
+chambres hautes et basses ?"
+Chaque question appelle à une représentation différente des données.
+
+> **À faire**: Posez-vous une question sur les données 
+(parmi les exemples, ou une autre de votre choix),
+et tentez d'y répondre par un graphique.  
+Vous prendrez garde à bien exposer la question, le sous-ensemble des données utilisées,
+et justifierez la représentation choisie.
