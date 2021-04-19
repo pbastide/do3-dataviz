@@ -53,7 +53,7 @@ $\to$ `levels` $=$ **modalités**.
 
 **Variable**: 
 
-*pays de production majoritaire*
+*pays de production majoritaire* : Qualitative, nominale
 
 
 ## Succès au box-office
@@ -174,7 +174,7 @@ head(penguins)
 
 **Variable**: 
 
-*espèce*
+*espèce*: Qualitative, nominale
 
 ## Pingouins d'Antartique {.build}
 
@@ -268,13 +268,236 @@ ggplot(penguins_nona,
   ylab(NULL)
 ```
 
+<!-- ************************************************************************ -->
+# Visualiser des proportions
+<!-- ************************************************************************ -->
+
+## Effectif et fréquence {.build}
+
+**effectif** $n_i$: nombre d'individus présentant une modalité.
+
+**fréquence** $f_i$: effectif d'une modalité sur l'effectif total:
+$$
+f_i = \frac{n_i}{n}
+$$
+
+```{r penguin-agg, message = FALSE}
+library(dplyr)
+penguins %>% group_by(species) %>% 
+  summarise(effectif = n(),
+            frequence = n() / length(species))
+```
+
+## Fréquences ou effectifs ?
+
+```{r, fig.height=3, fig.width=8, fig.align='center', echo = FALSE}
+library(ggforce)
+
+side <- ggplot(penguins_nona,
+               aes(x = fct_relevel(species, "Adelie", "Gentoo", "Chinstrap"),
+                   fill = fct_relevel(species, "Adelie", "Gentoo", "Chinstrap"))) +
+  ggtitle("Diagramme en barres") + 
+  geom_bar() + xlab(NULL) + ylab("effectif") + scale_fill_discrete(guide = FALSE) + theme_minimal()
+
+stack <- ggplot(penguins_nona,
+                aes(x = 1,
+                    fill = fct_relevel(species, "Adelie", "Gentoo", "Chinstrap"))) +
+  geom_bar(position = "stack") +
+  xlab(NULL) + ylab("effectif") + theme_minimal() + ggtitle("Barres empilées") + 
+  scale_fill_discrete(name = "Species") + 
+  theme(
+    axis.line.x = element_blank(),
+    axis.ticks.x = element_blank(),
+    axis.text.x = element_blank(),
+  )
+
+pen_sum <- penguins %>% 
+  group_by(species) %>% 
+  summarise(effectif = n(),
+            frequence = n() / length(species))
+
+pie <- ggplot(pen_sum,
+               aes(x0 = 0, y0 = 0, r0 = 0, r = 1,
+                   amount = effectif,
+                   fill = fct_relevel(species, "Adelie", "Gentoo", "Chinstrap"))) +
+  xlab(NULL) + ylab(NULL) + coord_fixed() + ggtitle("Diagramme en secteurs") + 
+  geom_arc_bar(stat = "pie") + scale_fill_discrete(guide = FALSE) + theme_void()
+
+cowplot::plot_grid(
+  side, stack, pie,
+  nrow = 1#, rel_widths = c(1.05, .65, .9)
+)
+```
+
+Quelle représentation est la plus adaptée ?
+
+## Parts de marché {.smaller .build}
+
+Exemple jouet de [wikipedia](https://en.wikipedia.org/wiki/File:Piecharts.svg):
+
+```{r}
+marketshare <- data.frame(
+  percent = c(17, 18, 20, 22, 23, 20, 20, 19, 21, 20, 23, 22, 20, 18, 17),
+  company = rep(LETTERS[1:5], 3),
+  year = rep(c("2015", "2016", "2017"), each = 5)
+)
+head(marketshare)
+```
+
+
+Parts de marché de cinq entreprises pour trois années différentes.
+
+Comment visualiser l'évolution des parts de marché ?
+
+
+## Parts de marché - Camenbert {.build}
+
+Quelle entreprise a pris des parts de marché ?
+
+```{r, fig.height=3.5, fig.width=8, fig.align='center', echo = FALSE}
+ggplot(marketshare,
+       aes(x0 = 0, y0 = 0, r0 = 0, r = 1,
+           amount = percent,
+           fill = company)) +
+  facet_grid(. ~ year, switch = "x") + 
+  xlab(NULL) + ylab(NULL) + coord_fixed() +
+  geom_arc_bar(stat = "pie") + theme_void()
+```
+
+Diagramme en secteurs : la proportion est codée par l'angle.
+
+Peut être difficile à lire.
+
+## Parts de marché - Barres empilées {.build}
+
+Quelle entreprise a pris des parts de marché ?
+
+```{r, fig.height=3.5, fig.width=8, fig.align='center', echo = FALSE}
+ggplot(marketshare,
+       aes(x = year, y = percent, fill = company)) +
+  geom_col(position = "stack") + theme_minimal()
+```
+
+Diagramme en barres empilées : s'additionnent à 100%.
+
+Comparaisons difficiles à faire.
+
+## Parts de marché - Barres {.build}
+
+Quelle entreprise a pris des parts de marché ?
+
+```{r fig.height=3.5, fig.width=8, fig.align='center', echo = FALSE}
+ggplot(marketshare,
+       aes(x = company, y = percent, fill = company)) +
+  facet_grid(. ~ year) + 
+  geom_col() + theme_minimal()
+```
+
+Comparaisons temporelles plus faciles.
+
+## Parlement Rwandais {.build}
+
+```{r, echo = FALSE}
+# Proportion of seats held by women in national parliaments (%)
+# Women in parliaments are the percentage of parliamentary seats in a single or lower chamber held by women.
+# Source: Inter-Parliamentary Union ( IPU ) ( ipu.org ).
+library(tidyr)
+women_parliaments <- dviz.supp::women_parliaments
+parlement_rwanda <- women_parliaments %>%
+  filter(country_code == "RWA" & year > 1990) %>%
+  mutate(women = perc_women, men = 100 - perc_women) %>%
+  select(-perc_women) %>%
+  pivot_longer(cols = c(women, men), names_to = "gender", values_to = "percent") %>%
+  mutate(gender = factor(gender, levels = c("women", "men")))
+```
+
+```{r, echo = FALSE}
+head(parlement_rwanda)
+```
+
+
+## Parlement Rwandais - Barres
+
+Quelle est l'évolution de la proportion de femmes élues ?
+
+```{r fig.height=3.5, fig.width=8, fig.align='center', echo = FALSE}
+ggplot(parlement_rwanda,
+       aes(x = gender, y = percent, fill = gender)) +
+  facet_grid(. ~ year) + 
+  geom_col() + theme_minimal() + xlab(NULL) + 
+    theme(
+    axis.line = element_blank(),
+    axis.ticks = element_blank(),
+    axis.text = element_blank(),
+    strip.background = element_blank()
+  )
+```
+
+## Parlement Rwandais - Camenbert
+
+Quelle est l'évolution de la proportion de femmes élues ?
+
+```{r, fig.height=3.5, fig.width=8, fig.align='center', echo = FALSE}
+ggplot(parlement_rwanda,
+       aes(x0 = 0, y0 = 0, r0 = 0, r = 1,
+           amount = percent,
+           fill = gender)) +
+  facet_wrap(. ~ year, strip.position = "bottom") + 
+  xlab(NULL) + ylab(NULL) + coord_fixed() +
+  geom_arc_bar(stat = "pie") + theme_void()
+```
+
+## Parlement Rwandais - Barres empilées
+
+Quelle est l'évolution de la proportion de femmes élues ?
+
+```{r, fig.height=3.5, fig.width=8, fig.align='center', echo = FALSE}
+ggplot(parlement_rwanda,
+       aes(x = year, y = percent, fill = gender)) +
+  geom_col(position = "stack") + theme_minimal()
+```
+
+## Quelle représentation choisir ?
+
+**Camembert**:
+
+>* $-$ A mauvaise presse
+>* $-$ Comparaisons difficiles
+>* $-$ Problème quand beaucoup de modalités
+
+>* $+$ Représente une proportion
+>* $+$ Fractions simples faciles a lire ($1/2$, $1/3$, $1/4$)
+
+## Quelle représentation choisir ?
+
+**Barres empilées**:
+
+>* $-$ Comparaisons parfois difficiles
+>* $-$ Problème quand beaucoup de modalités
+
+>* $+$ Représente une proportion
+>* $+$ Evolution temporelle
+
+## Quelle représentation choisir ?
+
+**Barres**:
+
+>* $-$ Ne représente pas une proportion
+
+>* $+$ Reste lisible même avec beaucoup de classes
+>* $+$ Evolution temporelle
+
+
 ## Références
 
 - *Fundamentals of Data Visualization* :  
-[Chapter 6: Visualizing amounts](https://clauswilke.com/dataviz/visualizing-amounts.html)
+[Chapter 6: Visualizing amounts](https://clauswilke.com/dataviz/visualizing-amounts.html)  
+[Chapter 10: Visualizing proportions](https://clauswilke.com/dataviz/visualizing-proportions.html)  
+[Chapter 11: Visualizing nested proportions](https://clauswilke.com/dataviz/nested-proportions.html)
 - *Data Visualization—A Practical Introduction* :  
 [Chapter 4.4: Geoms can transform data](https://socviz.co/groupfacettx.html#statfunctions)
 - **ggplot2** reference documentation:  
-[`geom_bar()`, `geom_col()`](https://ggplot2.tidyverse.org/reference/geom_bar.html)
-- **ggplot2** reference documentation:  
-[`position_stack()`, `position_fill()`](https://ggplot2.tidyverse.org/reference/position_stack.html)
+[`geom_bar()`, `geom_col()`](https://ggplot2.tidyverse.org/reference/geom_bar.html)  
+[`position_stack()`, `position_fill()`](https://ggplot2.tidyverse.org/reference/position_stack.html)  
+[`position_dodge()`](https://ggplot2.tidyverse.org/reference/position_dodge.html)  
+[`geom_arc_bar()`](https://ggforce.data-imaginist.com/reference/geom_arc_bar.html)
