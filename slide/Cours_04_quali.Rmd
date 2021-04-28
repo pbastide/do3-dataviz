@@ -281,11 +281,15 @@ $$
 f_i = \frac{n_i}{n}
 $$
 
-```{r penguin-agg, message = FALSE}
+```{r penguin-agg, message = FALSE, echo = FALSE}
 library(dplyr)
-penguins %>% group_by(species) %>% 
+eff <- penguins %>% group_by(species) %>% 
   summarise(effectif = n(),
-            frequence = n() / length(species))
+            frequence = n() / length(penguins$species))
+colnames(eff) <- c("Espèce ($x_i$)",
+                   "Effectif ($n_i$)",
+                   "Fréquence ($f_i$)")
+knitr::kable(eff)
 ```
 
 ## Fréquences ou effectifs ?
@@ -314,7 +318,7 @@ stack <- ggplot(penguins_nona,
 pen_sum <- penguins %>% 
   group_by(species) %>% 
   summarise(effectif = n(),
-            frequence = n() / length(species))
+            frequence = n() / length(penguins$species))
 
 pie <- ggplot(pen_sum,
                aes(x0 = 0, y0 = 0, r0 = 0, r = 1,

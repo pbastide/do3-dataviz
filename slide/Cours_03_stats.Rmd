@@ -73,7 +73,7 @@ $\hookrightarrow$ nombre d'arbres abattus par les gardes champêtres
 
 ## Questions {.build}
 
-Quel âge ont les français ?
+Combien d'enfants ont les français ?
 
 Combien payent les français en impôts sur le revenu ?
 
@@ -91,7 +91,7 @@ $\hookrightarrow$ on répond en mesurant une **variable** sur les individus de l
 **Population**: tous les français  
 **Échantillon**: sondage IPSOS  
 **Taille**: 10000  
-**Variable**: age
+**Variable**: nombre d'enfants
 
 **Individu**: un foyer fiscal  
 **Population**: tous les foyers fiscaux  
@@ -113,11 +113,11 @@ $\hookrightarrow$ on répond en mesurant une **variable** sur les individus de l
 
 ## Exemples {.build}
 
-**Variable**: âge  
-**Modalités**: un chiffre  
+**Variable**: nombre d'enfants  
+**Modalités**: un chiffre positif
 
 **Variable**: somme versée à l'administration  
-**Valeurs**: un nombre plus grand ou égal à zéro
+**Valeurs**: un nombre positif
 
 **Variable**: santé de l'arbre   
 **Modalités**: mauvaise, moyenne, bonne, excellente
@@ -151,12 +151,12 @@ $\hookrightarrow$ on répond en mesurant une **variable** sur les individus de l
   
 ## Exemples
 
-**Variable**: âge; $\qquad$ **Modalités**: un chiffre  
+**Variable**: nombre d'enfants; $\qquad$ **Modalités**: un chiffre  
 
 >* $\to$ quantitative, discrète
 
 **Variable**: somme versée à l'administration  
-**Valeurs**: un nombre plus grand ou égal à zéro
+**Valeurs**: un nombre positif
 
 >* $\to$ quantitative, continue
 
@@ -177,7 +177,7 @@ $\hookrightarrow$ on répond en mesurant une **variable** sur les individus de l
 
 2 - On définit une variable à mesurer.
 
-*âge (variable quantitative discrète)*
+*âge (variable quantitative continue)*
 
 3 - On choisi un échantillon.
 
