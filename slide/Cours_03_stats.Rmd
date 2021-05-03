@@ -137,12 +137,15 @@ $\hookrightarrow$ on répond en mesurant une **variable** sur les individus de l
 * *exhaustives* : toutes les situations possibles doivent être prévues ;
 * *sans ambiguité* : éviter des erreurs de classement.
 
-## Variables qualitatives et quantitatives
+## Variables qualitatives et quantitatives {.build}
 
 * **Qualitative** les modalités sont des **noms**.
 
   - **ordinale**: échelle entre les modalités
   - **nominales**: pas de relation d'ordre entre les modalités.
+
+$~$  
+$~$
 
 * **Quantitative** les modalités sont des **nombres**.
 
@@ -173,7 +176,7 @@ $\hookrightarrow$ on répond en mesurant une **variable** sur les individus de l
 
 1 - On se pose une question sur une population.
 
-*Les français sont-ils plus vieux que les allemands ?*
+*Quel âge ont les montpelliérains ?*
 
 2 - On définit une variable à mesurer.
 
@@ -181,7 +184,7 @@ $\hookrightarrow$ on répond en mesurant une **variable** sur les individus de l
 
 3 - On choisi un échantillon.
 
-*sondage auprès de 1000 français et allemands tirés au hasard*
+*sondage auprès de 1000 montpelliérains tirés au hasard*
 
 4 - On mesure la variable sur les individus de l'échantillon.
 

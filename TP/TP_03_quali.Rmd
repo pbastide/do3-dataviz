@@ -35,7 +35,7 @@ boxoffice <- data.frame(
 
 > **À faire**: En utilisant `ggplot2` et la fonction `geom_col()`,
 faire un diagramme en bar représentant le nombre de films par pays 
-de production. Que ce passe-t-il lorsque vous échangez le rôle de `x` et `y `?
+de production. Que se passe-t-il lorsque vous échangez le rôle de `x` et `y `?
 
 ## Ordonnancement des facteurs
 

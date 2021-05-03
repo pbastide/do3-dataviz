@@ -37,7 +37,7 @@ $\to$ `levels` $=$ **modalités**.
 
 ## Succès au box-office {.build}
 
-**Question**: *De quel pays viennent les films que les français regardent ?*
+**Question**: *De quel(s) pays viennent les films que les français regardent ?*
 
 **Individu**: 
 
@@ -191,7 +191,7 @@ head(penguins$species)
 
 Pour chaque pingouin, on a l'espèce.
 
-**À faire**: compter le nombre d'individus pas espèce.
+**À faire**: compter le nombre d'individus par espèce.
 
 $\to$ `R` le fait pour nous.
 
