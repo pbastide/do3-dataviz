@@ -141,7 +141,7 @@ ggplot(penguins_nomissing,
   geom_bar()
 ```
 
-## Nétoyage
+## Nettoyage
 
 De la même manière que précédemment, le graphique "de base" peut être amélioré,
 en ré-ordonnant les facteurs, et en nommant les axes.
