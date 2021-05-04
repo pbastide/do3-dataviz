@@ -89,7 +89,7 @@ knitr::kable(couples_pretty)
 library(ggplot2)
 freq <- ggplot(couples,
                aes(x = enfants,
-                   y = effectif,
+                   y = fréquence,
                    group = 1)) +
   geom_line() +
   scale_y_continuous(name = "Effectif",
