@@ -354,7 +354,7 @@ Parts de marché de cinq entreprises pour trois années différentes.
 Comment visualiser l'évolution des parts de marché ?
 
 
-## Parts de marché - Camenbert {.build}
+## Parts de marché - Camembert {.build}
 
 Quelle entreprise a pris des parts de marché ?
 
@@ -437,7 +437,7 @@ ggplot(parlement_rwanda,
   )
 ```
 
-## Parlement Rwandais - Camenbert
+## Parlement Rwandais - Camembert
 
 Quelle est l'évolution de la proportion de femmes élues ?
 
