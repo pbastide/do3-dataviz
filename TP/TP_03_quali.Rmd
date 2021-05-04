@@ -53,7 +53,7 @@ Pour cela, on utilise la fonction `fct_reorder`, de la librairie `forcats`.
 > **À faire**: Lire l'aide de la fonction en tapant `?forcats::fct_reorder` dans la console.
 Reprendre la représentation précédente, en classant les pays du plus gros au plus petit producteur.
 
-## Nétoyage
+## Nettoyage
 
 Comme vu la fois précédente, il est possible de changer le thème du graphique
 (e.g., fond blanc au lieu de gris), d'ajouter des noms aux axes et un titre.
@@ -141,7 +141,7 @@ ggplot(penguins_nomissing,
   geom_bar()
 ```
 
-## Nétoyage
+## Nettoyage
 
 De la même manière que précédemment, le graphique "de base" peut être amélioré,
 en ré-ordonnant les facteurs, et en nommant les axes.
@@ -187,7 +187,7 @@ ggplot(penguins_nomissing,
   geom_bar(position = ---)
 ```
 
-## Nétoyage
+## Nettoyage
 
 > **À faire**: Rendre le graphique précédent "publiable". Présentez le contexte
 et la question en une phrase, de telle sorte à rendre la représentation auto-suffisante.
