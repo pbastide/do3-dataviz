@@ -53,7 +53,7 @@ Pour cela, on utilise la fonction `fct_reorder`, de la librairie `forcats`.
 > **À faire**: Lire l'aide de la fonction en tapant `?forcats::fct_reorder` dans la console.
 Reprendre la représentation précédente, en classant les pays du plus gros au plus petit producteur.
 
-## Nétoyage
+## Nettoyage
 
 Comme vu la fois précédente, il est possible de changer le thème du graphique
 (e.g., fond blanc au lieu de gris), d'ajouter des noms aux axes et un titre.
