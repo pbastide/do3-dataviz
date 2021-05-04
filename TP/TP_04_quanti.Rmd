@@ -1,0 +1,132 @@
+---
+title: "TP 4 - Variables quantitatives"
+author: "Paul Bastide"
+date: "07/05/2021"
+output: html_document
+---
+
+```{r setup, include = FALSE}
+library(here)
+library(ggplot2)
+```
+
+# Nombre d'enfants
+
+## Question
+
+On cherche à répondre à la question :
+"Les couples pacsés ont-ils plus d'enfants de moins de 25 ans que les couples mariés en France en 2017 ?"
+
+Définissez les individus, la population, et la variable mesurée, en précisant son type et ses modalités.
+
+## Données
+
+Téléchargez et importez dans `R` les données relatives au nombre d'enfant par
+couples sur le site de
+l'[INSEE](https://www.insee.fr/fr/statistiques/4516614?sommaire=4516657&geo=FE-1).
+
+**Note**: lors du téléchargement, le fichier apparaît avec l'extension `.xlxs`.
+C'est une erreur d'encodage, et le fichier est en fait un `.csv`.
+Pour le lire correctement, il faut donc remplacer l'extension à la main.
+
+**Note**: Vous pouvez changer les noms de colonnes et les situations maritales pour
+qu'ils soient plus explicites et faciles à manipuler.
+
+Décrivez les données en quelques mots.
+
+## Formatage
+
+En utilisant la fonction `pivot_longer`, formatez les données sous 
+"format long",
+avec une colonne "situation", donnant la situation maritale,
+une colonne "enfants" donnant le nombre d'enfants, 
+une colonne "compte" donnant le nombre de couples dans cette situation,
+et une colonne "total" donnant le total de chaque situation maritale.
+
+## Polygone des fréquences
+
+Tracez, sur un même graphique, les polygones des fréquences du nombre d'enfants
+associés à chaque situation maritale.
+Justifiez le choix de la représentation.
+Répondez à la question initiale.
+Pouvez-vous simplifier le graphe pour ne représenter que les informations permettant de répondre à la question initiale ?
+
+## Autre question
+
+Posez une autre question sur ces données, et répondez-y à l'aide d'un graphique adapté.
+
+# Expéditions sur l'Everest
+
+On s'intéresse à un jeu de données sur les expéditions dans la chaîne himalayenne,
+fourni par [TidyTuesday](https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-09-22/readme.md).
+
+
+## Données
+
+Lisez et chargez le jeu de données `members`. Décrivez-le en deux mots.
+
+## Age des membres d'une expédition réussie
+
+On se pose la question suivante :
+"Comment se répartit l'âge des membres d'une expédition réussie vers le Mont Everest ?"
+
+Décrivez l'expérience statistique (individu, population, échantillon, variable mesurée, ...).
+
+Sélectionnez dans le tableau uniquement les lignes répondant à ces critères, et
+dont l'âge n'est pas manquant.
+
+Représentez ces données sous la forme d'un histogramme.
+Justifiez le choix de la largeur des classes.
+
+Représentez ces même données sous la forme d'une boite à moustache (*boxplot*).
+
+Laquelle de ces représentations est la plus informative ? Justifiez.
+
+Que pouvez-vous dire sur l'âge des membres d'une expédition réussie vers le Mont Everest ?
+
+## Age en fonction des années d'ascension
+
+En reprenant le même jeu de données (expéditions réussies vers le Mont Everest),
+on se pose la question suivante : 
+"L'âge des membres d'une expédition réussie vers le Mont Everest change-t-il au cours
+du temps ?"
+
+Pour répondre à cette question, reprenez le jeu de données de la section précédente,
+et représentez-le sous formes de boxplots, un par année.
+
+Interprétez.
+
+## Age des membres d'une expédition réussie ou non
+
+On se pose la question suivante :
+"Y-a-t-il une différence d'âge entre les membres d'une expédition réussie,
+et ceux d'une expédition qui a échouée, avec ou sans oxygène ?"
+
+Décrivez l'expérience statistique.
+Sélectionnez dans le tableau uniquement les lignes répondant à ces critères, et
+dont l'âge n'est pas manquant.
+
+Représentez ces même données sous la forme de boites à moustaches (*boxplot*).
+Il devrait y avoir en tout 4 boîtes, distinguées des positions (en `x`) et des facettes.
+Pour créer et renommer les facettes, vous pourrez utiliser la commande suivante:
+```{r eval = FALSE}
+  ... +
+  facet_wrap(success ~ .,
+             labeller = as_labeller(c(`TRUE` = "Succès", `FALSE` = "Echec"))) +
+  ...
+```
+Vous pourrez renommer les axes avec la fonction `scale_x_discrete`.
+
+Y-a-t-il une différence dans la distribution des âges ?
+
+Renseignez-vous sur les graphes "en violons" (*violin plot*, voir `?geom_violin`).
+Reproduisez le graphique précédent, mais avec des violons à la place des boîtes.
+
+Cela change-t-il votre réponse à la question ?
+Quel graphique trouvez-vous le plus informatif ?
+
+## Autre question
+
+Posez une autre question sur le jeu de données, et répondez-y à l'aide d'un graphique.
+Décrivez bien votre démarche statistique, le choix de la représentation, et les
+conclusions que vous en tirez.
