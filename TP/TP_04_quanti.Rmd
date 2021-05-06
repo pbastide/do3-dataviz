@@ -10,6 +10,8 @@ library(here)
 library(ggplot2)
 ```
 
+-----
+
 # Nombre d'enfants
 
 ## Question
@@ -54,6 +56,8 @@ Pouvez-vous simplifier le graphe pour ne représenter que les informations perme
 ## Autre question
 
 Posez une autre question sur ces données, et répondez-y à l'aide d'un graphique adapté.
+
+-----
 
 # Expéditions sur l'Everest
 
@@ -107,7 +111,7 @@ Sélectionnez dans le tableau uniquement les lignes répondant à ces critères,
 dont l'âge n'est pas manquant.
 
 Représentez ces même données sous la forme de boites à moustaches (*boxplot*).
-Il devrait y avoir en tout 4 boîtes, distinguées des positions (en `x`) et des facettes.
+Il devrait y avoir en tout 4 boîtes, distinguées par des positions (en `x`) et des facettes.
 Pour créer et renommer les facettes, vous pourrez utiliser la commande suivante:
 ```{r eval = FALSE}
   ... +

@@ -46,7 +46,7 @@ On s'intéresse au nombre d'enfants de moins de 25 ans par couples en France en 
 
 **Variable**: nombre d'enfants
 
-## Statistiques
+## Statistiques {.build}
 
 **Modalités**: ordonnées, indicées par $i \in \{1, 2, \cdots, K\}$
 
@@ -64,7 +64,7 @@ $$
 F_i = \sum_{j = 1}^i f_j = \frac{N_i}{n}
 $$
 
-## Nombre d'enfants par couple 
+## Nombre d'enfants par couple {.smaller}
 
 ```{r, echo = FALSE, message = FALSE}
 library(here)
@@ -74,16 +74,18 @@ effectifs <- as.numeric(couples_data[couples_data$Couple == "Ensemble",
 couples <- data.frame(enfants = c(0:3, "4+"),
                       effectif = effectifs,
                       fréquence = effectifs / sum(effectifs),
+                      effectif_cumulee = cumsum(effectifs),
                       fréquence_cumulée = cumsum(effectifs) / sum(effectifs))
 couples_pretty <- couples
 colnames(couples_pretty) <- c("Nombre d'enfants ($x_i$)",
                        "Effectif ($n_i$)",
                        "Fréquence ($f_i$)",
+                       "Effectif cumulé ($N_i$)",
                        "Fréquence cumulée ($F_i$)")
 knitr::kable(couples_pretty)
 ```
 
-## Fréquences cumulées croissantes {.build}
+## Représentations
 
 ```{r, fig.height=3, fig.width=8, fig.align='center', echo = FALSE}
 library(ggplot2)
@@ -92,16 +94,23 @@ freq <- ggplot(couples,
                    y = fréquence,
                    group = 1)) +
   geom_line() +
-  scale_y_continuous(name = "Effectif",
-                     sec.axis = sec_axis(trans = ~./ sum(effectifs), name="Fréquence")) + 
+  scale_y_continuous(name = "Fréquence",
+                     sec.axis = sec_axis(trans = ~. *  sum(effectifs), name="Effectif")) + 
   ggtitle("Polygone des fréquences") + xlab("Nombre d'enfants") + theme_minimal()
 
 
-cumfreq <- ggplot(couples,
+bound <- data.frame(enfants = "0",
+                     effectif = 0,
+                     fréquence = 0,
+                     effectif_cumulee = 0,
+                     fréquence_cumulée = 0)
+couples_plot <- rbind(bound[1, ], couples)
+
+cumfreq <- ggplot(couples_plot,
                   aes(x = enfants,
-                      y = effectif,
+                      y = fréquence_cumulée,
                       group = 1)) +
-  stat_ecdf() + 
+  geom_step() + 
   ggtitle("Fréquences cumulées croissantes") + 
   ylab("Fréquences cumulées") + xlab("Nombre d'enfants") + theme_minimal()
 
@@ -111,9 +120,11 @@ cowplot::plot_grid(
 )
 ```
 
+$~$
+
 Exploite le fait que les modalités sont **ordonnées**.
 
-## Mode
+## Mode {.smaller}
 
 Le **mode** est la ou les modalité(s) pour laquelle l'effectif est maximum.
 
@@ -139,7 +150,7 @@ On s'intéresse à l'âge des passagers du Titanic.
 
 **Échantillon**: passagers du Titanic référencés
 
-**Taille**: 1 313
+**Taille**: 756
 
 **Variable**: âge
 
@@ -353,9 +364,15 @@ knitr::kable(montpellier[order(montpellier$temperature), ], row.names = FALSE)
 
 <div style="float: right; width: 50%;">
 
-Moyenne : `r round(mean(montpellier$temperature), 2)`°C
+Moyenne : 
+```{r}
+mean(montpellier$temperature)
+```
 
-Médiane : `r round(median(montpellier$temperature), 2)`°C
+Médiane :
+```{r}
+median(montpellier$temperature)
+```
 
 </div>
 
@@ -379,17 +396,28 @@ Médiane : `r round(median(montpellier2$temperature), 2)`°C
 La médiane est plus robuste que la moyenne.
 </div>
 
+
+## Médiane
+
+La médiane est plus robuste que la moyenne.
+
+Revenu net **médian** en France en 2018 : 1 871 € par mois
+
+Revenu net **moyen** en France en 2018 : 2 369 € par mois
+
+Source: [INSEE](https://www.insee.fr/fr/statistiques/4990766)
+
 ## Quartiles {.build}
 
 **Quartile à 0.25** :
-Point tel que $25\%$ des données sont à droite, et $75\%$ à gauche.
+Point tel que $25\%$ des données sont à gauche, et $75\%$ à droite
 
 **Quartile à 0.5**
-Point tel que $50\%$ des données sont à droite, et $50\%$ à gauche.  
+Point tel que $50\%$ des données sont à gauche, et $50\%$ à droite  
 $\to$ **médiane**
 
 **Quartile à 0.75**:
-Point tel que $75\%$ des données sont à droite, et $25\%$ à gauche.
+Point tel que $75\%$ des données sont à gauche, et $25\%$ à droite
 
 ## Quartiles {.build .smaller}
 
@@ -410,6 +438,11 @@ Quartile 0.25 : `r quantile(montpellier$temperature, c(0.25))`°C
 Quartile 0.5 : `r quantile(montpellier$temperature, c(0.5))`°C
 
 Quartile 0.75 : `r quantile(montpellier$temperature, c(0.75))`°C
+
+```{r}
+quantile(montpellier$temperature,
+         c(0.25, 0.5, 0.75))
+```
 
 </div>
 
@@ -595,11 +628,19 @@ ggplot(montpellier3, aes(y = temperature)) +
 
 <div style="float: right; width: 50%;">
 
-**Variance**: `r round(var(montpellier3$temperature), 2)` $(°C)^2$
+**Variance**: $(°C)^2$
+```{r}
+var(montpellier3$temperature)
+```
 
-**Écart-type**: `r round(sd(montpellier3$temperature), 2)` $°C$
+**Écart-type**: $°C$
+```{r}
+sd(montpellier3$temperature)
+```
 
 **Attention**: seul l'écart-type est comparable aux données.
+
+
 
 </div>
 
@@ -649,15 +690,15 @@ $$
 
 ## Écart inter-quantiles {.build}
 
-**Écart inter-quartiles**: 
+**Intervalle inter-quartiles**: 
 $$
 IQ = \left[q_{0.25}, q_{0.75}\right]
 = \left[q_{\frac{1 - 0.5}{2}}, q_{\frac{1 + 0.5}{2}}\right]
 $$
 
-contient $50%$ des observations.
+contient $50\%$ des observations.
 
-**Écart inter-quantile** de niveau $\beta$ ($0 < \beta < 1$):
+**Intervalle inter-quantile** de niveau $\beta$ ($0 < \beta < 1$):
 $$
 IQ_\beta= \left[q_{\frac{1 - \beta}{2}}, q_{\frac{1 + \beta}{2}}\right]
 $$
@@ -764,7 +805,7 @@ sont elles significativement différentes ?
 
 $\to$ On peut comparer les deux populations à l'aide de boîtes à moustaches.
 
-## Comparaisons
+## Comparaisons - Janvier / Juin
 
 Comparaison entre les températures au premier janvier et au premier juin
 à Montpellier entre 1951 et 1999.
@@ -783,6 +824,29 @@ ggplot(montpellier4, aes(x = month, y = temperature, fill = month)) +
   ggtitle("1951 - 99") +
   theme_minimal() + 
   scale_x_discrete(name = "", labels = c("1er Jan", "1er Juin")) +
+  scale_fill_discrete(guide = NULL) + 
+  scale_color_discrete(guide = NULL)
+```
+
+## Comparaisons - Janvier / Février
+
+Comparaison entre les températures au premier janvier et au premier février
+à Montpellier entre 1951 et 1999.
+
+```{r, echo = FALSE}
+montpellier4 <- read.csv(file = here("data", "temp_montpellier.csv"))
+montpellier4 <- subset(montpellier4, month %in% c(1, 2) & day == 1 & year >= 1951 & year <= 1999)
+montpellier4 <- montpellier4[, c("year", "month", "day", "temperature")]
+montpellier4$month <- as.factor(montpellier4$month)
+```
+
+```{r, fig.height=4, fig.width=5, fig.align='center', echo = FALSE}
+ggplot(montpellier4, aes(x = month, y = temperature, fill = month)) +
+  geom_boxplot(alpha=0.7) + 
+  geom_jitter(aes(color = month), size=0.4, alpha=0.7) +  
+  ggtitle("1951 - 99") +
+  theme_minimal() + 
+  scale_x_discrete(name = "", labels = c("1er Jan", "1er Fév")) +
   scale_fill_discrete(guide = NULL) + 
   scale_color_discrete(guide = NULL)
 ```
