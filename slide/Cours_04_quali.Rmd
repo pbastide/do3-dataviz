@@ -112,7 +112,7 @@ fct_reorder(boxoffice$country, boxoffice$number)
 fct_reorder(boxoffice$country, -boxoffice$number)
 ```
 
-## Diagramme à barres ordonné
+## Diagramme en barres ordonné
 
 ```{r film-plot-2, fig.height=3, fig.width=6, fig.align='center'}
 ggplot(boxoffice,
@@ -121,7 +121,7 @@ ggplot(boxoffice,
   geom_col()              
 ```
 
-## Diagramme à barres ordonné
+## Diagramme en barres ordonné
 
 ```{r film-plot-3, fig.height=3, fig.width=6, fig.align='center'}
 ggplot(boxoffice,
