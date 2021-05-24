@@ -41,6 +41,15 @@ temps_average <- temp_all %>%
 ## Save
 write.csv(temps_average, here("data", "temp_average.csv"), row.names = FALSE)
 
+## Month
+temps_month <- temps_average %>%
+  group_by(city, month) %>%
+  summarize(month = month[1],
+            temperature = mean(temperature), .groups = "keep")
+
+## Save
+write.csv(temps_month, here("data", "temps_month.csv"), row.names = FALSE)
+
 ## Plot all
 library(ggplot2)
 ggplot(temp_all, aes(x = day_of_year, y = temperature, color = city)) +

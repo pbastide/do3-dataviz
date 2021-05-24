@@ -1,0 +1,449 @@
+---
+title: "DO3 - Visualisation"
+subtitle: "Tendances et modèles"
+author: "Paul Bastide"
+date: "25/05/2021"
+output:
+  ioslides_presentation:
+  fig_width: 7
+fig_height: 4
+self_contained: true
+---
+
+```{r setup, echo = FALSE}
+library("ggplot2")
+library(MASS)
+```
+
+<!-- ************************************************************************ -->
+# Echelles de couleurs
+<!-- ************************************************************************ -->
+
+## Echelles de couleurs
+
+Une échelle de couleurs peut avoir plusieurs buts:
+
+>1. **Distinguer** les modalités le mieux possible
+>
+>    * *ex*: variable qualitative nominale
+>
+>2. Représenter l'ordre **séquentiel** des modalités
+>
+>    * *ex*: variable qualitative ordinale
+>
+>3. Représenter l'ordre **divergent** des modalités
+>  
+>    * *ex*: variable qualitative
+>
+>4. Mettre en valeur un groupe
+
+<!-- ************************************************************************ -->
+# Couleurs pour distinguer
+<!-- ************************************************************************ -->
+
+## Couleurs pour distinguer
+
+<img src = "figures/qualitative.png" width = 100% style = "text-align: right; vertical-align: middle"></img>
+
+$~$
+
+* Choisir un nombre fini de couleurs qui:
+	+ ségrèguent les groupes le mieux possible
+	+ sont équivalentes:
+		- pas de couleur plus brillante que les autres
+		- pas d'impression d'ordre
+
+## Exemple
+
+```{r}
+library(palmerpenguins)
+penguins <- na.omit(penguins)
+```
+
+```{r, fig.height=3, fig.width=6, fig.align='center'}
+ggplot(penguins, aes(x = flipper_length_mm,
+                     fill = species)) +
+  geom_density(alpha = 0.6)
+```
+
+## Exemple : `colorspace`
+
+```{r}
+library(colorspace)
+```
+
+```{r, fig.height=3, fig.width=6, fig.align='center'}
+ggplot(penguins, aes(x = flipper_length_mm,
+                          fill = species)) +
+  geom_density(alpha = 0.6) +
+  scale_fill_discrete_qualitative()
+```
+
+## Exemple : `colorblindr`
+
+```{r}
+library(colorblindr)
+```
+
+```{r, fig.height=4, fig.width=7, fig.align='center'}
+cvd_grid()
+```
+
+## Exemple : `colorblindr`
+
+```{r, fig.height=3, fig.width=6, fig.align='center'}
+ggplot(penguins, aes(x = flipper_length_mm,
+                          fill = species)) +
+  geom_density(alpha = 0.6) +
+  scale_fill_OkabeIto()
+```
+
+## Exemple : `colorblindr`
+
+```{r, fig.height=4, fig.width=7, fig.align='center'}
+cvd_grid()
+```
+
+<!-- ************************************************************************ -->
+# Couleurs séquentielles
+<!-- ************************************************************************ -->
+
+## Couleurs séquentielles
+
+<img src = "figures/sequential.png" width = 100% style = "text-align: right; vertical-align: middle"></img>
+
+$~$
+
+* Choisir un nombre fini de couleurs qui:
+	+ ségrèguent les groupes le mieux possible
+	+ donnent une idée de l'**ordre**
+		- pas de couleur plus brillante que les autres
+		- échelle (gradient) naturel entre les couleurs
+
+## Exemple
+
+```{r, echo = FALSE, message = FALSE}
+library(Stat2Data)
+data(Titanic)
+Titanic <- na.omit(Titanic)
+```
+
+```{r, fig.height=3, fig.width=6, fig.align='center'}
+ggplot(Titanic, aes(y = Age,
+                    fill = PClass)) +
+  geom_boxplot()
+```
+
+## Exemple : `colorspace`
+
+```{r}
+library(colorspace)
+```
+
+```{r, fig.height=3, fig.width=6, fig.align='center'}
+ggplot(Titanic, aes(y = Age,
+                    fill = PClass)) +
+  geom_boxplot() +
+  scale_fill_discrete_sequential()
+```
+
+## Exemple : `colorspace`
+
+```{r, fig.height=4, fig.width=7, fig.align='center'}
+cvd_grid()
+```
+
+## Exemple : `viridis`
+
+```{r, fig.height=3, fig.width=6, fig.align='center'}
+ggplot(Titanic, aes(y = Age,
+                    fill = PClass)) +
+  geom_boxplot() +
+  scale_fill_discrete_sequential("Viridis")
+```
+
+## Exemple : `viridis`
+
+```{r, fig.height=4, fig.width=7, fig.align='center'}
+cvd_grid()
+```
+
+<!-- ************************************************************************ -->
+# Couleurs séquentielles - Continues
+<!-- ************************************************************************ -->
+
+## Couleurs séquentielles continues
+
+<img src = "figures/sequential.png" width = 100% style = "text-align: right; vertical-align: middle"></img>
+
+$~$
+
+* Choisir un **gradient** de couleurs qui:
+	+ ségrèguent les valeurs le mieux possible
+	+ donnent une idée de l'**ordre**
+		- pas de couleur plus brillante que les autres
+		- échelle (gradient) naturel entre les couleurs
+		
+## Exemple
+
+```{r, message=FALSE}
+library(here)
+temps_month <- read.csv(file = here("data", "temps_month.csv"))
+```
+
+```{r, fig.height=3, fig.width=6, fig.align='center'}
+ggplot(temps_month, aes(x = month, y = city,
+                        fill = temperature)) +
+  geom_tile(width = .95, height = 0.95)
+```
+
+## Exemple : `colorspace`
+
+```{r}
+library(colorspace)
+```
+
+```{r, fig.height=3, fig.width=6, fig.align='center'}
+ggplot(temps_month, aes(x = month, y = city,
+                        fill = temperature)) +
+  geom_tile(width = .95, height = 0.95) +
+  scale_fill_continuous_sequential()
+```
+
+## Exemple : `colorspace`
+
+```{r, fig.height=4, fig.width=8, fig.align='center'}
+cvd_grid()
+```
+
+## Exemple : `viridis`
+
+```{r, fig.height=3, fig.width=6, fig.align='center'}
+ggplot(temps_month, aes(x = month, y = city,
+                        fill = temperature)) +
+  geom_tile(width = .95, height = 0.95) +
+  scale_fill_continuous_sequential(palette = "Viridis")
+```
+
+## Exemple : `inferno`
+
+```{r, fig.height=3, fig.width=6, fig.align='center'}
+ggplot(temps_month, aes(x = month, y = city,
+                        fill = temperature)) +
+  geom_tile(width = .95, height = 0.95) +
+  scale_fill_continuous_sequential(palette = "Inferno")
+```
+
+## Exemple : `inferno`
+
+```{r, fig.height=3, fig.width=6, fig.align='center'}
+ggplot(temps_month, aes(x = month, y = city,
+                        fill = temperature)) +
+  geom_tile(width = .95, height = 0.95) +
+  scale_fill_continuous_sequential(palette = "Inferno", rev = FALSE)
+```
+
+## Exemple : `inferno`
+
+```{r, fig.height=3, fig.width=6, fig.align='center'}
+ggplot(temps_month, aes(x = month, y = city,
+                        fill = temperature)) +
+  geom_tile(width = .95, height = 0.95) +
+  scale_fill_continuous_sequential(palette = "Inferno", rev = FALSE,
+                                    begin = 0.15, end = 0.98,)
+```
+
+## Exemple : `inferno`
+
+```{r, fig.height=4, fig.width=8, fig.align='center'}
+cvd_grid()
+```
+
+<!-- ************************************************************************ -->
+# Couleurs divergentes
+<!-- ************************************************************************ -->
+
+## Couleurs divergentes
+
+<img src = "figures/diverging.png" width = 100% style = "text-align: right; vertical-align: middle"></img>
+
+$~$
+
+* Choisir un gradient de couleurs qui:
+	+ ségrèguent les groupes le mieux possible
+	+ donnent une idée de l'**ordre**
+		- pas de couleur plus brillante que les autres
+		- échelle (gradient) naturel entre les couleurs
+	+ représente l'**opposition** de deux pôles
+
+## Exemple
+
+```{r}
+women_parliaments <- dviz.supp::women_parliaments
+parlement_rwanda <- subset(women_parliaments,
+                           country_code == "RWA" & year > 1990)
+```
+
+```{r, fig.height=3, fig.width=6, fig.align='center'}
+ggplot(parlement_rwanda,
+       aes(x = year, y = perc_women, fill = perc_women)) +
+  geom_col()
+```
+
+## Exemple : `colorspace`
+
+```{r}
+library(colorspace)
+```
+
+```{r, fig.height=3, fig.width=6, fig.align='center'}
+ggplot(parlement_rwanda,
+       aes(x = year, y = perc_women, fill = perc_women)) +
+  geom_col() +
+  scale_fill_continuous_diverging()
+```
+
+## Exemple : `colorspace`
+
+```{r, fig.height=3, fig.width=6, fig.align='center'}
+ggplot(parlement_rwanda,
+       aes(x = year, y = perc_women, fill = perc_women)) +
+  geom_col() +
+  scale_fill_continuous_diverging(mid = 50)
+```
+
+## Exemple : `colorspace`
+
+```{r, fig.height=3, fig.width=6, fig.align='center'}
+ggplot(parlement_rwanda,
+       aes(x = year, y = perc_women, fill = perc_women)) +
+  geom_col() +
+  scale_fill_continuous_diverging(mid = 50, limits = c(0, 100))
+```
+
+## Exemple : `colorspace`
+
+```{r, fig.height=4, fig.width=7, fig.align='center'}
+cvd_grid()
+```
+
+## Exemple : `Earth`
+
+```{r, fig.height=3, fig.width=6, fig.align='center'}
+ggplot(parlement_rwanda,
+       aes(x = year, y = perc_women, fill = perc_women)) +
+  geom_col() +
+  scale_fill_continuous_divergingx(palette = "Earth",
+                                   mid = 50, limits = c(0, 100))
+```
+
+## Exemple : `Earth`
+
+```{r, fig.height=4, fig.width=7, fig.align='center'}
+cvd_grid()
+```
+
+## Exemple : `PiYG`
+
+```{r, fig.height=3, fig.width=6, fig.align='center'}
+ggplot(parlement_rwanda,
+       aes(x = year, y = perc_women, fill = perc_women)) +
+  geom_col() +
+  scale_fill_continuous_divergingx(palette = "PiYG",
+                                   mid = 50, limits = c(0, 100))
+```
+
+## Exemple : `PiYG`
+
+```{r, fig.height=4, fig.width=7, fig.align='center'}
+cvd_grid()
+```
+
+<!-- ************************************************************************ -->
+# Couleurs en valeurs
+<!-- ************************************************************************ -->
+
+## Couleurs en valeurs
+
+<img src = "figures/highlight.png" width = 100% style = "text-align: right; vertical-align: middle"></img>
+
+$~$
+
+* Mettre en valeur certains groupes
+
+## Exemple : `colorblindr`
+
+```{r, fig.height=3, fig.width=6, fig.align='center'}
+ggplot(penguins, aes(x = flipper_length_mm,
+                          fill = species)) +
+  geom_density(alpha = 0.6) +
+  scale_fill_OkabeIto()
+```
+
+## Exemple : Manual
+
+```{r}
+accent_grey <- palette_OkabeIto[1:3]
+accent_grey[-3] <- "grey"
+accent_grey[3] <- accent_grey[3]
+```
+
+```{r, fig.height=3, fig.width=6, fig.align='center'}
+ggplot(penguins, aes(x = flipper_length_mm, fill = species)) +
+  geom_density(alpha = 0.6) +
+  scale_fill_manual(values = accent_grey)
+```
+
+## Exemple : Manual
+
+```{r}
+accent_OI <- palette_OkabeIto[1:3]
+accent_OI[-3] <- desaturate(lighten(accent_OI[-3], 0.4), 0.8)
+accent_OI[3] <- darken(accent_OI[3], 0.3)
+```
+
+```{r, fig.height=3, fig.width=6, fig.align='center'}
+ggplot(penguins, aes(x = flipper_length_mm, fill = species)) +
+  geom_density(alpha = 0.6) +
+  scale_fill_manual(values = accent_OI)
+```
+
+<!-- ************************************************************************ -->
+# Résumé
+<!-- ************************************************************************ -->
+
+## Echelles de couleurs {.smaller}
+
+1. **Distinguer** les modalités le mieux possible
+
+<img src = "figures/qualitative.png" width = 100% style = "text-align: right; vertical-align: middle"></img>
+
+2. Représenter l'ordre **séquentiel** des modalités
+
+<img src = "figures/sequential.png" width = 100% style = "text-align: right; vertical-align: middle"></img>
+
+3. Représenter l'ordre **divergent** des modalités
+  
+<img src = "figures/diverging.png" width = 100% style = "text-align: right; vertical-align: middle"></img>
+
+4. Mettre en valeur un groupe
+
+<img src = "figures/highlight.png" width = 100% style = "text-align: right; vertical-align: middle"></img>
+
+## `colorspace`
+
+```{r}
+hcl_palettes(plot = TRUE)
+```
+
+## Références
+
+- *Fundamentals of Data Visualization* :  
+[Chapter 4: Color scales](https://clauswilke.com/dataviz/color-basics.html)  
+[Chapter 19: Common pitfalls of color use](https://clauswilke.com/dataviz/color-pitfalls.html)
+- **ggplot2** book:  
+[Colour scales and legends](https://ggplot2-book.org/scale-colour.html)
+- **ggplot2** reference documentation:  
+[Scales](https://ggplot2.tidyverse.org/reference/index.html#section-scales)
+- **colorspace** package:  
+[HCL-Based Color Scales for ggplot2](https://colorspace.r-forge.r-project.org/articles/ggplot2_color_scales.html)
