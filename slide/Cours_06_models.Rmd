@@ -1,0 +1,351 @@
+---
+title: "DO3 - Visualisation"
+subtitle: "Tendances et modèles"
+author: "Paul Bastide"
+date: "25/05/2021"
+output:
+  ioslides_presentation:
+    fig_width: 7
+    fig_height: 4
+  self_contained: true
+---
+
+```{r setup, echo = FALSE}
+library("ggplot2")
+library(MASS)
+```
+
+<!-- ************************************************************************ -->
+# Régression Lineaire
+<!-- ************************************************************************ -->
+
+## Régression Lineaire
+
+<center><img src="AI.png" height="350px" /></center>
+
+## Régression Lineaire
+
+**But**: trouver la "meilleure droite" pour représenter les données
+$$
+y_i \approx \beta_0 + \beta_1 x_i
+$$
+
+```{r, echo = FALSE}
+library(palmerpenguins)
+penguins <- na.omit(penguins)
+```
+
+```{r, fig.height=4, fig.width=5, fig.align='center', echo = FALSE}
+ggplot(data = penguins,
+       aes(x = bill_length_mm,
+           y = bill_depth_mm)) +
+  geom_point() +
+  theme_minimal() +
+  xlab("Longueur du bec (mm)") +
+  ylab("Largeur du bec (mm)") +
+  ggtitle("Dimensions du bec de pengouins")
+```
+
+## Régression Lineaire
+
+**But**: trouver la "meilleure droite" pour représenter les données
+$$
+y_i \approx \beta_0 + \beta_1 x_i
+$$
+
+```{r, fig.height=4, fig.width=5, fig.align='center', echo = FALSE}
+ggplot(data = penguins,
+       aes(x = bill_length_mm,
+           y = bill_depth_mm)) +
+  geom_point() +
+  theme_minimal() +
+  xlab("Longueur du bec (mm)") +
+  ylab("Largeur du bec (mm)") +
+  ggtitle("Dimensions du bec de pengouins") + 
+  geom_hline(yintercept = mean(penguins$bill_depth_mm), color = "firebrick3", size = 1.2)
+```
+
+## Régression Lineaire
+
+**But**: trouver la "meilleure droite" pour représenter les données
+$$
+y_i \approx \beta_0 + \beta_1 x_i
+$$
+
+```{r, fig.height=4, fig.width=5, fig.align='center', echo = FALSE}
+ggplot(data = penguins,
+       aes(x = bill_length_mm,
+           y = bill_depth_mm)) +
+  geom_point() +
+  theme_minimal() +
+  xlab("Longueur du bec (mm)") +
+  ylab("Largeur du bec (mm)") +
+  ggtitle("Dimensions du bec de pengouins") + 
+  geom_abline(intercept = 0, slope = 0.4, color = "firebrick3", size = 1.2)
+```
+
+## Régression Lineaire
+
+**But**: trouver la "meilleure droite" pour représenter les données
+$$
+y_i \approx \beta_0 + \beta_1 x_i
+$$
+
+```{r, fig.height=4, fig.width=5, fig.align='center', echo = FALSE, message=FALSE}
+ggplot(data = penguins,
+       aes(x = bill_length_mm,
+           y = bill_depth_mm)) +
+  geom_point() +
+  theme_minimal() +
+  xlab("Longueur du bec (mm)") +
+  ylab("Largeur du bec (mm)") +
+  ggtitle("Dimensions du bec de pengouins") + 
+  geom_smooth(method = "lm", se = FALSE, color = "firebrick3", size = 1.2)
+```
+
+## Régression Lineaire
+
+**But**: trouver la "meilleure droite" pour représenter les données:
+$$
+y_i \approx \beta_0 + \beta_1 x_i
+$$
+
+**Idée**: minimiser les écarts aux carrés:
+$$
+SCR = \sum_{i = 1}^n (y_i - \beta_0 - \beta_1 x_i)^2
+$$
+
+```{r, echo=FALSE}
+set.seed(1289)
+n <- 10
+x <- runif(n)
+y <- 2 + 3*x + rnorm(n)
+sim <- data.frame(y = y, x = x)
+```
+
+<div class="columns-2">
+```{r, fig.height=2.5, fig.width=2.5, fig.align='center', echo = FALSE}
+ggplot(sim, aes(x = x, y = y)) +
+  geom_point() +
+  theme_minimal() +
+  geom_hline(yintercept = mean(y), color = "firebrick3", size = 1.2) +
+  geom_segment(aes(x = x, y = y, xend = x, yend = mean(y))) +
+  coord_cartesian(xlim = c(0.1, 1), ylim = c(1, 7))
+```
+
+$$
+SCR = `r sum((y - mean(y))^2)`
+$$
+
+</div>
+
+## Régression Lineaire
+
+**But**: trouver la "meilleure droite" pour représenter les données:
+$$
+y_i \approx \beta_0 + \beta_1 x_i
+$$
+
+**Idée**: minimiser les écarts aux carrés:
+$$
+SCR = \sum_{i = 1}^n (y_i - \beta_0 - \beta_1 x_i)^2
+$$
+
+<div class="columns-2">
+```{r, fig.height=2.5, fig.width=2.5, fig.align='center', echo = FALSE}
+ggplot(sim, aes(x = x, y = y)) +
+  geom_point() +
+  theme_minimal() +
+  geom_abline(intercept = 0, slope = 7, color = "firebrick3", size = 1.2) +
+  # geom_segment(aes(x = x, y = y, xend = x, yend = predict(lm(y ~ x))))
+  geom_segment(aes(x = x, y = y, xend = x, yend = 7 * x)) +
+  coord_cartesian(xlim = c(0.1, 1), ylim = c(1, 7))
+```
+
+<div class="gray2">
+$$
+SCR = `r sum((y - mean(y))^2)`
+$$
+</div>
+$$
+SCR = `r sum((y - 7 * x)^2)`
+$$
+
+
+</div>
+
+## Régression Lineaire
+
+**But**: trouver la "meilleure droite" pour représenter les données:
+$$
+y_i \approx \beta_0 + \beta_1 x_i
+$$
+
+**Idée**: minimiser les écarts aux carrés:
+$$
+SCR = \sum_{i = 1}^n (y_i - \beta_0 - \beta_1 x_i)^2
+$$
+
+<div class="columns-2">
+```{r, fig.height=2.5, fig.width=2.5, fig.align='center', echo = FALSE, message = FALSE}
+ggplot(sim, aes(x = x, y = y)) +
+  geom_point() +
+  theme_minimal() +
+  geom_smooth(method = "lm", se = FALSE, color = "firebrick3", size = 1.2) +
+  geom_segment(aes(x = x, y = y, xend = x, yend = predict(lm(y ~ x)))) +
+  coord_cartesian(xlim = c(0.1, 1), ylim = c(1, 7))
+```
+
+<div class="gray2">
+$$
+SCR = `r sum((y - mean(y))^2)`
+$$
+$$
+SCR = `r sum((y - 7 * x)^2)`
+$$
+</div>
+$$
+SCR = `r sum((y - predict(lm(y ~ x)))^2)`
+$$
+
+</div>
+
+## Régression Lineaire
+
+**But**: trouver la "meilleure droite" pour représenter les données:
+$$
+y_i \approx \beta_0 + \beta_1 x_i
+$$
+
+**Idée**: minimiser les écarts aux carrés:
+$$
+SCR = \sum_{i = 1}^n (y_i - \beta_0 - \beta_1 x_i)^2
+$$
+
+**Moindres Carrés**:
+$$
+(\hat{\beta}_0, \hat{\beta}_1) 
+= \underset{(\beta_0, \beta_1) \in \mathbb{R}^2}{\operatorname{argmin}} 
+\left\{
+\sum_{i = 1}^n (y_i - \beta_0 - \beta_1 x_i)^2
+\right\}
+$$
+
+## Régression Lineaire
+
+```{r}
+lm(bill_depth_mm ~ bill_length_mm, data = penguins)
+```
+
+`lm`: *linear model* fonction `R` pour faire la régression.
+
+Ressources:
+
+* [StatQuest](https://www.youtube.com/watch?v=PaFPbb66DxQ)
+
+* [Le modèle linéaire et ses extensions](https://www6.inrae.fr/mia-paris/content/download/4281/40718/version/1/file/ModeleLineaireEt_Extensions.pdf) (Chapitre 1)
+
+## Pinguoins
+
+La largeur du bec est-elle liée à la longueur du bec ?
+
+```{r, fig.height=3, fig.width=4, fig.align='center', echo = TRUE, message=FALSE}
+ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE)
+```
+
+Relation négative ?
+
+## Pinguoins
+
+La largeur du bec est-elle liée à la longueur du bec, pour chaque espèce ?
+
+```{r, fig.height=3, fig.width=4, fig.align='center', echo = TRUE, message=FALSE}
+ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm,
+                            color = species)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE)
+```
+
+## Pinguoins
+
+La largeur du bec est-elle liée à la longueur du bec, pour chaque espèce ?
+
+```{r, fig.height=3, fig.width=4, fig.align='center', echo = TRUE, message=FALSE}
+ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm,
+                            color = species)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+```
+
+## Régression Lineaire
+
+Atouts:
+
+* Intuitif, théorie bien connue
+
+* Peut aider à distinguer des tendances
+
+Mais :
+
+* Peut être trompeur
+
+* Toutes les relations ne sont pas linéaires
+
+<!-- ************************************************************************ -->
+# Tendences
+<!-- ************************************************************************ -->
+
+## Voitures
+
+```{r, fig.height=4, fig.width=4, fig.align='center', message = FALSE}
+ggplot(Cars93) +
+  aes(x = Price, y = Fuel.tank.capacity) +
+  geom_point() +
+  geom_smooth(method = "lm")
+```
+
+## Voitures
+
+```{r, fig.height=4, fig.width=4, fig.align='center', message = FALSE}
+ggplot(Cars93) +
+  aes(x = Price, y = Fuel.tank.capacity) +
+  geom_point() +
+  geom_smooth()
+```
+
+## Voitures
+
+```{r, fig.height=4, fig.width=4, fig.align='center', message = FALSE}
+ggplot(Cars93) +
+  aes(x = Price, y = Fuel.tank.capacity) +
+  geom_point() +
+  geom_smooth(method = "loess",
+              se = FALSE)
+```
+
+## LOESS
+
+**Régression locale**: *LOcally Estimated Scatterplot Smoothing* 
+
+Atouts:
+
+* Flexible
+
+* S'adapte aux données
+
+Mais:
+
+* Modèle sous-jacent complexe
+
+* Besoin de beaucoup de données pour être pertinent
+
+## Références
+
+- *Fundamentals of Data Visualization* :  
+[Chapter 14: Visualizing trends](https://clauswilke.com/dataviz/visualizing-trends.html)
+- *Data Visualization—A Practical Introduction* :  
+[Chapter 6: Work with models](https://socviz.co/modeling.html)
+- **ggplot2** reference documentation:  
+[`geom_smooth()`](https://ggplot2.tidyverse.org/reference/geom_smooth.html)
