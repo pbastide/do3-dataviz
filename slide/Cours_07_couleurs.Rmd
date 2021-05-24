@@ -1,6 +1,6 @@
 ---
 title: "DO3 - Visualisation"
-subtitle: "Tendances et modèles"
+subtitle: "Couleurs"
 author: "Paul Bastide"
 date: "25/05/2021"
 output:

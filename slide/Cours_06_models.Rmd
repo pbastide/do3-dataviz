@@ -16,34 +16,188 @@ library(MASS)
 ```
 
 <!-- ************************************************************************ -->
-# Régression Lineaire
+# Relation entre deux variables
 <!-- ************************************************************************ -->
 
-## Régression Lineaire
-
-<center><img src="AI.png" height="350px" /></center>
-
-## Régression Lineaire
-
-**But**: trouver la "meilleure droite" pour représenter les données
-$$
-y_i \approx \beta_0 + \beta_1 x_i
-$$
+## Nuage de points
 
 ```{r, echo = FALSE}
 library(palmerpenguins)
 penguins <- na.omit(penguins)
 ```
 
-```{r, fig.height=4, fig.width=5, fig.align='center', echo = FALSE}
-ggplot(data = penguins,
+```{r, fig.height=4, fig.width=4, fig.align='center', echo = FALSE}
+adelie <- subset(penguins, species == "Adelie")
+ggplot(data = adelie,
        aes(x = bill_length_mm,
            y = bill_depth_mm)) +
   geom_point() +
   theme_minimal() +
   xlab("Longueur du bec (mm)") +
   ylab("Largeur du bec (mm)") +
-  ggtitle("Dimensions du bec de pengouins")
+  ggtitle("Dimensions du bec de pengouins Adélie")
+```
+
+## Variances, covariance et correlation {.smaller .build}
+
+Soient $x_1, \dotsc, x_n$ et $y_1, \dotsc, y_n$ deux variables aléatoires
+mesurées pour chaque point de l'échantillon.  
+
+**Variances** de $x$ et $y$:
+$$
+s_x^2 = \frac{1}{n-1} \sum_{i = 1}^n (x_i - \bar{x})^2
+\quad
+s_y^2 = \frac{1}{n-1} \sum_{i = 1}^n (y_i - \bar{y})^2
+$$
+
+**Co-variance** de $x$ et $y$:
+$$
+s_{xy}^2 = \frac{1}{n-1} \sum_{i = 1}^n (x_i - \bar{x})(y_i - \bar{y})
+$$
+
+**Corrélation** de $x$ et $y$:
+$$
+\rho_{xy} 
+= \frac{s_{xy}^2}{\sqrt{s_{x}^2s_{y}^2}}
+= \frac{\sum_{i = 1}^n (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum_{i = 1}^n (x_i - \bar{x})^2 \sum_{i = 1}^n (y_i - \bar{y})^2}}
+$$
+
+## Nuage de points
+
+```{r, fig.height=4, fig.width=4, fig.align='center', echo = FALSE}
+ggplot(data = adelie,
+       aes(x = bill_length_mm,
+           y = bill_depth_mm)) +
+  geom_point() +
+  theme_minimal() +
+  xlab("Longueur du bec (mm)") +
+  ylab("Largeur du bec (mm)") +
+  ggtitle("Dimensions du bec de pengouins Adélie")
+```
+
+$$
+s_x = `r sd(adelie$bill_length_mm)`
+\quad
+s_y = `r sd(adelie$bill_depth_mm)`
+\quad
+s_{xy}^2 = `r cov(adelie$bill_length_mm, adelie$bill_depth_mm)`
+$$
+
+$$\rho_{xy} = `r cor(adelie$bill_length_mm, adelie$bill_depth_mm)`$$
+
+## Nuage de points
+
+```{r, fig.height=4, fig.width=4, fig.align='center', echo = FALSE}
+gentoo <- subset(penguins, species == "Gentoo")
+ggplot(data = gentoo,
+       aes(x = bill_length_mm,
+           y = bill_depth_mm)) +
+  geom_point() +
+  theme_minimal() +
+  xlab("Longueur du bec (mm)") +
+  ylab("Largeur du bec (mm)") +
+  ggtitle("Dimensions du bec de pengouins Gentoo")
+```
+
+$$
+s_x = `r sd(gentoo$bill_length_mm)`
+\quad
+s_y = `r sd(gentoo$bill_depth_mm)`
+\quad
+s_{xy}^2 = `r cov(gentoo$bill_length_mm, gentoo$bill_depth_mm)`
+$$
+
+$$\rho_{xy} = `r cor(gentoo$bill_length_mm, gentoo$bill_depth_mm)`$$
+
+## Nuage de points
+
+```{r, fig.height=4, fig.width=4, fig.align='center', echo = FALSE}
+chinstrap <- subset(penguins, species == "Chinstrap")
+ggplot(data = chinstrap,
+       aes(x = bill_length_mm,
+           y = bill_depth_mm)) +
+  geom_point() +
+  theme_minimal() +
+  xlab("Longueur du bec (mm)") +
+  ylab("Largeur du bec (mm)") +
+  ggtitle("Dimensions du bec de pengouins Chinstrap")
+```
+
+$$
+s_x = `r sd(chinstrap$bill_length_mm)`
+\quad
+s_y = `r sd(chinstrap$bill_depth_mm)`
+\quad
+s_{xy}^2 = `r cov(chinstrap$bill_length_mm, chinstrap$bill_depth_mm)`
+$$
+
+$$\rho_{xy} = `r cor(chinstrap$bill_length_mm, chinstrap$bill_depth_mm)`$$
+
+## Attention {.build}
+
+La corrélation représente une relation **linéaire**
+
+```{r, fig.height=3, fig.width=4, fig.align='center', echo = FALSE}
+x <- seq(-10, 10, 1)
+dummy <- data.frame(x = x, y = x^2)
+ggplot(data = dummy, aes(x = x, y = y)) +
+  geom_point() +
+  theme_minimal()
+```
+
+$$\rho_{xy} = `r cor(dummy$x, dummy$y)`$$
+
+Corrélation n'est pas causation !
+[Exemple](https://soepidemio.com/2016/11/14/correlation-statistique-prudence-a-linterpretation/)
+
+## Attention
+
+```{r, fig.height=4, fig.width=6, fig.align='center', echo = FALSE}
+ggplot(data = penguins,
+       aes(x = bill_length_mm,
+           y = bill_depth_mm,
+           color = species)) +
+  geom_point() +
+  theme_minimal() +
+  xlab("Longueur du bec (mm)") +
+  ylab("Largeur du bec (mm)") +
+  ggtitle("Dimensions du bec de pengouins Chinstrap")
+```
+
+$$
+s_x = `r sd(penguins$bill_length_mm)`
+\quad
+s_y = `r sd(penguins$bill_depth_mm)`
+\quad
+s_{xy}^2 = `r cov(penguins$bill_length_mm, penguins$bill_depth_mm)`
+$$
+
+$$\rho_{xy} = `r cor(penguins$bill_length_mm, penguins$bill_depth_mm)`$$
+
+<!-- ************************************************************************ -->
+# Régression Lineaire
+<!-- ************************************************************************ -->
+
+## Régression Lineaire
+
+<center><img src="figures/AI.png" height="350px" /></center>
+
+## Régression Lineaire
+
+**But**: trouver la "meilleure droite" pour représenter les données
+$$
+y_i \approx \beta_0 + \beta_1 x_i
+$$
+
+```{r, fig.height=4, fig.width=5, fig.align='center', echo = FALSE}
+ggplot(data = adelie,
+       aes(x = bill_length_mm,
+           y = bill_depth_mm)) +
+  geom_point() +
+  theme_minimal() +
+  xlab("Longueur du bec (mm)") +
+  ylab("Largeur du bec (mm)") +
+  ggtitle("Dimensions du bec de pengouins Adélie")
 ```
 
 ## Régression Lineaire
@@ -54,15 +208,15 @@ y_i \approx \beta_0 + \beta_1 x_i
 $$
 
 ```{r, fig.height=4, fig.width=5, fig.align='center', echo = FALSE}
-ggplot(data = penguins,
+ggplot(data = adelie,
        aes(x = bill_length_mm,
            y = bill_depth_mm)) +
   geom_point() +
   theme_minimal() +
   xlab("Longueur du bec (mm)") +
   ylab("Largeur du bec (mm)") +
-  ggtitle("Dimensions du bec de pengouins") + 
-  geom_hline(yintercept = mean(penguins$bill_depth_mm), color = "firebrick3", size = 1.2)
+  ggtitle("Dimensions du bec de pengouins Adélie") + 
+  geom_hline(yintercept = mean(adelie$bill_depth_mm), color = "firebrick3", size = 1.2)
 ```
 
 ## Régression Lineaire
@@ -73,15 +227,15 @@ y_i \approx \beta_0 + \beta_1 x_i
 $$
 
 ```{r, fig.height=4, fig.width=5, fig.align='center', echo = FALSE}
-ggplot(data = penguins,
+ggplot(data = adelie,
        aes(x = bill_length_mm,
            y = bill_depth_mm)) +
   geom_point() +
   theme_minimal() +
   xlab("Longueur du bec (mm)") +
   ylab("Largeur du bec (mm)") +
-  ggtitle("Dimensions du bec de pengouins") + 
-  geom_abline(intercept = 0, slope = 0.4, color = "firebrick3", size = 1.2)
+  ggtitle("Dimensions du bec de pengouins Adélie") + 
+  geom_abline(intercept = 0, slope = 0.5, color = "firebrick3", size = 1.2)
 ```
 
 ## Régression Lineaire
@@ -92,14 +246,14 @@ y_i \approx \beta_0 + \beta_1 x_i
 $$
 
 ```{r, fig.height=4, fig.width=5, fig.align='center', echo = FALSE, message=FALSE}
-ggplot(data = penguins,
+ggplot(data = adelie,
        aes(x = bill_length_mm,
            y = bill_depth_mm)) +
   geom_point() +
   theme_minimal() +
   xlab("Longueur du bec (mm)") +
   ylab("Largeur du bec (mm)") +
-  ggtitle("Dimensions du bec de pengouins") + 
+  ggtitle("Dimensions du bec de pengouins Adelie") + 
   geom_smooth(method = "lm", se = FALSE, color = "firebrick3", size = 1.2)
 ```
 
@@ -261,7 +415,7 @@ Relation négative ?
 
 La largeur du bec est-elle liée à la longueur du bec, pour chaque espèce ?
 
-```{r, fig.height=3, fig.width=4, fig.align='center', echo = TRUE, message=FALSE}
+```{r, fig.height=3, fig.width=6, fig.align='center', echo = TRUE, message=FALSE}
 ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm,
                             color = species)) +
   geom_point() +
@@ -272,7 +426,7 @@ ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm,
 
 La largeur du bec est-elle liée à la longueur du bec, pour chaque espèce ?
 
-```{r, fig.height=3, fig.width=4, fig.align='center', echo = TRUE, message=FALSE}
+```{r, fig.height=3, fig.width=6, fig.align='center', echo = TRUE, message=FALSE}
 ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm,
                             color = species)) +
   geom_point() +
