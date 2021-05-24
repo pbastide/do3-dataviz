@@ -98,7 +98,7 @@ ggplot(temps_average, aes(x = day_of_year, y = city, color = temperature)) +
 
 ## Commonly used aesthetics {.smaller}
 
-<center><img src="common-aesthetics-1.png" width = 90%/></center>
+<center><img src="figures/common-aesthetics-1.png" width = 90%/></center>
 
 Figure tirée de [Claus O. Wilke. *Fundamentals of Data Visualization.* O'Reilly, 2019.](https://clauswilke.com/dataviz)
 
