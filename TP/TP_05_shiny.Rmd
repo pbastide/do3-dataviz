@@ -1,0 +1,212 @@
+---
+title: "TP 5 - Shiny"
+author: "Paul Bastide"
+date: "25/05/2021"
+output: html_document
+---
+
+```{r setup, include = FALSE}
+library(here)
+library(ggplot2)
+```
+
+-----
+
+# Pingouins d'Antarctique
+
+On reprend le jeu de données sur le pingouins de l'archipel Palmer
+contenu dans la librairie [palmerpenguins](https://allisonhorst.github.io/palmerpenguins/index.html).
+
+```{r}
+library(palmerpenguins)
+penguins <- na.omit(penguins)
+knitr::kable(head(penguins))
+```
+
+## Longeur des ailes
+
+On se pose la question : 
+"Les différentes espèces de pingouins ont-elles des ailes de longueur différente ?"
+
+Formalisez l'expérience statistique.
+
+Proposez un graphique pouvant répondre à la question, s'appuyant sur
+des histogrammes.
+Justifiez vos choix de représentation, en particulier la largeur des classes.
+
+**Note**: Par défaut, lorsque plusieurs histogramme sont tracés, `ggplot` les
+"empile" les un sur les autres. Pour changer ce comportement, vous pouvez utiliser
+l'option `position = "identity"` dans la fonction `geom_histogram`.
+Pour que deux barres se chevauchant restent visibles, vous pouvez les rendre partiellement
+transparentes à l'aide du paramètre `alpha`.
+
+Proposez une autre représentation, à l'aide de boxplots.
+
+Pouvez-vous inclure l'information du sexe des individus dans la comparaison ?
+Quel graphique (histogramme ou boxplot) s'y prête le mieux ?
+
+-----
+
+## Dimensions du bec
+
+On se pose la question : 
+"Les pingouins avec un bec plus longs ont-ils un bec plus large ?"
+
+Représentez la largeur du bec en fonction de la longueur du bec comme un nuage de
+points (en mélangeant toutes les espèces).
+Voyez-vous une tendance se dessiner ?
+Pour aider à la lecture, vous pourrez ajouter une droite de régression à l'aide
+de la fonction:
+```{r, eval = FALSE}
+geom_smooth(method = "lm", se = FALSE)
+```
+
+Reproduisez le graphique, mais avec des couleurs différentes pour chaque espèce.
+Que pouvez-vous dire de la tendance au sein de chacune des trois espèces ?
+
+-----
+
+# Shiny
+
+[Shiny](https://shiny.rstudio.com/) est une librairie de `R`, intégrée à `RStudio`,
+qui permet de construire facilement des graphiques interactifs sous forme de 
+*WebApp*.
+
+Vous pouvez consulter l'application [drinkr](https://gallery.shinyapps.io/drinkr/),
+qui constitue un petit exemple introductif de l'utilisation de Shiny pour
+le calcul du taux d'alcool dans le sang en fonction de votre consommation.
+
+Un autre [exemple](https://walkerke.shinyapps.io/neighborhood_diversity) 
+plus complet présente un jeu de données sur la mixité sociale
+dans diverses villes des États-Unis.
+(Ce deuxième exemple utilise en plus la librairie 
+[flexdashboard](https://pkgs.rstudio.com/flexdashboard/),
+non présenté ici mais que je vous invite à découvrir par vous même.)
+
+Cet outil est aussi utilisé par l'administration française, voir par
+exemple la [ségrégation résidentielle en France](https://francestrategie.shinyapps.io/app_seg/),
+par [France Stratégie](https://www.strategie.gouv.fr/).
+
+Le guide complet de Shiny est disponible [ici](https://shiny.rstudio.com/tutorial/).
+
+## Premier exemple
+
+`RStudio` contient un exemple didactique simple qui permet de se faire une idée.
+Pour le voir, créez simplement un nouveau projet shiny, dans le menu:
+```
+File > New File > Shiny Web App...
+```
+(On supposera par la suite que vous avez choisi l'option "Multiple Files".)
+
+Pour voir le résultat, vous pouvez simplement cliquer sur le bouton
+`Run App` en haut à droite.
+
+**Structure générale**:
+
+- Le fichier `server.R` contient toutes les instructions pour tracer les graphiques
+proprement dits, et produit l'objet **output**.
+
+- Le fichier `ui.R` contient lui les informations sur l'interface, et produit
+l'objet **input**.
+
+- Les deux communiquent entre eux grâce aux **ID** des champs de ces différents objets.
+Par exemple, le nombre de classes de l'histogramme est défini dans `ui.R`
+par:
+```{r, eval = FALSE}
+sliderInput(inputID = "bins", ...)
+```
+et utilisé dans la fonction `renderPlot` du fichier `server.R` comme:
+```{r, eval = FALSE}
+bins <- seq(min(x), max(x), length.out = input$bins + 1)
+```
+De même, `output$distPlot` est défini dans `server.R`, et tracé dans `ui.R`
+par la fonction `plotOutput("distPlot")`.
+
+Explorez la structure des fichiers, et les fonctions.
+
+## Longeur des ailes
+
+**Histogramme**:  
+L'exemple de base utilise la fonction `hist` de `R`.
+Reproduisez cette application, mais en utilisant `ggplot2` et `geom_histogram`
+à la place, et en utilisant les données `penguins` 
+(premier graphique du TP).
+
+**Choix des espèces**:  
+Il est possible d'ajouter d'autres contrôles sur le graphique,
+en ajoutant des boutons dans `sideBarPanel`, du fichier `ui.R`.
+Par exemple, on peut ajouter des cases à cocher, à l'aide de la fonction:
+```{r, eval = FALSE}
+checkboxGroupInput(inputId = "species",
+                   label = "Espèces sélectionnées:",
+                   choices = c("Adelie" = "Adelie",
+                               "Chinstrap" = "Chinstrap",
+                               "Gentoo" = "Gentoo"))
+```
+Il faut ensuite, dans `server.R`, tenir compte de cette information,
+stockée dans `input$species`, pour faire un `subset` des données avant de les tracer.
+
+**Comptage ou densité**:  
+Nous avons vu que les histogrammes pouvaient être tracés en fonction de l'effectif
+(par défaut) ou de la densité (`geom_histogram(aes(y = ..density..), ...)`).
+Ajoutez un contrôle de type `radioButtons()` pour changer cette option.
+
+**Sélection de la fenêtre**:  
+Il est aussi possible de réduire la fenêtre des données tracées,
+à l'aide de la fonction
+```{r, eval = FALSE}
+sliderInput("xlim",
+            "Longueurs d'ailes considérées (mm)K:",
+            min = 170, max = 240,
+            value = c(170, 240)),
+```
+
+**Autre contrôles**:  
+Tous les contrôles disponibles sont listés 
+[ici](https://shiny.rstudio.com/tutorial/written-tutorial/lesson3/).
+
+## Dimensions du bec
+
+**Onglets**:  
+Il est possible d'ajouter des onglets avec d'autres graphiques.
+Par exemple, on peut ajouter le graphique donnant les dimensions du bec
+(avec les couleurs),
+en ajoutant dans le `mainPanel` de `ui.R`:
+```{r, eval = FALSE}
+tabsetPanel(
+  tabPanel("Ailes", plotOutput("fliperPlot")),
+  tabPanel("Bec",  plotOutput("billPlot")))
+)
+```
+et en traçant `output$fliperPlot` et `output$billPlot` dans `server.R`
+de la même manière que précédemment.
+
+**Navigation**:  
+Il est possible de changer la navigation, en remplaçant le `tabsetPanel` de `ui.R`
+par une barre de navigation:
+```{r, eval = FALSE}
+navbarPage("Représentation",
+           navbarMenu("Histogrammes",
+                      tabPanel("Ailes", plotOutput("fliperPlot")),
+                      "----",
+                      "Régression",
+                      tabPanel("Bec",  plotOutput("billPlot")
+                      )
+           )
+)
+```
+
+
+**Mises en page**:  
+Plusieurs autres options de mises en forme sont possibles, 
+par exemple à l'aide des fonctions 
+`verticalLayout()`, `flowLayout()` et `splitLayout()`, ou `fixedPage()` et `fluidPage()`,
+que vous pouvez explorer.
+Une présentation complète des options de mise en forme est disponible
+[ici](https://shiny.rstudio.com/tutorial/written-tutorial/lesson2/).
+
+## Parlements
+
+Construisez une application Shiny autour des données sur les parlements,
+ou tout autre jeu de données que vous avez déjà analysé dans ce cours.
+
