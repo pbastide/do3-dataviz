@@ -1,0 +1,315 @@
+---
+title: "DO3 - Visualisation"
+subtitle: "Caveat"
+author: "Paul Bastide"
+date: "01/06/2021"
+output:
+  ioslides_presentation:
+  fig_width: 7
+fig_height: 4
+self_contained: true
+---
+
+```{r setup, echo = FALSE}
+library(ggplot2)
+library(ggforce)
+```
+
+<!-- ************************************************************************ -->
+# Cherchez l'erreur : Vaccins
+<!-- ************************************************************************ -->
+
+## Vaccins
+
+<center><img src="figures/graphs/hospitalisation.jpg" height="350px" /></center>
+
+## Vaccins : données {.smaller}
+
+```{r}
+hospi <- data.frame(semaine = 1:7,
+                    AstraZeneca = c(NA, 70, 74, 84, 94, NA, NA),
+                    Pfizer = c(NA, 38, 60, 72, 85, 68, 64))
+hospi
+```
+
+## Vaccins : données {.smaller}
+
+```{r}
+hospi <- tidyr::pivot_longer(hospi, cols = c(AstraZeneca, Pfizer),
+                             names_to = "Vaccin", values_to = "Efficacite")
+hospi
+```
+
+## Vaccins : graphique
+
+```{r, fig.height=3, fig.width=6, fig.align='center', warning = FALSE}
+ggplot(hospi, aes(x = semaine, y = Efficacite, color = Vaccin)) +
+  geom_line() + geom_point() +
+  geom_label(aes(label = Efficacite)) + 
+  scale_x_continuous(breaks = 1:7) + 
+  theme_minimal() + 
+  theme(panel.grid.minor = element_blank())
+```
+
+<!-- ************************************************************************ -->
+# Cherchez l'erreur : épidémie
+<!-- ************************************************************************ -->
+
+## Épidémie
+
+<center><img src="figures/graphs/cas_castex.jpg" height="350px" /></center>
+
+## Épidémie : les ravages du ppt
+
+<center><img src="figures/graphs/cas_castex_vraie.jpg" height="350px" /></center>
+
+$~$
+[Source](https://twitter.com/Panda31808732/status/1365268202494849031)
+$~$ 
+
+Ne modifiez **jamais** vos graphiques à la main !
+
+<!-- ************************************************************************ -->
+# Cherchez l'erreur : Grèves
+<!-- ************************************************************************ -->
+
+## Grèves SNCF
+
+<center><img src="figures/graphs/greve_sncf_bfm.jpg" height="350px" /></center>
+
+[Source](https://www.liberation.fr/checknews/2018/04/27/est-ce-que-bfmtv-a-vraiment-affiche-un-graphique-a-camembert-trompeur-sur-le-soutien-a-la-greve-des-_1653615/)
+
+## Grèves SNCF : données
+
+```{r}
+greve <- data.frame(opinion = c("opposition", "indifférent", "soutien"),
+                    pourcent = c(48, 15, 37))
+greve
+```
+
+```{r, echo = FALSE}
+greve <- greve[order(greve$pourcent), ]
+greve_pie <- greve
+greve_pie$end_angle <- 2*pi*cumsum(greve$pourcent)/sum(greve$pourcent)   # ending angle for each pie slice
+greve_pie$start_angle <- c(0, greve_pie$end_angle[-3]) # starting angle for each pie slice
+greve_pie$mid_angle = 0.5*(greve_pie$start_angle + greve_pie$end_angle) # middle of each pie slice, for the text label
+greve_pie$hjust = ifelse(greve_pie$mid_angle > pi, 1, 0)
+greve_pie$vjust = ifelse(greve_pie$mid_angle < pi/2 | greve_pie$mid_angle > 3*pi/2, 0, 1)
+```
+
+## Grèves SNCF : graphique
+
+```{r, fig.height=3, fig.width=6, fig.align='center', warning = FALSE, eval = FALSE}
+ggplot(greve,
+       aes(x0 = 0, y0 = 0, r0 = 0, r = 1,
+           amount = pourcent,
+           fill = opinion)) +
+  xlab(NULL) + ylab(NULL) + coord_fixed() +
+  ggtitle("Que pensez-vous de la mobilisation des 
+  organisations syndicales contre le
+  projet de réforme du gouvernement ?") + 
+  ggforce::geom_arc_bar(stat = "pie", color = "white") +
+  scale_fill_manual(values = c("opposition" = "red4",
+                               "indifférent" = "snow4",
+                               "soutien" = "darkgreen")) +
+  theme_void()
+```
+
+## Grèves SNCF : graphique
+
+```{r, fig.height=3, fig.width=6, fig.align='center', warning = FALSE, echo = FALSE}
+ggplot(greve,
+       aes(x0 = 0, y0 = 0, r0 = 0, r = 1,
+           amount = pourcent,
+           fill = opinion)) +
+  xlab(NULL) + ylab(NULL) + coord_fixed() +
+  ggtitle("Que pensez-vous de la mobilisation des 
+  organisations syndicales contre le
+  projet de réforme du gouvernement ?") + 
+  geom_arc_bar(stat = "pie", color = "white") +
+  scale_fill_manual(values = c("opposition" = "red4",
+                               "indifférent" = "snow4",
+                               "soutien" = "darkgreen")) +
+  theme_void()
+```
+
+## Grèves SNCF : graphique
+
+```{r, fig.height=4, fig.width=6, fig.align='center', warning = FALSE, echo = FALSE}
+rpie <- 1
+rlabel_out <- 1.05 * rpie
+rlabel_in <- 0.6 * rpie
+
+ggplot(greve_pie) +
+  geom_arc_bar(aes(x0 = 0, y0 = 0, r0 = 0, r = rpie,
+                   start = start_angle, end = end_angle,
+                   fill = opinion),
+               color = "white") + 
+  xlab(NULL) + ylab(NULL) + coord_fixed() +
+  ggtitle("Que pensez-vous de la mobilisation des
+  organisations syndicales contre le
+  projet de réforme du gouvernement ?") +
+  scale_fill_manual(values = c("opposition" = "red4",
+                               "indifférent" = "snow3",
+                               "soutien" = "darkgreen"),
+                    guide = FALSE) +
+  scale_color_manual(values = c("opposition" = "red4",
+                                "indifférent" = "snow3",
+                                "soutien" = "darkgreen"),
+                     guide = FALSE) +
+  geom_text(aes(x = rlabel_in * sin(mid_angle),
+                y = rlabel_in * cos(mid_angle),
+                label = pourcent),
+            size = 14/.pt,
+            color = c("black", "white", "white")) + 
+  geom_text(aes(x = rlabel_out * sin(mid_angle),
+                y = rlabel_out * cos(mid_angle),
+                label = opinion,
+                hjust = hjust, vjust = vjust,
+                color = opinion),
+            size = 14/.pt) + 
+  scale_x_continuous(name = NULL,
+                     limits = c(-2.5, 2),
+                     expand = c(0, 0)) +
+  scale_y_continuous(name = NULL,
+                     limits = c(-1.2, 1.5),
+                     expand = c(0, 0)) + 
+  theme_void()
+```
+
+<!-- ************************************************************************ -->
+# Sondage : Non à la 3D
+<!-- ************************************************************************ -->
+
+## Sondages
+
+<center><img src="figures/graphs/camembert_3D.jpg" height="350px" /></center>
+
+$~$
+
+[Source](https://quoidansmonassiette.fr/tromper-avec-graphiques-representations-visuelles-pour-manipuler-opinion-publique-guide/)
+
+<!-- ************************************************************************ -->
+# Grèves : Attention aux axes
+<!-- ************************************************************************ -->
+
+## Grèves SNCF
+
+<center><img src="figures/graphs/greve_sncf.jpg" height="350px" /></center>
+
+[Source](https://www.liberation.fr/checknews/2018/04/27/est-ce-que-bfmtv-a-vraiment-affiche-un-graphique-a-camembert-trompeur-sur-le-soutien-a-la-greve-des-_1653615/)
+
+## Grèves SNCF : graphique {.smaller}
+
+```{r, fig.height=3.4, fig.width=3.5, fig.align='center'}
+greve <- data.frame(jour = c("17/04", "18/04"), pourcent = c(22.5, 19.84))
+ggplot(greve, aes(x = jour, y = pourcent, fill = jour)) +
+  geom_col() +
+  ylab("Taux de participation") + xlab("Date") +
+  ggtitle("Taux de participation à la grève \n du 18 avril 2018") + 
+  scale_fill_discrete(guide = FALSE) + 
+  geom_text(aes(label = pourcent, y = pourcent - 1.5), size = 8) + 
+  theme_minimal()
+```
+
+
+<!-- ************************************************************************ -->
+# Attention aux axes
+<!-- ************************************************************************ -->
+
+## Places en médecine
+
+<center><img src="figures/graphs/medecins.jpg" height="500px" /></center>
+
+## Places en médecine
+
+```{r, fig.height=5, fig.width=7, fig.align='center', echo = FALSE}
+medecins <- data.frame(annee = c(2010:2021),
+                       places = c(7403, 7587, 7821, 7861, 7843, 7862, 7987, 8408, 8552, 9149, 9361, 10675))
+
+ggplot(medecins, aes(x = annee, y = places)) +
+  geom_col(fill = "lightblue") +
+  xlab("") + ylab("") +
+  ggtitle("Evolution du nombre d'étudiants admis \n en 2e année de médecine 2010 - 2021") + 
+  geom_text(aes(label = places, y = places - 300), size = 4) + 
+  theme_minimal()
+```
+
+## Places en médecine
+
+<center><img src="figures/graphs/medecins_tweet.png" height="500px" /></center>
+
+<!-- ************************************************************************ -->
+# Attention aux axes !
+<!-- ************************************************************************ -->
+
+## Evolution du taux global d’imposition
+
+<center><img src="figures/graphs/piketty.png" height="500px" /></center>
+
+[Landais, Piketty et Saez (2011)](http://www.revolution-fiscale.fr/) et 
+[Charpentier (2017)](https://freakonometrics.hypotheses.org/50129)
+
+## Evolution du taux global d’imposition
+
+<center><img src="figures/graphs/guiard.png" height="350px" /></center>
+
+[Guiard (2014)](http://publications-sfds.fr/index.php/stat_soc/article/view/408/387) et 
+[Charpentier (2017)](https://freakonometrics.hypotheses.org/50129)
+
+Que faut-il mettre en abscisse ?
+
+## Evolution du taux global d’imposition
+
+<center><img src="figures/graphs/charpentier_1.png" height="210px" /></center>
+
+$~$
+
+<div style="float: left; width: 45%;">
+<center><img src="figures/graphs/charpentier_2.png" height="210px" /></center>
+</div>
+
+<div style="float: right; width: 45%;">
+<center><img src="figures/graphs/charpentier_3.png" height="210px" /></center>
+</div>
+
+[Charpentier (2017)](https://freakonometrics.hypotheses.org/50129)
+
+<!-- ************************************************************************ -->
+# Quelles Données ?
+<!-- ************************************************************************ -->
+
+## Crise de confiance
+
+<center><img src="figures/graphs/democracy.png" height="400px" /></center>
+
+$~$ 
+[Source](https://socviz.co/lookatdata.html)
+
+## Crise de confiance ?
+
+<center><img src="figures/graphs/democracy_2.png" height="400px" /></center>
+
+$~$ 
+[Source](https://socviz.co/lookatdata.html)
+
+**Choix des données** représentées très important.
+
+<!-- ************************************************************************ -->
+# Comparaison n'est pas raison
+<!-- ************************************************************************ -->
+
+## Economic Growth
+
+<center><img src="figures/graphs/trump.jpg" height="500px" /></center>
+
+
+[Source](https://quoidansmonassiette.fr/tromper-avec-graphiques-representations-visuelles-pour-manipuler-opinion-publique-guide/)
+
+## Références
+
+- *Fundamentals of Data Visualization* :  
+[Introduction](https://clauswilke.com/dataviz/color-basics.html)  
+[Chapter 19: Common pitfalls of color use](https://clauswilke.com/dataviz/introduction.html)
+- *Data Visualization—A Practical Introduction* :  
+[Chapter 1: Look at data](https://socviz.co/lookatdata.html)
