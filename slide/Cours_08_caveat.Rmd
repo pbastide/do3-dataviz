@@ -301,6 +301,13 @@ $~$
 
 ## Economic Growth
 
+<center><img src="figures/graphs/trump_1.png" height="350px" /></center>
+
+
+[Source](https://quoidansmonassiette.fr/tromper-avec-graphiques-representations-visuelles-pour-manipuler-opinion-publique-guide/)
+
+## Economic Growth
+
 <center><img src="figures/graphs/trump.jpg" height="500px" /></center>
 
 
