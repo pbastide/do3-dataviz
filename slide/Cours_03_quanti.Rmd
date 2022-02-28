@@ -2,7 +2,7 @@
 title: "DO3 - Visualisation"
 subtitle: "Variables Quantitatives"
 author: "Paul Bastide"
-date: "06/05/2021"
+date: "05/04/2022"
 output:
   ioslides_presentation:
     fig_width: 7

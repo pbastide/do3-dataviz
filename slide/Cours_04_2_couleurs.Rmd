@@ -2,7 +2,7 @@
 title: "DO3 - Visualisation"
 subtitle: "Couleurs"
 author: "Paul Bastide"
-date: "25/05/2021"
+date: "26/04/2022"
 output:
   ioslides_presentation:
   fig_width: 7
