@@ -42,24 +42,14 @@ knitr::opts_chunk$set(echo = TRUE)
 
 * 1/2 contrôle continu
   * Comptes rendus de TP
-  * 2 ou 3 à rendre aléatoirement
 
 * 1/2 projet final
   * Choisir un jeu de données d'intérêt
-  * En proposer une ou plusieurs représentations graphiques (dynamiques)
-  * Rapport associé discutant les choix effectués
-
-
-## Ressources
-
-* *Fundamentals of Data Visualization*, Claus O. Wilke:
-  * [Livre](https://clauswilke.com/dataviz/)
-  * [Cours](https://wilkelab.org/SDS375/)
-
-* *Data Visualization, A practical introduction*, Kieran Healy:
-  * [Livre](https://socviz.co/)
-
-* Page [GitHub](https://github.com/pbastide/do3-dataviz) du cours
+  * Poser au moins trois questions sur les données
+  * Proposer une ou plusieurs représentations graphiques (dynamiques)
+  * Deux rendus:
+    * Un rapport technique, reproductible, détaillant la démarche statistique
+    * Un produit fini de visualisation des données, partageable, indépendant.
 
 ## Sources de données
 
@@ -80,6 +70,17 @@ et sa [librairie](https://CRAN.R-project.org/package=fivethirtyeight) associée
 * [KD Nuggets](https://www.kdnuggets.com/datasets/index.html)
 
 * ...
+
+## Ressources
+
+* *Fundamentals of Data Visualization*, Claus O. Wilke:
+  * [Livre](https://clauswilke.com/dataviz/)
+  * [Cours](https://wilkelab.org/SDS375/)
+
+* *Data Visualization, A practical introduction*, Kieran Healy:
+  * [Livre](https://socviz.co/)
+
+* Page [GitHub](https://github.com/pbastide/do3-dataviz) du cours
 
 ## GitHub `do3-dataviz`
 
