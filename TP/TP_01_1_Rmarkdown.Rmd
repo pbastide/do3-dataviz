@@ -71,22 +71,24 @@ influe sur la sortie (le `.html`).
 ## Code `R` et graphiques
 
 Supposons que l'on mène l'expérience suivante.  
-Une urne contient trois boules, une rouge, une bleue et une verte.  
-On tire une boule au hasard, on note sa couleur, puis on la remet dans l'urne.  
-On reproduit cette expérience 300 fois.  
+Une urne contient 300 boules, 100 rouges, 100 bleues et 100 vertes.  
+On tire une boule au hasard, on note sa couleur, et on la met de côté.  
+On reproduit cette expérience 100 fois.  
 
 Avec `R`, on peut simuler cette expérience aléatoire de la façon suivante.
 
 ```{r boules-experience}
-set.seed(12890926)                     ## Reproductibilité
+set.seed(1289)                         ## Reproductibilité
 
-boules <- c("rouge", "bleue", "verte") ## Boules dans l'urne
+boules <- c(rep("rouge", 100),         ## 100 boules rouges
+            rep("bleue", 100),         ## 100 boules bleues
+            rep("verte", 100))         ## 100 boules vertes 
 
-n_exp <- 300                           ## Nombre de fois où je fais l'expérience
+n_exp <- 100                           ## Nombre de fois où je fais l'expérience
 
 echantillon <- sample(boules,          ## échantillonne les boules
                       n_exp,           ## n_exp fois
-                      replace = TRUE)  ## avec remise
+                      replace = FALSE) ## sans remise
 ```
 
 On peut ensuite afficher un résumé de l'experience
@@ -125,15 +127,24 @@ Il pourra contenir des équations $\LaTeX$, et des listes, numérotées ou non.
 
 ---
 
-> On lance une pièce équilibrée 100 fois, de manière indépendante.
+> On pêche des poissons dans le Lez.
+> 
+> On suppose qu'il y a en tout $10\,000$ poissons dans le Lez,
+> dont $2\,000$ rouges, $3\,000$ verts et $5\,000$ bleus
+> (le Lez est très polué).
+> On suppose cependant que l'on n'a pas accès à cette information
+> (on ne sait pas combien il y a de poissons en tout, ni combien de chaque couleur).
 >
-> Décrivez l'expérience statistique.
-> Pour chaque lancé, quelle est la probabilité d'obtenir pile ou face ?
+> On se pose la question : "Quelle est la porportion de poissons rouges, verts et bleus dans le Lez ?"
+> 
+> On pêche $100$ poissons, que l'on garde pour les exposer en aquarium, et l'on note leur couleur.
 >
-> Simulez les données correspondant à cette expérience simple,
+> Décrivez l'expérience statistique : individus, population, échantilon, taille, type variable mesurée.
+>
+> Simulez les données correspondant à cette expérience,
 > en utilisant la fonction `sample`.
 >
-> Calculer la fréquence empirique de "piles" et de "faces"
+> Calculer la fréquence empirique de chaque couleur de poissons
 > en utilisant la fonction `table`.
 > Ce résultat vous surprend-il ?
 >
@@ -144,6 +155,10 @@ Il pourra contenir des équations $\LaTeX$, et des listes, numérotées ou non.
 > Est-ce normal ?
 > Utilisez la fonction `set.seed` pour produire un document reproductible.
 >
-> Reproduisez ces analyses avec 1000 lancés (ou plus).
+> On suppose que, par manque de budget, on ne peut pêcher que $10$ poissons.
+> Quels résultats obtenez-vous ? L'estimation est-elle bonne dans ce cas ?
+>
+> On suppose maintenant que, grâce à une collecte de fonds en ligne,
+> on peut pêcher $1\,000$ poissons. Est-ce que cela améliore l'estimation ?
 
 ---
