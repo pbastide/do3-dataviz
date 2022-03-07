@@ -182,11 +182,7 @@ Il pourra contenir des équations $\LaTeX$, et des listes, numérotées ou non.
 > Utilisez la fonction `set.seed` pour produire un document reproductible.
 >
 > On suppose que, par manque de budget, on ne peut pêcher que $10$ poissons.
-<<<<<<< HEAD
 > Quels résultats obtenez-vous ? L'estimation des proportions est-elle bonne dans ce cas ?
-=======
-> Quels résultats obtenez-vous ? L'estimation est-elle bonne dans ce cas ?
->>>>>>> dcc8e198b4c0d6c82a50a57559b5b0578a0df9cf
 >
 > On suppose maintenant que, grâce à une collecte de fonds en ligne,
 > on peut pêcher $1\,000$ poissons. Est-ce que cela améliore l'estimation ?
