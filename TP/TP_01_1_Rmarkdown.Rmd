@@ -73,18 +73,30 @@ influe sur la sortie (le `.html`).
 Supposons que l'on mène l'expérience suivante.  
 Une urne contient 300 boules, 100 rouges, 100 bleues et 100 vertes.  
 On tire une boule au hasard, on note sa couleur, et on la met de côté.  
+<<<<<<< HEAD
 On reproduit cette expérience 60 fois.  
+=======
+On reproduit cette expérience 100 fois.  
+>>>>>>> dcc8e198b4c0d6c82a50a57559b5b0578a0df9cf
 
 Avec `R`, on peut simuler cette expérience aléatoire de la façon suivante.
 
 ```{r boules-experience}
 set.seed(1289)                         ## Reproductibilité
 
+<<<<<<< HEAD
 urne <- c(rep("rouge", 100),         ## 100 boules rouges
           rep("bleue", 100),         ## 100 boules bleues
           rep("verte", 100))         ## 100 boules vertes 
 
 n_exp <- 60                          ## Nombre de fois où je fais l'expérience
+=======
+boules <- c(rep("rouge", 100),         ## 100 boules rouges
+            rep("bleue", 100),         ## 100 boules bleues
+            rep("verte", 100))         ## 100 boules vertes 
+
+n_exp <- 100                           ## Nombre de fois où je fais l'expérience
+>>>>>>> dcc8e198b4c0d6c82a50a57559b5b0578a0df9cf
 
 echantillon <- sample(urne,          ## échantillonne les boules
                       n_exp,           ## n_exp fois
@@ -131,6 +143,7 @@ Il pourra contenir des équations $\LaTeX$, et des listes, numérotées ou non.
 > 
 > On suppose qu'il y a en tout $10\,000$ poissons dans le Lez,
 > dont $2\,000$ rouges, $3\,000$ verts et $5\,000$ bleus
+<<<<<<< HEAD
 > (le Lez est très pollué).
 > On suppose cependant que l'on n'a pas accès à cette information
 > (on ne sait pas combien il y a de poissons en tout, ni combien de chaque couleur).
@@ -141,6 +154,17 @@ Il pourra contenir des équations $\LaTeX$, et des listes, numérotées ou non.
 >
 > Décrivez l'expérience statistique : question posée, individus, population, échantillon, taille, type de variable mesurée.
 > La variable a-t-elle bien des modalités incompatible, exhaustives et sans ambiguité ? 
+=======
+> (le Lez est très polué).
+> On suppose cependant que l'on n'a pas accès à cette information
+> (on ne sait pas combien il y a de poissons en tout, ni combien de chaque couleur).
+>
+> On se pose la question : "Quelle est la porportion de poissons rouges, verts et bleus dans le Lez ?"
+> 
+> On pêche $100$ poissons, que l'on garde pour les exposer en aquarium, et l'on note leur couleur.
+>
+> Décrivez l'expérience statistique : individus, population, échantilon, taille, type variable mesurée.
+>>>>>>> dcc8e198b4c0d6c82a50a57559b5b0578a0df9cf
 >
 > Simulez les données correspondant à cette expérience,
 > en utilisant la fonction `sample`.
@@ -158,7 +182,11 @@ Il pourra contenir des équations $\LaTeX$, et des listes, numérotées ou non.
 > Utilisez la fonction `set.seed` pour produire un document reproductible.
 >
 > On suppose que, par manque de budget, on ne peut pêcher que $10$ poissons.
+<<<<<<< HEAD
 > Quels résultats obtenez-vous ? L'estimation des proportions est-elle bonne dans ce cas ?
+=======
+> Quels résultats obtenez-vous ? L'estimation est-elle bonne dans ce cas ?
+>>>>>>> dcc8e198b4c0d6c82a50a57559b5b0578a0df9cf
 >
 > On suppose maintenant que, grâce à une collecte de fonds en ligne,
 > on peut pêcher $1\,000$ poissons. Est-ce que cela améliore l'estimation ?
