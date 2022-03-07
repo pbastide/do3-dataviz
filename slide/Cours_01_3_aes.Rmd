@@ -56,7 +56,44 @@ temps_average <- read.csv(file = here("data",
 head(temps_average)
 ```
 
-## Climatic data - y
+## Données climatiques - Graphique
+
+Il faut choisir comment coder chaque information.
+
+```{r temp_1, message = FALSE, echo=FALSE}
+temps_average[c(c(1, 2), 366 + c(1, 2), 366*2 + c(1, 2)),]
+```
+
+"aestetics" possibles:
+
+  * Abscisses `x`
+  * Ordonnées `y`
+  * Couleurs `color`
+  * ...
+
+## Données climatiques - Graphique
+
+Il faut choisir comment coder chaque information.
+
+```{r temp_2, message = FALSE, echo=FALSE}
+temps_average[c(c(1, 2), 366 + c(1, 2), 366*2 + c(1, 2)),]
+```
+
+"aestetics" possibles:
+
+<div class="columns-2">
+  * Abscisses `x`
+  * Ordonnées `y`
+  * Couleurs `color`
+
+$~$
+
+  * `day_of_year`
+  * `temperature`
+  * `city`
+</div>
+
+## Données climatiques - y
 
 ```{r format, echo = FALSE}
 month_names <- c(
@@ -79,7 +116,29 @@ ggplot(temps_average, aes(x = day_of_year, y = temperature, color = city)) +
 * `y` contient l'information sur la `temperature`.
 * `color` contient l'information sur la `city`.
 
-## Climatic data - color
+## Données climatiques - Graphique
+
+Il faut choisir comment coder chaque information.
+
+```{r temp_3, message = FALSE, echo=FALSE}
+temps_average[c(c(1, 2), 366 + c(1, 2), 366*2 + c(1, 2)),]
+```
+
+"aestetics" possibles:
+
+<div class="columns-2">
+  * Abscisses `x`
+  * Ordonnées `y`
+  * Couleurs `color`
+
+$~$
+
+  * `day_of_year`
+  * `city`
+  * `temperature`
+</div>
+
+## Données climatiques - color
 ```{r temp-plot-2, echo = FALSE, fig.align='center'}
 ggplot(temps_average, aes(x = day_of_year, y = city, color = temperature)) + 
   geom_point(size = 5) +
@@ -96,11 +155,15 @@ ggplot(temps_average, aes(x = day_of_year, y = city, color = temperature)) +
 * `y` contient l'information sur la `city`.
 * `color` contient l'information sur la `temperature`.
 
-## Commonly used aesthetics {.smaller}
+## Aesthetiques communes {.smaller}
 
 <center><img src="figures/common-aesthetics-1.png" width = 90%/></center>
 
 Figure tirée de [Claus O. Wilke. *Fundamentals of Data Visualization.* O'Reilly, 2019.](https://clauswilke.com/dataviz)
+
+<!-- ************************************************************************ -->
+# Declarative aesthetic mappings
+<!-- ************************************************************************ -->
 
 ## Données climatiques - `aes`
 

@@ -2,7 +2,7 @@
 title: "DO3 - Visualisation"
 subtitle: "Statistiques descriptives"
 author: "Paul Bastide"
-date: "29/03/2022"
+date: "08/03/2022"
 output:
   ioslides_presentation:
     fig_width: 7
@@ -73,19 +73,13 @@ $\hookrightarrow$ nombre d'arbres abattus par les gardes champêtres
 
 ## Questions {.build}
 
-Combien d'enfants ont les français ?
+$\rightarrow$ on pose une **question** sur la population.
 
-Combien payent les français en impôts sur le revenu ?
-
-Les arbres de la forêt de fontainebleau sont-ils en bonne santé?
-
-Quelle est l'orientation des parcelles agricoles ?
-
-$\hookrightarrow$ on pose une **question** sur la population.
-
-$\hookrightarrow$ on répond en mesurant une **variable** sur les individus de l'échantillon.
+$\rightarrow$ on répond en mesurant une **variable** sur les individus de l'échantillon.
 
 ## Exemples {.build}
+
+Combien d'enfants ont les français ?
 
 **Individu**: un français  
 **Population**: tous les français  
@@ -93,11 +87,25 @@ $\hookrightarrow$ on répond en mesurant une **variable** sur les individus de l
 **Taille**: 10000  
 **Variable**: nombre d'enfants
 
+Combien payent les français en impôts sur le revenu ?
+
 **Individu**: un foyer fiscal  
 **Population**: tous les foyers fiscaux  
 **Échantillon**: les foyers fiscaux contrôlés  
 **Taille**: 1000  
 **Variable**: somme versée à l'administration
+
+## Exemples {.build}
+
+Les arbres de la forêt de fontainebleau sont-ils en bonne santé ?
+
+**Individu**: un arbre  
+**Population**: la forêt de Fontainebleau  
+**Échantillon**: arbres abattus  
+**Taille**: 100  
+**Variable**: santé de l'arbre  
+
+Quelle est l'orientation des parcelles agricoles ?
 
 **Individu**: une parcelle agricole  
 **Population**: toutes surfaces cultivables d'Occitanie  
