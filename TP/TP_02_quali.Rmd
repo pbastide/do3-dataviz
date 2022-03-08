@@ -43,7 +43,7 @@ On cherche maintenant à rendre la représentation plus facile à lire.
 
 Par défaut, `R` classe les facteurs (pays) par ordre alphabétique.
 C'est rarement le bon choix, et il faut souvent ré-ordonner les facteurs
-pour obtenir une représentation plus aggréable.
+pour obtenir une représentation plus agréable.
 
 Ici, on cherche à ordonner les pays par nombre de films, de telle sorte à
 représenter une "hierarchie" entre eux.
