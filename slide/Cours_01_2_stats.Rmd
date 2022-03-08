@@ -97,7 +97,7 @@ Combien payent les français en impôts sur le revenu ?
 
 ## Exemples {.build}
 
-Les arbres de la forêt de fontainebleau sont-ils en bonne santé ?
+Les arbres de la forêt de Fontainebleau sont-ils en bonne santé ?
 
 **Individu**: un arbre  
 **Population**: la forêt de Fontainebleau  
