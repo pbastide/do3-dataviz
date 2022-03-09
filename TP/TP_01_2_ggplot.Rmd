@@ -149,7 +149,7 @@ Vous pouvez par exemple tester ici `geom_line` ou `geom_point`.
 
 > **À faire**:
 Tracer la température moyenne en fonction du jour de l'année à Montpellier.
-Faire varier le type de graphique et leur taille (lignes ou points plus ou poins gros),
+Faire varier le type de graphique et leur taille (lignes ou points plus ou moins gros),
 ainsi que leur couleur.
 
 ## Plusieurs villes
