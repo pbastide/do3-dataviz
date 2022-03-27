@@ -301,7 +301,7 @@ side <- ggplot(penguins_nona,
                aes(x = fct_relevel(species, "Adelie", "Gentoo", "Chinstrap"),
                    fill = fct_relevel(species, "Adelie", "Gentoo", "Chinstrap"))) +
   ggtitle("Diagramme en barres") + 
-  geom_bar() + xlab(NULL) + ylab("effectif") + scale_fill_discrete(guide = FALSE) + theme_minimal()
+  geom_bar() + xlab(NULL) + ylab("effectif") + scale_fill_discrete(guide = "none") + theme_minimal()
 
 stack <- ggplot(penguins_nona,
                 aes(x = 1,
@@ -325,7 +325,7 @@ pie <- ggplot(pen_sum,
                    amount = effectif,
                    fill = fct_relevel(species, "Adelie", "Gentoo", "Chinstrap"))) +
   xlab(NULL) + ylab(NULL) + coord_fixed() + ggtitle("Diagramme en secteurs") + 
-  geom_arc_bar(stat = "pie") + scale_fill_discrete(guide = FALSE) + theme_void()
+  geom_arc_bar(stat = "pie") + scale_fill_discrete(guide = "none") + theme_void()
 
 cowplot::plot_grid(
   side, stack, pie,
