@@ -401,11 +401,11 @@ La médiane est plus robuste que la moyenne.
 
 La médiane est plus robuste que la moyenne.
 
-Revenu net **médian** en France en 2018 : 1 871 € par mois
+<center><img src="figures/revenus.png" height="350px" /></center>
 
-Revenu net **moyen** en France en 2018 : 2 369 € par mois
-
-Source: [INSEE](https://www.insee.fr/fr/statistiques/4990766)
+Revenu net **médian** en France en 2018 : 1 871 € par mois  
+Revenu net **moyen** en France en 2018 : 2 369 € par mois  
+[Source: [INSEE](https://www.insee.fr/fr/statistiques/4990766)]
 
 ## Quartiles {.build}
 
