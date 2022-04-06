@@ -1,6 +1,6 @@
 # DO3 - Data Vizualization
 
-Dépôt `git` en support du cours *DO3 - Data Vizualiszation*.
+Dépôt `git` en support du cours *DO3 - Data Vizualization*.
 
 ## Supports de cours
 

@@ -777,7 +777,7 @@ $$
 \begin{aligned}
 W_{max} 
 &= \min\{M_n + 1.5·IQR;\ \max(x)\} \\
-&= \max\{
+&= \min\{
 `r quantile(montpellier3$temperature, 0.5)` 
 + 1.5·`r quantile(montpellier3$temperature, 0.75) - quantile(montpellier3$temperature, 0.25)`;\ 
 `r max(montpellier3$temperature)`\} \\
