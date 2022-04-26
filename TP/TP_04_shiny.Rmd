@@ -157,7 +157,7 @@ Il est aussi possible de réduire la fenêtre des données tracées,
 sliderInput("xlim",
             "Longueurs d'ailes considérées (mm)K:",
             min = 170, max = 240,
-            value = c(170, 240)),
+            value = c(170, 240))
 ```
 
 **Autre contrôles**:  
