@@ -1,5 +1,5 @@
 ---
-title: "TP 5 - Shiny"
+title: "TP 4 - Shiny"
 author: "Paul Bastide"
 date: "26/04/2022"
 output: html_document
@@ -76,11 +76,10 @@ Vous pouvez consulter l'application [drinkr](https://gallery.shinyapps.io/drinkr
 qui constitue un petit exemple introductif de l'utilisation de Shiny pour
 le calcul du taux d'alcool dans le sang en fonction de votre consommation.
 
-Un autre [exemple](https://walkerke.shinyapps.io/neighborhood_diversity) 
-plus complet présente un jeu de données sur la mixité sociale
-dans diverses villes des États-Unis.
+Un autre [exemple](https://jjallaire.shinyapps.io/shiny-crandash/) 
+présente les téléchargements des paquets `R` les plus populaires.
 (Ce deuxième exemple utilise en plus la librairie 
-[flexdashboard](https://pkgs.rstudio.com/flexdashboard/),
+[flexdashboard](https://pkgs.rstudio.com/flexdashboard/articles/shiny.html),
 non présenté ici mais que je vous invite à découvrir par vous même.)
 
 Cet outil est aussi utilisé par l'administration française, voir par

@@ -1,5 +1,5 @@
 ---
-title: "TP 2 - Introduction à `R markdown` et `ggplot2`"
+title: "TP 1.2 - Introduction à `R markdown` et `ggplot2`"
 author: "Paul Bastide"
 date: "08/03/2022"
 output: html_document
@@ -16,6 +16,18 @@ ainsi qu'une arborescence.
 Ouvrez ce projet dans RStudio.
 
 Créez un nouveau document `.Rmd`, avec une sortie au format `pdf`.
+
+Pour pouvoir compiler des documents `pdf`, vous aurez besoin de $\LaTeX$.
+Si vous ne l'avez pas déjà sur votre machine,
+vous pouvez télécharger la distribution complète (assez lourde) de $\LaTeX$ adaptée à votre machine,
+en passant par `apt-get` ou autre gestionnaire de logiciel.
+Vous pouvez aussi installer une version minimale, qui suffit pour compiler des documents
+au format `pdf`, en installant le package [`tinytex`](yihui.org/tinytex/):
+
+```{r install-rmd, eval = FALSE}
+install.packages('tinytex')
+tinytex::install_tinytex()
+```
 
 Vous compléterez ce document au fur et à mesure en suivant les indications du texte.
 Les points à rédiger sont signalés par la balise
@@ -149,7 +161,7 @@ Vous pouvez par exemple tester ici `geom_line` ou `geom_point`.
 
 > **À faire**:
 Tracer la température moyenne en fonction du jour de l'année à Montpellier.
-Faire varier le type de graphique et leur taille (lignes ou points plus ou poins gros),
+Faire varier le type de graphique et leur taille (lignes ou points plus ou moins gros),
 ainsi que leur couleur.
 
 ## Plusieurs villes
