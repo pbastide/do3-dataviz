@@ -91,7 +91,7 @@ Le guide complet de Shiny est disponible [ici](https://shiny.rstudio.com/tutoria
 ## Premier exemple
 
 `RStudio` contient un exemple didactique simple qui permet de se faire une idée.
-Pour le voir, créez simplement un nouveau projet shiny, dans le menu:
+Pour le voir, créez simplement une nouvelle application shiny, dans le menu:
 ```
 File > New File > Shiny Web App...
 ```
