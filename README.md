@@ -65,7 +65,7 @@ et sa [librairie](https://CRAN.R-project.org/package=fivethirtyeight) associée
 ## Points bonus
 
 * Typos et erreurs dans les diapos et fiches
-  * k-ème PR accepté = $\frac{1}{2^{k}}$ points en plus sur la note du CC.
+  * k-ème PR accepté = ![formule](https://latex.codecogs.com/png.image?\inline&space;\large&space;\dpi{110}\bg{white}\frac{1}{2^{k}}) points en plus sur la note du CC.
   
 ## Attribution
 
