@@ -80,3 +80,18 @@ pourraient s'être glissées dans ces pages.
 Texte et figures sous [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 
 Code sous [MIT](https://opensource.org/licenses/MIT).
+
+## Execute with VS Code on Devcontainer
+
+### Prerequisites
+- install [Docker](https://docs.docker.com/engine/install/?msclkid=a263c559c71e11eca53ba55ca617a829) on your machine
+- install [VS Code](https://code.visualstudio.com/Download?msclkid=d4537829c71e11ecb805496c7dfbd507) with [Remote - Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension
+
+### Execution
+
+- Open this project with your VS Code
+- And click on the button *"Reopen in Container"* on the bot right corner 
+
+![Screenshot from 2022-04-28 20-16-17](https://user-images.githubusercontent.com/43273304/165822035-d82ae1c7-60bb-4b9b-8d85-0bac309c2a8a.jpg)
+
+That it!
