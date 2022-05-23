@@ -152,11 +152,11 @@ ggplot(greve_pie) +
   scale_fill_manual(values = c("opposition" = "red4",
                                "indifférent" = "snow3",
                                "soutien" = "darkgreen"),
-                    guide = FALSE) +
+                    guide = "none") +
   scale_color_manual(values = c("opposition" = "red4",
                                 "indifférent" = "snow3",
                                 "soutien" = "darkgreen"),
-                     guide = FALSE) +
+                     guide = "none") +
   geom_text(aes(x = rlabel_in * sin(mid_angle),
                 y = rlabel_in * cos(mid_angle),
                 label = pourcent),
@@ -207,7 +207,7 @@ ggplot(greve, aes(x = jour, y = pourcent, fill = jour)) +
   geom_col() +
   ylab("Taux de participation") + xlab("Date") +
   ggtitle("Taux de participation à la grève \n du 18 avril 2018") + 
-  scale_fill_discrete(guide = FALSE) + 
+  scale_fill_discrete(guide = "none") + 
   geom_text(aes(label = pourcent, y = pourcent - 1.5), size = 8) + 
   theme_minimal()
 ```
