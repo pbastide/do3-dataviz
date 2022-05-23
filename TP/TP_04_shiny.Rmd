@@ -195,6 +195,25 @@ navbarPage("Représentation",
 )
 ```
 
+**Contrôles conditionnels**
+Vous pouvez faire varier les contrôles du graphes (qui apparaissent à gauche)
+en fonction de l'onglet sur lequel vous vous trouvez, pour adapter les
+contrôles disponibles au graphe affiché.
+
+Par exemple, pour n'afficher le contrôle sur la fenêtre associées aux ailes
+uniquement lorsque c'est bien le graphique portant sur les ailes qui est affiché,
+vous pouvez mettre ce contrôle au seins d'un `conditionalPanel`:
+```{r, eval = FALSE}
+conditionalPanel(
+  condition = "input.tabSelected == 'Ailes'",
+  sliderInput("xlim",
+              "Longueurs d'ailes considérées (mm)K:",
+              min = 170, max = 240,
+              value = c(170, 240)),
+),
+```
+
+
 
 **Mises en page**:  
 Plusieurs autres options de mises en forme sont possibles, 
