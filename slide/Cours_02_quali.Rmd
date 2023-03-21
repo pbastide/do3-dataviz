@@ -2,7 +2,7 @@
 title: "DO3 - Visualisation"
 subtitle: "Variables Qualitatives"
 author: "Paul Bastide"
-date: "29/03/2022"
+date: "30/03/2023"
 output:
   ioslides_presentation:
     fig_width: 7
@@ -294,7 +294,7 @@ knitr::kable(eff)
 
 ## Fréquences ou effectifs ?
 
-```{r, fig.height=3, fig.width=8, fig.align='center', echo = FALSE}
+```{r, fig.height=3, fig.width=8, fig.align='center', echo = FALSE, warning = FALSE}
 library(ggforce)
 
 side <- ggplot(penguins_nona,
@@ -405,6 +405,7 @@ Comparaisons temporelles plus faciles.
 # Proportion of seats held by women in national parliaments (%)
 # Women in parliaments are the percentage of parliamentary seats in a single or lower chamber held by women.
 # Source: Inter-Parliamentary Union ( IPU ) ( ipu.org ).
+# remotes::install_github("clauswilke/dviz.supp")
 library(tidyr)
 women_parliaments <- dviz.supp::women_parliaments
 parlement_rwanda <- women_parliaments %>%

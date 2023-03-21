@@ -2,7 +2,7 @@
 title: "DO3 - Visualisation"
 subtitle: "Variables Quantitatives"
 author: "Paul Bastide"
-date: "05/04/2022"
+date: "04/04/2023"
 output:
   ioslides_presentation:
     fig_width: 7
@@ -228,22 +228,22 @@ ggplot(Titanic, aes(x = Age)) +  ## Age en abscisse
 ## Histograme - Densité
 
 ```{r, fig.height=3, fig.width=6, fig.align='center', echo = TRUE}
-ggplot(Titanic, aes(x = Age)) +  ## Age en abscisse
-  geom_histogram(                ## Histogramme
-    aes(y = ..density..),        ## Densité à la place des comptages
-    binwidth = 5,                ## Largeur des classes
-    center = 2.5                 ## Centre des classes
+ggplot(Titanic, aes(x = Age)) +   ## Age en abscisse
+  geom_histogram(                 ## Histogramme
+    aes(y = after_stat(density)), ## Densité à la place des comptages
+    binwidth = 5,                 ## Largeur des classes
+    center = 2.5                  ## Centre des classes
   )
 ```
 
 ## Histograme - plus de classes
 
 ```{r, fig.height=3, fig.width=6, fig.align='center', echo = TRUE}
-ggplot(Titanic, aes(x = Age)) +  ## Age en abscisse
-  geom_histogram(                ## Histogramme
-    aes(y = ..density..),        ## Densité à la place des comptages
-    binwidth = 1,                ## Largeur des classes
-    center = 0.5                 ## Centre des classes
+ggplot(Titanic, aes(x = Age)) +   ## Age en abscisse
+  geom_histogram(                 ## Histogramme
+    aes(y = after_stat(density)), ## Densité à la place des comptages
+    binwidth = 1,                 ## Largeur des classes
+    center = 0.5                  ## Centre des classes
     )
 ```
 
@@ -268,7 +268,7 @@ ggplot(Titanic, aes(x = Age)) +  ## Age en abscisse
 
 <!-- ```{r, fig.height=3, fig.width=6, fig.align='center', echo = TRUE} -->
 <!-- ggplot(Titanic, aes(Age)) + -->
-<!--   geom_histogram(aes(y = ..density..), binwidth = 5, center = 2.5) +  -->
+<!--   geom_histogram(aes(y = after_stat(density)), binwidth = 5, center = 2.5) +  -->
 <!--   geom_density() -->
 <!-- ``` -->
 
@@ -315,7 +315,7 @@ knitr::kable(montpellier, row.names = FALSE)
 <div style="float: right; width: 60%;">
 ```{r, fig.height=3, fig.width=4, fig.align='center', echo = FALSE}
 ggplot(montpellier, aes(temperature)) +
-  geom_histogram(aes(y = ..density..), binwidth = 1, center = 0.5, alpha = 0.7 ) + 
+  geom_histogram(aes(y = after_stat(density)), binwidth = 1, center = 0.5, alpha = 0.7 ) + 
   geom_density(fill = "blue", alpha = 0.5) + 
   ggtitle("Temperature distribution") +
   theme_minimal() +
@@ -578,7 +578,7 @@ montpellier$jit <- runif(nrow(montpellier), -0.05, 0.05)
 ggplot(montpellier, aes(y = temperature)) +
  geom_point(aes(x = jit), color="black") +  
   # ggtitle("Variance") +
-  geom_hline(yintercept = mean(montpellier$temperature), color = "blue", size = 1.5) + 
+  geom_hline(yintercept = mean(montpellier$temperature), color = "blue", linewidth = 1.5) + 
   geom_segment(aes(x = jit, xend = jit, yend = mean(temperature))) + 
   theme_classic() +
   theme(

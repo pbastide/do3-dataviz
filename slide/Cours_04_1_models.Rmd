@@ -2,7 +2,7 @@
 title: "DO3 - Visualisation"
 subtitle: "Tendances et modèles"
 author: "Paul Bastide"
-date: "26/04/2022"
+date: "25/04/2023"
 output:
   ioslides_presentation:
     fig_width: 7
@@ -216,7 +216,7 @@ ggplot(data = adelie,
   xlab("Longueur du bec (mm)") +
   ylab("Largeur du bec (mm)") +
   ggtitle("Dimensions du bec de pengouins Adélie") + 
-  geom_hline(yintercept = mean(adelie$bill_depth_mm), color = "firebrick3", size = 1.2)
+  geom_hline(yintercept = mean(adelie$bill_depth_mm), color = "firebrick3", linewidth = 1.2)
 ```
 
 ## Régression Lineaire
@@ -235,7 +235,7 @@ ggplot(data = adelie,
   xlab("Longueur du bec (mm)") +
   ylab("Largeur du bec (mm)") +
   ggtitle("Dimensions du bec de pengouins Adélie") + 
-  geom_abline(intercept = 0, slope = 0.5, color = "firebrick3", size = 1.2)
+  geom_abline(intercept = 0, slope = 0.5, color = "firebrick3", linewidth = 1.2)
 ```
 
 ## Régression Lineaire
@@ -254,7 +254,7 @@ ggplot(data = adelie,
   xlab("Longueur du bec (mm)") +
   ylab("Largeur du bec (mm)") +
   ggtitle("Dimensions du bec de pengouins Adelie") + 
-  geom_smooth(method = "lm", se = FALSE, color = "firebrick3", size = 1.2)
+  geom_smooth(method = "lm", se = FALSE, color = "firebrick3", linewidth = 1.2)
 ```
 
 ## Régression Lineaire
@@ -282,7 +282,7 @@ sim <- data.frame(y = y, x = x)
 ggplot(sim, aes(x = x, y = y)) +
   geom_point() +
   theme_minimal() +
-  geom_hline(yintercept = mean(y), color = "firebrick3", size = 1.2) +
+  geom_hline(yintercept = mean(y), color = "firebrick3", linewidth = 1.2) +
   geom_segment(aes(x = x, y = y, xend = x, yend = mean(y))) +
   coord_cartesian(xlim = c(0.1, 1), ylim = c(1, 7))
 ```
@@ -310,7 +310,7 @@ $$
 ggplot(sim, aes(x = x, y = y)) +
   geom_point() +
   theme_minimal() +
-  geom_abline(intercept = 0, slope = 7, color = "firebrick3", size = 1.2) +
+  geom_abline(intercept = 0, slope = 7, color = "firebrick3", linewidth = 1.2) +
   # geom_segment(aes(x = x, y = y, xend = x, yend = predict(lm(y ~ x))))
   geom_segment(aes(x = x, y = y, xend = x, yend = 7 * x)) +
   coord_cartesian(xlim = c(0.1, 1), ylim = c(1, 7))
@@ -345,7 +345,7 @@ $$
 ggplot(sim, aes(x = x, y = y)) +
   geom_point() +
   theme_minimal() +
-  geom_smooth(method = "lm", se = FALSE, color = "firebrick3", size = 1.2) +
+  geom_smooth(method = "lm", se = FALSE, color = "firebrick3", linewidth = 1.2) +
   geom_segment(aes(x = x, y = y, xend = x, yend = predict(lm(y ~ x)))) +
   coord_cartesian(xlim = c(0.1, 1), ylim = c(1, 7))
 ```

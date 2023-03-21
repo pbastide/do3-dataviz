@@ -1,7 +1,7 @@
 ---
 title: "TP 4 - Shiny"
 author: "Paul Bastide"
-date: "26/04/2022"
+date: "25/04/2023"
 output: html_document
 ---
 
@@ -147,7 +147,7 @@ stockée dans `input$species`, pour faire un `subset` des données avant de les 
 
 **Comptage ou densité**:  
 Nous avons vu que les histogrammes pouvaient être tracés en fonction de l'effectif
-(par défaut) ou de la densité (`geom_histogram(aes(y = ..density..), ...)`).
+(par défaut) ou de la densité (`geom_histogram(aes(y = after_stat(density)), ...)`).
 Ajoutez un contrôle de type `radioButtons()` pour changer cette option.
 
 **Sélection de la fenêtre**:  
