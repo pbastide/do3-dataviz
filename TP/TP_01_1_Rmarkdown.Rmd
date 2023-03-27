@@ -80,18 +80,18 @@ Avec `R`, on peut simuler cette expérience aléatoire de la façon suivante.
 ```{r boules-experience}
 set.seed(1289)                         ## Reproductibilité
 
-urne <- c(rep("rouge", 100),         ## 100 boules rouges
-          rep("bleue", 100),         ## 100 boules bleues
-          rep("verte", 100))         ## 100 boules vertes 
+urne <- c(rep("rouge", 100),           ## 100 boules rouges
+          rep("bleue", 100),           ## 100 boules bleues
+          rep("verte", 100))           ## 100 boules vertes 
 
-n_exp <- 60                          ## Nombre de fois où je fais l'expérience
+n_exp <- 60                            ## Nombre de fois où je fais l'expérience
 
-echantillon <- sample(urne,          ## échantillonne les boules
+echantillon <- sample(urne,            ## échantillonne les boules
                       n_exp,           ## n_exp fois
                       replace = FALSE) ## sans remise
 ```
 
-On peut ensuite afficher un résumé de l'experience
+On peut ensuite afficher un résumé de l’expérience
 (nombre de fois où chaque boule a été tirée).
 
 ```{r boules-resultats}
