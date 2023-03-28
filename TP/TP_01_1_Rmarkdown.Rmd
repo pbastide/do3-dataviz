@@ -140,7 +140,7 @@ Il pourra contenir des équations $\LaTeX$, et des listes, numérotées ou non.
 > On pêche $100$ poissons, que l'on garde pour les exposer en aquarium, et l'on note leur couleur.
 >
 > Décrivez l'expérience statistique : question posée, individus, population, échantillon, taille, type de variable mesurée.
-> La variable a-t-elle bien des modalités incompatible, exhaustives et sans ambiguité ? 
+> La variable a-t-elle bien des modalités incompatibles, exhaustives et sans ambiguité ? 
 >
 > Simulez les données correspondant à cette expérience,
 > en utilisant la fonction `sample`.
