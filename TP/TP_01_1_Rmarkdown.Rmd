@@ -42,7 +42,7 @@ File > New File > R markdown...
 Dans l'onglet `Document` (sélectionné par défaut), vous pouvez saisir le titre
 et la, le ou les auteur·e·s du document.
 
-Trois formats sont proposée:
+Trois formats sont proposés:
 
 * `HTML`: permet une mise en forme dynamique, utile pour les sites internet.
 
