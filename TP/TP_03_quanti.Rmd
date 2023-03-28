@@ -96,7 +96,7 @@ on se pose la question suivante :
 du temps ?"
 
 Pour répondre à cette question, reprenez le jeu de données de la section précédente,
-et représentez-le sous formes de boxplots, un par année.
+et représentez-le sous forme de boxplots, un par année.
 
 Interprétez.
 
