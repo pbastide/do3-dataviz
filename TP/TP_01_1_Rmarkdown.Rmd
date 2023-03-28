@@ -51,7 +51,7 @@ Trois formats sont proposée:
 * `Word`: permet de générer des documents éditables, qui peuvent ensuite être
 partagés avec des collaborateurs ou collaboratrices.
 
-Pour cette séance, on choisi le format `HTML`, le plus simple en terme de 
+Pour cette séance, on choisi le format `HTML`, le plus simple en termes de 
 mise en page.
 
 ## Premier document
