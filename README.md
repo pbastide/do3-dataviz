@@ -75,7 +75,7 @@ L'adaptation et la traduction qui en a été faite ici est assez lâche,
 et ce dernier ne saurait être tenu responsable de toutes les erreurs qui
 pourraient s'être glissées dans ces pages.
 
-## License
+## Licence
 
 Texte et figures sous [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 
