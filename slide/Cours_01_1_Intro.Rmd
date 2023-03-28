@@ -22,7 +22,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 - Paul Bastide
     - paul.bastide@umontpellier.fr
-    - Statistiques appliquées, Evolution
+    - Statistiques appliquées, Évolution
 
 ## Module
 
@@ -30,7 +30,7 @@ knitr::opts_chunk$set(echo = TRUE)
   * Comment résumer un tableau de données ?
 
 * Visualisation
-  * Comment visualier des données ?
+  * Comment visualiser des données ?
 
 * Outils
   * `Rmarkdown`
@@ -47,7 +47,7 @@ knitr::opts_chunk$set(echo = TRUE)
   * Choisir un jeu de données d'intérêt
   * Poser au moins trois questions sur les données
   * Proposer une ou plusieurs représentations graphiques (dynamiques)
-  * Deux rendus:
+  * Deux rendus :
     * Un rapport technique, reproductible, détaillant la démarche statistique
     * Un produit fini de visualisation des données, partageable, indépendant.
 
@@ -56,15 +56,15 @@ knitr::opts_chunk$set(echo = TRUE)
 * [Open Data Montpellier Méditerranée Métropole](https://data.montpellier3m.fr/datasets)
 
 * [data.gouv.fr](https://www.data.gouv.fr/fr/),
-avec son [compte twitter](https://twitter.com/datagouvfr)
+avec son [compte Twitter](https://twitter.com/datagouvfr)
 
 * [data.europa.eu](https://data.europa.eu/euodp/en/home) et le [European Data Portal](https://www.europeandataportal.eu/en)
 
 * [data.sncf.com](https://data.sncf.com)
 
-* [Tidy Tuesday](https://github.com/rfordatascience/tidytuesday#datasets), sur twitter [#tidytuesday](https://twitter.com/search?q=%23tidytuesday)
+* [Tidy Tuesday](https://github.com/rfordatascience/tidytuesday#datasets), sur Twitter [#tidytuesday](https://twitter.com/search?q=%23tidytuesday)
 
-* [Five Thirty Eight](https://data.fivethirtyeight.com/) 
+* [Five Thirty Eight](https://data.fivethirtyeight.com/)
 et sa [librairie](https://CRAN.R-project.org/package=fivethirtyeight) associée
 
 * [KD Nuggets](https://www.kdnuggets.com/datasets/index.html)
@@ -90,39 +90,39 @@ et sa [librairie](https://CRAN.R-project.org/package=fivethirtyeight) associée
 
 * Les TPs sont dans `TP`
 
-* **Points Bonus**:
+* **Points Bonus** :
   * Typos et erreurs dans les diapos et TPs
   * Correction par "Pull Requests"
-  * k-ème PR accepté = $\frac{1}{2^{k}}$ points en plus sur la note du CC.
+  * $k$-ème PR acceptée = $\frac{1}{2^{k}}$ points en plus sur la note du CC.
 
 <!-- ************************************************************************ -->
 # R Markdown
 <!-- ************************************************************************ -->
 
-## `Markdown`: langage à balises
+## `Markdown` : langage à balises
 
-**Entrée**:
+**Entrée** :
 
 ```
-Je peux écrire en *italiques*, en **gras**, et même du `code`.
+Je peux écrire en *italique*, en **gras**, et même du `code`.
 
 Grâce au $\LaTeX$ je connais l'identité d'Euler : $e^{i\pi} + 1 = 0$.
 ```
 
-**Sortie**:
+**Sortie** :
 
 Je peux écrire en *italiques*, en **gras**, et même du `code`.
 
-Grâce au $\LaTeX$ je connais l'identité d'Euler : $e^{i\pi} + 1 = 0$.
+Grâce au $\LaTeX$, je connais l'identité d'Euler : $e^{i\pi} + 1 = 0$.
 
 
 $~$
-**Format**:
-Pdf, html, documents, diapos, ...
+**Format** :
+PDF, HTML, documents, diapos, ...
 
-## `R Markdown`: Code reproductible
+## `R Markdown` : Code reproductible
 
-**Entrée**:
+**Entrée** :
 
 ````
 La fonction `rnorm()` simule des gaussiennes.
@@ -132,7 +132,7 @@ rnorm(5)           # 5 gaussiennes centrées réduites
 `r ''````
 ````
 
-**Sortie**:
+**Sortie** :
 
 La fonction `rnorm()` simule des gaussiennes.
 ```{r}
