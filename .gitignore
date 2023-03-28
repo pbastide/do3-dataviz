@@ -39,3 +39,5 @@
 *_minted*
 # Xournalpp
 *.xopp
+# IntelliJ
+.idea/
