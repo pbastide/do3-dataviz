@@ -117,7 +117,7 @@ Rédigez un document `R markdown` qui réponde au problème exposé ci-dessous.
 Le document doit être auto-suffisant, et exposer clairement le problème,
 les analyses, et les conclusions.
 
-Il contiendra des sections, des mots mis en valeurs en **gras** et en 
+Il contiendra des sections, des mots mis en valeur en **gras** et en 
 *italique*, et du `code` dans le texte.
 
 Il contiendra également des blocs de code `R`, qui serviront à répondre 
