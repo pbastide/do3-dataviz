@@ -59,7 +59,7 @@ mise en page.
 Une fois le document créé, `RStudio` propose un contenu "didactique" par défaut.
 
 Vous pouvez compiler ce document en cliquant sur la commande 
-`Knit` en haut à gauche, à côté d'une pelotte de laine
+`Knit` en haut à gauche, à côté d'une pelote de laine
 (en anglais, "to knit" signifie "tricoter").
 
 Si tout fonctionne bien, `RStudio` va générer un document `HTML`, qu'il ouvre
