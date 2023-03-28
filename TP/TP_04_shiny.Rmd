@@ -34,7 +34,7 @@ Proposez un graphique pouvant répondre à la question, s'appuyant sur
 des histogrammes.
 Justifiez vos choix de représentation, en particulier la largeur des classes.
 
-**Note**: Par défaut, lorsque plusieurs histogramme sont tracés, `ggplot` les
+**Note**: Par défaut, lorsque plusieurs histogrammes sont tracés, `ggplot` les
 "empile" les un sur les autres. Pour changer ce comportement, vous pouvez utiliser
 l'option `position = "identity"` dans la fonction `geom_histogram`.
 Pour que deux barres se chevauchant restent visibles, vous pouvez les rendre partiellement
