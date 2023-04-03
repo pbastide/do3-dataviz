@@ -53,6 +53,8 @@ Justifiez le choix de la représentation.
 Répondez à la question initiale.
 Pouvez-vous simplifier le graphe pour ne représenter que les informations permettant de répondre à la question initiale ?
 
+**Note** : pour permettre à `ggplot` de savoir quels points relier par une ligne dans le polygone des fréquence, vous pourrez utiliser l'`aes` "`group`".
+
 ## Autre question
 
 Posez une autre question sur ces données, et répondez-y à l'aide d'un graphique adapté.

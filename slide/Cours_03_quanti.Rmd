@@ -959,7 +959,10 @@ Jeu de données 2:
 ggplot(data2, aes(x = x, y = y)) + geom_point() + theme_minimal()
 ```
 
+Source : package [datasauRus](https://cran.r-project.org/web/packages/datasauRus/vignettes/Datasaurus.html).
+
 </div>
+
 
 ## Références
 
