@@ -20,7 +20,7 @@ Les points à rédiger sont signalés par la balise
 
 # Box Office
 
-## Diagramme en bar avec `geom_col()`
+## Diagramme en barres avec `geom_col()`
 
 On reprend le jeu de données donnant le pays de production des cent films ayant
 fait le plus d'entrées au cinéma en France 
@@ -34,7 +34,7 @@ boxoffice <- data.frame(
 ```
 
 > **À faire**: En utilisant `ggplot2` et la fonction `geom_col()`,
-faire un diagramme en bar représentant le nombre de films par pays 
+faire un diagramme en barres représentant le nombre de films par pays 
 de production. Que se passe-t-il lorsque vous échangez le rôle de `x` et `y `?
 
 ## Ordonnancement des facteurs
@@ -79,7 +79,7 @@ head(penguins_nomissing)
 ```
 
 On cherche à faire une représentation similaire à la précédente, c'est-à-dire 
-un diagramme en bar, avec le nombre d'individus de chaque espèce présente dans l'archipel.
+un diagramme en barres, avec le nombre d'individus de chaque espèce présente dans l'archipel.
 
 > **À faire**: Décrivez l'expérience statistique associée à ce graphique:
 >
@@ -123,9 +123,9 @@ Grâce aux fonctions précédentes, il est donc possible d'extraire le nombre d'
 par espèces.
 
 > **À faire**: En utilisant les mêmes fonctions que pour le jeu de données précédent,
-faire un diagramme en bar représentant le nombre d'individus par espèce dans l'archipel.
+faire un diagramme en barres représentant le nombre d'individus par espèce dans l'archipel.
 
-## Diagramme en bar avec `geom_bar()`
+## Diagramme en barres avec `geom_bar()`
 
 Il est assez courant d'avoir à faire ce genre de décomptes avant une représentation
 graphique.
