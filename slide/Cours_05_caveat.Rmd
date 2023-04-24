@@ -304,14 +304,93 @@ $~$
 <center><img src="figures/graphs/trump_1.png" height="350px" /></center>
 
 
-[Source](https://quoidansmonassiette.fr/tromper-avec-graphiques-representations-visuelles-pour-manipuler-opinion-publique-guide/)
-
 ## Economic Growth
 
 <center><img src="figures/graphs/trump.jpg" height="500px" /></center>
 
 
-[Source](https://quoidansmonassiette.fr/tromper-avec-graphiques-representations-visuelles-pour-manipuler-opinion-publique-guide/)
+<!-- ************************************************************************ -->
+# Régressions
+<!-- ************************************************************************ -->
+
+## PISA
+
+<center><img src="figures/prime.png" height="500px" /></center>
+
+
+[Source](https://www.documentcloud.org/documents/23570155-20200415_approfondissement-valorisation-du-merite_vf)
+
+## PISA - `ggplot`
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE}
+library(here)
+pisa <- readxl::read_excel(here("data_raw", "pisa.xls"),
+                           sheet = "web_Tab_2", 
+                           col_types = c("text", "text", "numeric", 
+                                         "numeric", "numeric", "numeric", 
+                                         "skip"), skip = 5, n_max = 35)
+pisa <- pisa[-1, ]
+colnames(pisa)[1] <- "country"
+colnames(pisa)[6] <- "score"
+pisa$relative_score <- pisa$score - mean(pisa$score, na.rm = TRUE)
+pisa$relative_salary <- (pisa$YSALARY) * 100
+pisa <- pisa[!is.na(pisa$YSALARY), ]
+# pisa$TPP[pisa$TPP == "m"] <- "1"
+pisa <- pisa[pisa$TPP %in% c("0", "1"), ]
+# pisa_subset <- subset(pisa, YSALARY >= 0.75)
+# pisa_subset <- subset(pisa, YSALARY <= 1.5)
+```
+
+```{r, message = FALSE}
+ggplot(pisa, aes(x = relative_salary, y = relative_score, color = TPP)) +
+  geom_smooth(method = "lm", se = FALSE)
+```
+
+## PISA - Incertitudes
+
+```{r, message = FALSE}
+ggplot(pisa, aes(x = relative_salary, y = relative_score, color = TPP)) +
+  geom_smooth(method = "lm")
+```
+
+## PISA - Avec les données
+```{r, message = FALSE}
+ggplot(pisa, aes(x = relative_salary, y = relative_score, color = TPP)) +
+  geom_point() + geom_smooth(method = "lm")
+```
+
+## PISA - Sans la Corée
+```{r, message = FALSE}
+ggplot(subset(pisa, country != "Korea"),
+       aes(x = relative_salary, y = relative_score, color = TPP)) +
+  geom_point() + geom_smooth(method = "lm")
+```
+
+
+
+<!-- ```{r} -->
+<!-- pisa$relsal <- pisa$YSALARY - 1 -->
+<!-- pisa$relscore <- pisa$score -->
+<!-- pisa$TPPbis <- 1 - as.numeric(pisa$TPP) -->
+<!-- noprime <- subset(pisa, TPP == 0) -->
+<!-- prime <- subset(pisa, TPP == 1) -->
+<!-- fitprime <- lm(relscore ~ relsal, data = prime) -->
+<!-- fitnoprime <- lm(relscore ~ relsal, data = noprime) -->
+<!-- fitall <- lm(relscore ~ relsal * TPP + YGDP + EXPEND, data = pisa) -->
+<!-- summary(fitall) -->
+<!-- fiTPP <- lm(relscore ~ TPP, data = pisa) -->
+<!-- summary(fiTPP) -->
+<!-- fitGDP <- lm(relscore ~ YGDP, data = pisa) -->
+<!-- summary(fitGDP) -->
+<!-- fitrelsal <- lm(relscore ~ relsal * TPP, data = subset(pisa, relative_salary < 200)) -->
+<!-- summary(fitrelsal) -->
+<!-- plot(pisa$relsal, pisa$relscore, col = as.numeric(pisa$TPP) + 1) -->
+<!-- abline(fitprime) -->
+<!-- abline(fitnoprime) -->
+<!-- ``` -->
+
+
+
 
 ## Références
 
