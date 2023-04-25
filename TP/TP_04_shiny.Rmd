@@ -200,7 +200,7 @@ Vous pouvez faire varier les contrôles du graphes (qui apparaissent à gauche)
 en fonction de l'onglet sur lequel vous vous trouvez, pour adapter les
 contrôles disponibles au graphe affiché.
 
-Par exemple, pour n'afficher le contrôle sur la fenêtre associées aux ailes
+Par exemple, pour afficher le contrôle sur la fenêtre associées aux ailes
 uniquement lorsque c'est bien le graphique portant sur les ailes qui est affiché,
 vous pouvez mettre ce contrôle au seins d'un `conditionalPanel`:
 ```{r, eval = FALSE}
