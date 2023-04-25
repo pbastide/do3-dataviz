@@ -399,7 +399,7 @@ Ressources:
 
 * [Le modèle linéaire et ses extensions](https://www6.inrae.fr/mia-paris/content/download/4281/40718/version/1/file/ModeleLineaireEt_Extensions.pdf) (Chapitre 1)
 
-## Pinguoins
+## Pingouins
 
 La largeur du bec est-elle liée à la longueur du bec ?
 
@@ -411,7 +411,7 @@ ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
 
 Relation négative ?
 
-## Pinguoins
+## Pingouins
 
 La largeur du bec est-elle liée à la longueur du bec, pour chaque espèce ?
 
@@ -422,7 +422,7 @@ ggplot(data = penguins, aes(x = bill_length_mm, y = bill_depth_mm,
   geom_smooth(method = "lm", se = FALSE)
 ```
 
-## Pinguoins
+## Pingouins
 
 La largeur du bec est-elle liée à la longueur du bec, pour chaque espèce ?
 
