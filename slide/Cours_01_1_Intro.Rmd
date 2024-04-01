@@ -2,7 +2,7 @@
 title: "DO3 - Visualisation"
 subtitle: "Introduction"
 author: "Paul Bastide"
-date: "28/03/2023"
+date: "02/04/2024"
 output:
   ioslides_presentation:
     fig_width: 7
@@ -155,6 +155,6 @@ filled.contour(volcano, color.palette = terrain.colors, asp = 1)
 
 * [Fiche résumée](https://raw.githubusercontent.com/rstudio/cheatsheets/master/rmarkdown-2.0.pdf)
 
-* [RStudio](https://rstudio.com/)
+* [RStudio](https://posit.co/download/rstudio-desktop/)
 
 * Ces diapos sur [GitHub](https://github.com/pbastide/do3-dataviz)

@@ -1,7 +1,7 @@
 ---
-title: "TP 1 - Introduction à `R markdown`"
+title: "TP 1.1 - Introduction à `R markdown`"
 author: "Paul Bastide"
-date: "28/03/2023"
+date: "02/04/2024"
 output: html_document
 ---
 
@@ -77,8 +77,6 @@ On reproduit cette expérience 60 fois.
 Avec `R`, on peut simuler cette expérience aléatoire de la façon suivante.
 
 ```{r boules-experience}
-set.seed(1289)                         ## Reproductibilité
-
 urne <- c(rep("rouge", 100),           ## 100 boules rouges
           rep("bleue", 100),           ## 100 boules bleues
           rep("verte", 100))           ## 100 boules vertes 
@@ -139,7 +137,7 @@ Il pourra contenir des équations $\LaTeX$, et des listes, numérotées ou non.
 > On pêche $100$ poissons, que l'on garde pour les exposer en aquarium, et l'on note leur couleur.
 >
 > Décrivez l'expérience statistique : question posée, individus, population, échantillon, taille, type de variable mesurée.
-> La variable a-t-elle bien des modalités incompatibles, exhaustives et sans ambiguité ? 
+> La variable a-t-elle bien des modalités incompatibles, exhaustives et sans ambiguïté ? 
 >
 > Simulez les données correspondant à cette expérience,
 > en utilisant la fonction `sample`.

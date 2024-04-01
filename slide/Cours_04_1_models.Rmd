@@ -2,7 +2,7 @@
 title: "DO3 - Visualisation"
 subtitle: "Tendances et modèles"
 author: "Paul Bastide"
-date: "25/04/2023"
+date: "30/04/2024"
 output:
   ioslides_presentation:
     fig_width: 7

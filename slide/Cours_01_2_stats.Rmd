@@ -2,7 +2,7 @@
 title: "DO3 - Visualisation"
 subtitle: "Statistiques descriptives"
 author: "Paul Bastide"
-date: "28/03/2023"
+date: "02/04/2024"
 output:
   ioslides_presentation:
     fig_width: 7
