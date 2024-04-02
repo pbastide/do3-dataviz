@@ -27,7 +27,7 @@ penguins <- na.omit(penguins)
 ```
 
 ```{r, fig.height=4, fig.width=4, fig.align='center', echo = FALSE}
-adelie <- subset(penguins, species == "Adelie")
+adelie <- subset(penguins, species == "Adélie")
 ggplot(data = adelie,
        aes(x = bill_length_mm,
            y = bill_depth_mm)) +
@@ -253,7 +253,7 @@ ggplot(data = adelie,
   theme_minimal() +
   xlab("Longueur du bec (mm)") +
   ylab("Largeur du bec (mm)") +
-  ggtitle("Dimensions du bec de pengouins Adelie") + 
+  ggtitle("Dimensions du bec de pengouins Adélie") + 
   geom_smooth(method = "lm", se = FALSE, color = "firebrick3", linewidth = 1.2)
 ```
 

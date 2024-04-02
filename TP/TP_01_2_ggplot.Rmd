@@ -30,7 +30,7 @@ tinytex::install_tinytex()
 ```
 
 Vous compléterez ce document au fur et à mesure en suivant les indications du texte.
-Les points à rédiger sont signalés par la balise
+Les points à rédiger sont signalés par la balise.
 
 > **À faire**: Créer un nouveau document `.Rmd` pour compiler un `pdf`.
 
