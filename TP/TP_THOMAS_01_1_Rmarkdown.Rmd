@@ -1,0 +1,82 @@
+---
+title: "TP Markdown"
+output: html_document
+date: "2024-04-02"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Sujet
+
+On pêche des poissons dans le Lez.
+On suppose qu'il y a en tout 10000 poissons dans le Lez, dont 2000
+rouges, 3000 verts et 5000 bleus (le Lez est très pollué). On suppose
+cependant que l'on n'a pas accès à cette information (on ne sait pas
+combien il y a de poissons en tout, ni combien de chaque couleur).
+
+## Problématique :
+
+<h4>**Quelle est la proportion de poissons rouges, verts et bleus dans le Lez ?**</h4>
+
+On pêche 100 poissons, que l'on garde pour les exposer en aquarium, et
+l'on note leur couleur.
+
+**Individus**: poissons
+
+**Population**: les poissons du Lez
+
+**Échantillon**: poissons pêchés
+
+**Taille**: 100
+
+**Variable**: la couleur du poisson
+
+**Modalités**: Rouge / Vert / Bleu
+
+**Type**: qualitative, nominale
+
+---
+
+Voici la simulation de cette expérience aléatoire : 
+```{r lez-experience}
+set.seed(150)  
+lez <- c(rep("rouge", 2000),           ## 2000 poissons rouges
+          rep("bleu", 5000),           ## 5000 poissons bleues
+          rep("vert", 3000))           ## 3000 poissons vertes 
+
+n_exp <- 100                           ## 100 poissons pêchés
+
+echantillon <- sample(lez,             ## échantillonne les poissons
+                      n_exp,           ## n_exp fois
+                      replace = FALSE) ## sans remise
+```
+
+Et voici un affichage de l’expérience (nombre de fois où chaque boule a été tirée) : 
+
+```{r lez-resultats}
+res <- table(echantillon)             ## Résumé de l'échantillon
+res
+```
+
+Et voici le résultat sous forme de graphique :
+
+```{r lez-resultats-tracé}
+barplot(res)                          ## Diagramme en bar
+```
+
+**Résumé : **
+
+Sur les `r n_exp` poissons pêchés dans le Lez, on a pêché ici `r res[1]`
+poissons bleus, `r res[2]` poissons rouges et `r res[3]` poissons verts.
+
+La fréquence empirique du résultat s'approche de la fréquence théorique.
+
+## Conclusion
+
+Si nous répétons l'expérience plusieurs fois ou changeons la taille de l'échantillon, les résultats numériques peuvent varier.  L'utilisation de set.seed permet de produire des résultats identiques pour une simulation donnée, car il s'assure que les mêmes nombres aléatoires sont générés à chaque fois.
+
+Pour un petit échantillon de 10 poissons, nous avons obtenu les fréquences empiriques suivantes : 2 rouges, 4 verts, et 4 bleus. Cette répartition montre une forte variabilité et ne reflète pas fidèlement la répartition réelle dans la population.
+
+Avec un échantillon beaucoup plus grand de 1 000 poissons, les fréquences empiriques sont de 215 rouges, 280 verts, et 505 bleus. Ces résultats se rapprochent beaucoup plus des proportions réelles de la population (20 % rouges, 30 % verts, 50 % bleus), illustrant comment l'augmentation de la taille de l'échantillon améliore la précision de l'estimation des proportions.
