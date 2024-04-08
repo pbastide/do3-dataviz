@@ -46,7 +46,7 @@ C'est rarement le bon choix, et il faut souvent ré-ordonner les facteurs
 pour obtenir une représentation plus agréable.
 
 Ici, on cherche à ordonner les pays par nombre de films, de telle sorte à
-représenter une "hierarchie" entre eux.
+représenter une "hiérarchie" entre eux.
 
 Pour cela, on utilise la fonction `fct_reorder`, de la librairie `forcats`.
 
@@ -151,7 +151,7 @@ facteurs, vous pouvez utiliser la fonction `fct_relevel`.
 
 ## Ajout d'information
 
-On peut modifier la questions d'origine, en se demandant:
+On peut modifier la question d'origine, en se demandant:
 *quel est le nombre d'individus mâles et d'individus femelles de chaque espèce ?*
 
 Pour y répondre, il faut exploiter l'information `sex` contenue dans le tableau.
@@ -215,9 +215,9 @@ Décrivez brièvement les données (taille, variables, ...).
 ## Assemblée constituante française
 
 Dans un premier temps, on s'intéresse uniquement à la proportion de femmes 
-dans l'assemblée constituante de la quatrième république française.
+dans l'assemblée constituante de la Quatrième République française.
 
-> **À faire**: Renseignez-vous sur la quatrième république.
+> **À faire**: Renseignez-vous sur la Quatrième République.
 En quelle année a-t-elle été proclamée ?
 Extrayez les données correspondantes à cette assemblée 
 à l'aide de la fonction `subset`.
@@ -231,8 +231,8 @@ Pour ce faire, il faut re-formater les données de telle sorte à avoir une colo
 `genre` (homme/femme) et une colonne `pourcent` donnant le pourcentage de
 chaque genre. 
 
-> **À faire**: Tracez un diagramme en barres représentant la proportions de femmes
-dans l'assemblée constituante de la quatrième république française.  
+> **À faire**: Tracez un diagramme en barres représentant la proportion de femmes
+dans l'assemblée constituante de la Quatrième République française.  
 Utilisez-vous des barres côtes à côtes ou empilées ? Justifiez.
 
 Pour représenter une assemblée, un diagramme en secteurs (camembert) peut
@@ -241,9 +241,9 @@ Dans `R`, on peut utiliser la fonction `geom_arc_bar` de la librairie
 `ggforce`, qui complète la librairie `ggplot2` utilisée jusqu'à présent.
 
 > **À faire**: Tracez un diagramme en secteurs représentant le nombre de femmes
-dans l'assemblée constituante de la quatrième république française.  
+dans l'assemblée constituante de la Quatrième République française.  
 Question bonus: quelle est la proportion de femmes dans l'assemblée constituante 
-de la cinquième république ?
+de la Cinquième République ?
 
 
 ## Evolution de la proportion de femmes dans l'assemblée d'un pays

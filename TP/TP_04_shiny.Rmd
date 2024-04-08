@@ -14,7 +14,7 @@ library(ggplot2)
 
 # Pingouins d'Antarctique
 
-On reprend le jeu de données sur le pingouins de l'archipel Palmer
+On reprend le jeu de données sur le pingouin de l'archipel Palmer
 contenu dans la librairie [palmerpenguins](https://allisonhorst.github.io/palmerpenguins/index.html).
 
 ```{r}
@@ -196,7 +196,7 @@ navbarPage("Représentation",
 ```
 
 **Contrôles conditionnels**
-Vous pouvez faire varier les contrôles du graphes (qui apparaissent à gauche)
+Vous pouvez faire varier les contrôles du graphe (qui apparaissent à gauche)
 en fonction de l'onglet sur lequel vous vous trouvez, pour adapter les
 contrôles disponibles au graphe affiché.
 
