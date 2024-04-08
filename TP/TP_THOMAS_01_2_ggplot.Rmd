@@ -1,0 +1,169 @@
+---
+title: "TP 01 2 GGplot"
+output: pdf_document
+date: "2024-04-02"
+---
+
+```{r setup, include=FALSE}
+library(here)
+library(ggplot2)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Données: Températures moyennes à Montpellier
+
+```{r}
+temps_average <- read.csv(file = here("data", "temp_average.csv"))
+temps_montpellier <- subset(temps_average, city == "Montpellier")
+head(temps_montpellier)
+```
+
+Ce tableau indique la moyenne des températures des premiers jours de
+l'année à Montpellier. La colonne "City"
+spécifie la ville. La colonne "day_of_year" indique le numéro du
+jour dans l'année, et la colonne "month"
+indique le mois. La colonne "temperature" représente
+la moyenne des températures en degrés Celsius pour chaque jour de
+l'année. La période va de 1950 à 2019.
+
+## Données: Statistiques de base
+
+```{r}
+average_temp <- mean(temps_montpellier$temperature)
+cat("Température moyenne sur l’année 2020 à Montpellier", average_temp, "\n")
+```
+
+```{r}
+avg_day <- temps_montpellier[average_temp,]$day_of_year
+date_avg_day <- as.Date(avg_day, origin="2019-12-31")
+cat("Jour de température moyenne", toString(date_avg_day))
+```
+
+```{r}
+min_day <- temps_montpellier[which.min(temps_montpellier$temperature),]$day_of_year
+date_min_day <- as.Date(min_day, origin="2019-12-31")
+cat("Jour le plus froid ", toString(date_min_day))
+```
+
+```{r}
+max_day <- temps_montpellier[which.max(temps_montpellier$temperature),]$day_of_year
+date_max_day <- as.Date(max_day, origin="2019-12-31")
+cat("Jour le plus chaud ", toString(date_max_day))
+```
+
+## Représentation graphique
+
+Premier graphique :
+```{r fig.height=4, fig.width=8, fig.align='center'}
+ggplot(temps_montpellier, aes(x = day_of_year, y = temperature )) + 
+  geom_point() + 
+  theme_light() + 
+  labs(x="Jour de l'année", y="Température (°C)")
+```
+
+Deuxième graphique avec un style différent :
+```{r fig.height=4, fig.width=8, fig.align='center'}
+ggplot(temps_montpellier, aes(x = day_of_year, y = temperature )) + 
+  geom_line(color="red") + 
+  theme_light() + 
+  labs(x="Jour de l'année", y="Température (°C)")
+```
+
+## Plusieurs villes
+
+```{r fig.height=4, fig.width=8, fig.align='center'}
+ggplot(temps_average, aes(x = day_of_year, y = temperature, linetype = city, color = city)) +
+geom_line() +
+theme_light() +
+labs(x = "Jour de l'année", y = "Température (°C)", linetype = "Ville", color = "Ville") +
+scale_linetype_manual(values = c("solid", "dashed", "dotted"))
+```
+
+## Températures représentées en `color`
+
+```{r fig.height=4, fig.width=8, fig.align='center'}
+ggplot(temps_average, aes(x = day_of_year, y = city, color = temperature)) +
+  geom_point(size = 5) +
+  scale_color_gradient(low = "yellow", high = "red") + # Définir le gradient de couleur
+  theme_light() + 
+  labs(x = "Jour de l'année", y = "Ville") +
+  guides(color = guide_colorbar(title = "Température (°C)"))
+```
+
+Le graphique montre la moyenne des températures pour chaque jour de l'année dans les villes de Montpellier, Embrun et Lille. 
+
+## Mélanges
+
+Températures en `y`, avec une couleur **et** un type de ligne différent pour chaque
+ville
+
+```{r fig.height=4, fig.width=8, fig.align='center'}
+ggplot(temps_average, aes(x = day_of_year, y = temperature, color = city, linetype = city)) +
+  geom_line() +
+  theme_light() +
+  labs(x = "Jour de l'année", y = "Température (°C)", title = "Température moyenne par jour et par ville", color = "Ville", linetype = "Ville")
+
+```
+
+Températures en `y`, un type de ligne différent pour chaque ville, et une couleur pour chaque mois
+
+```{r fig.height=4, fig.width=8, fig.align='center'}
+ggplot(temps_average, aes(x = day_of_year, y = temperature, linetype = city, color = factor(month))) +
+  geom_line() +
+  theme_light() +
+  labs(x = "Jour de l'année", y = "Température (°C)", title = "Température moyenne par jour, par ville et par mois", linetype = "Ville", color = "Mois")
+
+```
+
+Températures en `color`, représentées verticalement
+
+```{r fig.height=4, fig.width=8, fig.align='center'}
+ggplot(temps_average, aes(x = day_of_year, y = 1, fill = temperature)) + 
+  geom_tile() + 
+  scale_fill_gradient(low = "blue", high = "red") +
+  theme_light() +
+  labs(x = "Jour de l'année", y = "", title = "Température moyenne par jour de l'année", fill = "Température (°C)")
+
+```
+
+Graphe donnant le mois en fonction du jour de l\'année
+
+```{r fig.height=4, fig.width=8, fig.align='center'}
+ggplot(temps_average, aes(x = day_of_year, y = factor(month))) +
+  geom_point() +
+  theme_light() +
+  labs(x = "Jour de l'année", y = "Mois", title = "Mois en fonction du jour de l'année")
+
+
+```
+
+## Mise en forme
+
+```{r fig.height=4, fig.width=8, fig.align='center'}
+ggplot(temps_average, aes(x = day_of_year, y = city, color = temperature)) +
+  geom_point(size = 5) +
+  scale_color_gradient(low = "yellow", high = "red") + # Définir le gradient de couleur
+  theme_light() + 
+  labs(x = "Jour de l'année", y = "Ville", title = "Température moyenne par jour et par ville", color = "Température (°C)") +
+  guides(color = guide_colorbar(title = "Température (°C)")) +
+  xlab("Jour de l'année (1-365)") + 
+  ylab("Ville") + 
+  ggtitle("Variation de la Température Moyenne Journalière par Ville")
+
+```
+
+## Formulation statistique :
+**Question posée :** 
+Comment la température moyenne varie-t-elle au cours de l'année dans différentes villes ?
+
+**Individu :** 
+Chaque point de donnée représente la température moyenne d'une ville pour un jour donné de l'année.
+
+**Population :** 
+L'ensemble des températures journalières pour toutes les villes concernées au cours de l'année.
+
+**Échantillon :** 
+Les données collectées et présentées dans le cadre de données temps_average, qui contient des mesures de température pour différents jours de l'année dans plusieurs villes.
+
+**Variable mesurée :** 
+La température moyenne (°C), mesurée chaque jour dans chaque ville. Cette variable est continue et est représentée par la couleur dans le graphique, avec des nuances allant du jaune pour les températures plus basses au rouge pour les températures plus élevées.
