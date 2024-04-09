@@ -131,7 +131,7 @@ ggplot(boxoffice,
   xlab("Country")                             # noms de l'axe des x
 ```
 
-## Ordonancement vertical
+## Ordonnancement vertical
 
 ```{r film-plot-4, fig.height=3, fig.width=6, fig.align='center'}
 ggplot(boxoffice,
