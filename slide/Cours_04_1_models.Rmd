@@ -253,7 +253,7 @@ ggplot(data = adelie,
   theme_minimal() +
   xlab("Longueur du bec (mm)") +
   ylab("Largeur du bec (mm)") +
-  ggtitle("Dimensions du bec de pengouins Adelie") + 
+  ggtitle("Dimensions du bec de pengouins Adélie") + 
   geom_smooth(method = "lm", se = FALSE, color = "firebrick3", linewidth = 1.2)
 ```
 
