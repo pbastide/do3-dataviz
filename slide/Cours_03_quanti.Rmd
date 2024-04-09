@@ -95,7 +95,7 @@ freq <- ggplot(couples,
                    group = 1)) +
   geom_line() +
   scale_y_continuous(name = "Fréquence",
-                     sec.axis = sec_axis(trans = ~. *  sum(effectifs), name="Effectif")) + 
+                     sec.axis = sec_axis(transform = ~. *  sum(effectifs), name="Effectif")) + 
   ggtitle("Polygone des fréquences") + xlab("Nombre d'enfants") + theme_minimal()
 
 
