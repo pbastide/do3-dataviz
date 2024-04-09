@@ -27,7 +27,7 @@ penguins <- na.omit(penguins)
 ```
 
 ```{r, fig.height=4, fig.width=4, fig.align='center', echo = FALSE}
-adelie <- subset(penguins, species == "Adélie")
+adelie <- subset(penguins, species == "Adelie")
 ggplot(data = adelie,
        aes(x = bill_length_mm,
            y = bill_depth_mm)) +
