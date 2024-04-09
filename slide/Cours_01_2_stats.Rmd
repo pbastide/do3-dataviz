@@ -122,7 +122,7 @@ Quelle est l'orientation des parcelles agricoles ?
 ## Exemples {.build}
 
 **Variable**: nombre d'enfants  
-**Modalités**: un nombre entier positif
+**Modalités**: un chiffre positif
 
 **Variable**: somme versée à l'administration  
 **Valeurs**: un nombre positif

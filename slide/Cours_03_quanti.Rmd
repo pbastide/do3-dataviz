@@ -34,7 +34,7 @@ output:
 
 ## Nombre d'enfants par couple {.build}
 
-On s'intéresse au nombre d'enfants de moins de 25 ans par couples en France en 2017 [[source](https://www.insee.fr/fr/statistiques/4516614?sommaire=4516657&geo=FE-1)].
+On s'intéresse au nombre d'enfants de moins de 25 ans par couple en France en 2017 [[source](https://www.insee.fr/fr/statistiques/4516614?sommaire=4516657&geo=FE-1)].
 
 **Individu**: un couple 
 
