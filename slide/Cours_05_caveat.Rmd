@@ -52,22 +52,16 @@ ggplot(hospi, aes(x = semaine, y = Efficacite, color = Vaccin)) +
 ```
 
 <!-- ************************************************************************ -->
-# Cherchez l'erreur : épidémie
+# Cherchez l'erreur : Grèves
 <!-- ************************************************************************ -->
 
-## Épidémie
+## Grèves SNCF
 
-<center><img src="figures/graphs/cas_castex.jpg" height="350px" /></center>
+<center><img src="figures/graphs/greve_sncf_bfm.jpg" height="350px" /></center>
 
-## Épidémie : les ravages du ppt
+[Source](https://www.liberation.fr/checknews/2018/04/27/est-ce-que-bfmtv-a-vraiment-affiche-un-graphique-a-camembert-trompeur-sur-le-soutien-a-la-greve-des-_1653615/)
 
-<center><img src="figures/graphs/cas_castex_vraie.jpg" height="350px" /></center>
 
-$~$
-[Source](https://twitter.com/Panda31808732/status/1365268202494849031)
-$~$ 
-
-Ne modifiez **jamais** vos graphiques à la main !
 
 <!-- ************************************************************************ -->
 # Cherchez l'erreur : Grèves
@@ -315,7 +309,7 @@ $~$
 
 ## PISA
 
-<center><img src="figures/prime.png" height="500px" /></center>
+<center><img src="figures/graphs/prime.png" height="500px" /></center>
 
 
 [Source](https://www.documentcloud.org/documents/23570155-20200415_approfondissement-valorisation-du-merite_vf)
@@ -389,8 +383,14 @@ ggplot(subset(pisa, country != "Korea"),
 <!-- abline(fitnoprime) -->
 <!-- ``` -->
 
+## Sprint
 
+<center><img src="figures/graphs/sprint.png" height="400px" /></center>
 
+Source: 
+Tatem, A., Guerra, C., Atkinson, P. et al. 
+Momentous sprint at the 2156 Olympics?
+Nature 431, 525 (2004). [doi:10.1038/431525a](https://doi.org/10.1038/431525a)
 
 ## Références
 
