@@ -290,6 +290,33 @@ $~$
 **Choix des données** représentées très important.
 
 <!-- ************************************************************************ -->
+# Sondages
+<!-- ************************************************************************ -->
+
+## Votes pour Biden et économie
+
+<center><img src="figures/graphs/income_biden_1.png" height="500px" /></center>
+
+$~$ 
+[Source](https://medium.com/3streams/is-it-really-the-economy-stupid-a0806db9140e)
+
+## Votes pour Biden et économie
+
+<center><img src="figures/graphs/income_biden_3.png" height="500px" /></center>
+
+$~$ 
+[Source](https://medium.com/3streams/is-it-really-the-economy-stupid-a0806db9140e)
+
+## Votes pour Biden et économie
+
+<center><img src="figures/graphs/income_biden_2.png" height="500px" /></center>
+
+$~$ 
+[Source](https://medium.com/3streams/is-it-really-the-economy-stupid-a0806db9140e)
+
+**Sondages** les questions orientent les réponses.
+
+<!-- ************************************************************************ -->
 # Comparaison n'est pas raison
 <!-- ************************************************************************ -->
 
