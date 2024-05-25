@@ -61,18 +61,6 @@ ggplot(hospi, aes(x = semaine, y = Efficacite, color = Vaccin)) +
 
 [Source](https://www.liberation.fr/checknews/2018/04/27/est-ce-que-bfmtv-a-vraiment-affiche-un-graphique-a-camembert-trompeur-sur-le-soutien-a-la-greve-des-_1653615/)
 
-
-
-<!-- ************************************************************************ -->
-# Cherchez l'erreur : Grèves
-<!-- ************************************************************************ -->
-
-## Grèves SNCF
-
-<center><img src="figures/graphs/greve_sncf_bfm.jpg" height="350px" /></center>
-
-[Source](https://www.liberation.fr/checknews/2018/04/27/est-ce-que-bfmtv-a-vraiment-affiche-un-graphique-a-camembert-trompeur-sur-le-soutien-a-la-greve-des-_1653615/)
-
 ## Grèves SNCF : données
 
 ```{r}
@@ -172,16 +160,16 @@ ggplot(greve_pie) +
 ```
 
 <!-- ************************************************************************ -->
-# Sondage : Non à la 3D
+# Non à la 3D
 <!-- ************************************************************************ -->
 
-## Sondages
+## iPhone
 
-<center><img src="figures/graphs/camembert_3D.jpg" height="350px" /></center>
+<center><img src="figures/graphs/apple.png" height="350px" /></center>
 
 $~$
 
-[Source](https://quoidansmonassiette.fr/tromper-avec-graphiques-representations-visuelles-pour-manipuler-opinion-publique-guide/)
+[Source](http://www.labo.mathieurella.fr/?p=403)
 
 <!-- ************************************************************************ -->
 # Grèves : Attention aux axes
@@ -288,6 +276,18 @@ $~$
 [Source](https://socviz.co/lookatdata.html)
 
 **Choix des données** représentées très important.
+
+<!-- ************************************************************************ -->
+# Effet loupe
+<!-- ************************************************************************ -->
+
+## Infirmières
+
+<center><img src="figures/graphs/nurses.png" height="400px" /></center>
+
+$~$ 
+[Source](https://www.scienceontrial.com/post/shifting-the-data)
+
 
 <!-- ************************************************************************ -->
 # Sondages
